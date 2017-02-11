@@ -8,7 +8,18 @@ var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
 
+var addTrail = require('./routes/addTrail');
+var favs = require('./routes/favs');
+var help = require('./routes/help');
+var hikehistory = require('./routes/hikehistory');
 var index = require('./routes/index');
+var mytrails = require('./routes/mytrails');
+var profile = require('./routes/profile');
+var settings = require('./routes/settings');
+var submitTrail = require('./routes/submitTrail');
+
+
+
 // Example route
 // var user = require('./routes/user');
 
@@ -36,8 +47,19 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
+app.get('/addTrail', addTrail.view);
+app.get('/favs', favs.view);
+app.get('/help', help.view);
+app.get('/hikehistory', hikehistory.view);
+app.get('/mytrails', mytrails.view);
+app.get('/profile', profile.view);
+app.get('/settings', settings.view);
+app.get('/submitTrail', submitTrail.view);
+
+
 // Example route
 // app.get('/users', user.list);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
