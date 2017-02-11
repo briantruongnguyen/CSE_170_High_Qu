@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -6,8 +7,8 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     
     <style>
   #map {
@@ -86,7 +87,7 @@
         </div>
     </div>
     
-          <a id="addbutton" href="addTrail.handlebars" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+          <a id="addbutton" href="addTrail.html" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
     
     
        <div id="map"></div>
@@ -153,9 +154,7 @@
     }, 500);
           
           
-          
-        $("#mylocation").on("click",function(){
-            
+                      
                    if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
@@ -173,8 +172,9 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
-        });
           
+          
+       
           
         var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve
@@ -242,12 +242,15 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/js/materialize.js"></script>
-  <script src="/js/init.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
     
   <script>
       $(document).ready(function(){
-    
+           $("#mylocation").on("click",function(){
+            console.log("GG");
+        });
+          
 
       });
       
