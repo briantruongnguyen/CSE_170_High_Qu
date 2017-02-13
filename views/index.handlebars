@@ -1,19 +1,19 @@
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+    <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+      <title>Starter Template - Materialize</title>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    
-    <style>
-  #map {
-    height: 91.5%;
-    position:relative;
-  }
+      <!-- CSS  -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+      <style>
+          #map {
+            height: 91.5%;
+            position:relative;
+        }
         #contactform{
             z-index:5;
             position:absolute;
@@ -21,239 +21,258 @@
             top: 20%;
             left: 10%;
         }
-          #addbutton{
+        #addbutton{
             top: 85%;
             left: 5%;
             z-index:6;
             position:absolute;
         }
-   
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    z-index: 0;
-  }
-</style>
+        #hamburger{
+            left: -8%;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            z-index: 0;
+        }
+    </style>
 </head>
+
+
+
+
+
+
+
 <body>
   <nav class="light-green lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">High-Qu</a>
-      
+
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <ul id="nav-mobile" class="side-nav">
-       <li><div class="userView">
+    </ul>
+    <ul id="nav-mobile" class="side-nav">
+     <li><div class="userView">
       <div class="background">
         <img style="width:100%;" src="img/materialize-bg.jpg">
-      </div>
-       <div class="row">
-           <div class="col s4">
-               <a href="#!user"><img class="circle" src="img/doge.jpeg"></a>
-           </div>
-           <div class="col s8">
-               <h5 class="white-text">Dogest Doge</h5>
-           </div>
-       </div>
-      <div class="divider"></div>
-
-      <h6 class="white-text">123 Trails Hiked</h6>
-      <h6 class="white-text">75 Reviews</h6>
-      <h6 class="white-text">69 Photos</h6>
-      <br>
-
-
-    </div></li>
-    <li><a class="waves-effect" href="/">Explore</a></li>
-    <li><a class="waves-effect" href="mytrails">My Created Trails</a></li>
-    <li><a class="waves-effect" href="hikehistory">Hike History</a></li>
-    <li><a class="waves-effect" href="favs">Favorites</a></li>
-    <li><a class="waves-effect" href="profile">Profile</a></li>
-    <li><a class="waves-effect" href="help">Help</a></li>
-    <li><a class="waves-effect" href="settings">Settings</a></li>
-          
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
-  </nav>
-    
-    
-        <div class ="container" id ="contactform">
-         <div class="input-field" style="background-color:white;">
-          <input id="search" class="controls" type="search" placeholder="Enter a Location">
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-        </div>
-    </div>
-    
-          <a id="addbutton" href="addTrail" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
-    
-    
-       <div id="map"></div>
-    
+    <div class="row">
+     <div class="col s4">
+         <a href="#!user"><img class="circle" src="img/doge.jpeg"></a>
+     </div>
+     <div class="col s8">
+         <h5 class="white-text">Dogest Doge</h5>
+     </div>
+ </div>
+ <div class="divider"></div>
+
+ <!-- TODO  -->
+ <h6 class="white-text">123 Trails Hiked</h6>
+ <h6 class="white-text">75 Reviews</h6>
+ <h6 class="white-text">69 Photos</h6>
+ <br>
 
 
-    
-  
-     
-    <script>
-      // This example adds a search box to a map, using the Google Place Autocomplete
-      // feature. People can enter geographical searches. The search box will return a
-      // pick list containing a mix of places and predicted search terms.
+</div></li>
+<li><a class="waves-effect" href="/">Explore</a></li>
+<li><a class="waves-effect" href="mytrails">My Created Trails</a></li>
+<li><a class="waves-effect" href="hikehistory">Hike History</a></li>
+<li><a class="waves-effect" href="favs">Favorites</a></li>
+<li><a class="waves-effect" href="profile">Profile</a></li>
+<li><a class="waves-effect" href="help">Help</a></li>
+<li><a class="waves-effect" href="settings">Settings</a></li>
 
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+</ul>
+<a  href="#" id="hamburger" data-activates="nav-mobile" class="button-collapse">
+  <i  class="material-icons">menu</i>
+</a>
+</div>
+</nav>
 
-      function initAutocomplete() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
-          mapTypeId: 'roadmap'
-        });
-          
-         /** Get current location here **/
-         var infoWindow = new google.maps.InfoWindow({map: map});
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+<div class ="container" id ="contactform">
+   <div class="input-field" style="background-color:white;">
+      <input id="search" class="controls" type="search" placeholder="Enter a Location">
+      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+  </div>
+</div>
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
+<a id="addbutton" href="#modalstart" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+
+
+<div id="map"></div>
+
+
+
+<!-- Modal Structure -->
+<div id="modalstart" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Start Recording</h4>
+      <p>User Agreement: We are not responsible if you die using our app. Thanks.</p>
+  </div>
+  <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+      <a href="addTrail" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+  </div>
+</div>
+
+
+
+
+
+<script>
+          // This example adds a search box to a map, using the Google Place Autocomplete
+          // feature. People can enter geographical searches. The search box will return a
+          // pick list containing a mix of places and predicted search terms.
+
+          // This example requires the Places library. Include the libraries=places
+          // parameter when you first load the API. For example:
+          // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+          function initAutocomplete() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -33.8688, lng: 151.2195},
+              zoom: 13,
+              mapTypeId: 'roadmap'
+          });
+
+            /** Get current location here **/
+            var infoWindow = new google.maps.InfoWindow({map: map});
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('Location found.');
+              map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-          
-          
-        /** Get searchbar here */
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('search');
-        var searchBox = new google.maps.places.SearchBox(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
         });
-        
-          
-        // Method call to add the "My Location" function
-      	setTimeout(function(){
-	$(".pac-container").append('<div id="mylocation" class="pac-item areasearch"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>My Location</b></span> <span></span></div>');
-    }, 500);
-          
-          
-          
-        $("#mylocation").on("click",function(){
-            
-                   if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-        });
-          
-          
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-          if (places.length == 0) {
-            return;
+          } else {
+              // Browser doesn't support Geolocation
+              handleLocationError(false, infoWindow, map.getCenter());
           }
 
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
+
+          /** Get searchbar here */
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('search');
+            var searchBox = new google.maps.places.SearchBox(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+              searchBox.setBounds(map.getBounds());
           });
-          markers = [];
 
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
 
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
+            // Method call to add the "My Location" function
+            setTimeout(function(){
+                $(".pac-container").append('<div id="mylocation" class="pac-item areasearch"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>My Location</b></span> <span></span></div>');
+            }, 500);
 
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
+
+
+            $("#mylocation").on("click",function(){
+
+             if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('Location found.');
+              map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
         });
-      }
+          } else {
+              // Browser doesn't support Geolocation
+              handleLocationError(false, infoWindow, map.getCenter());
+          }
+      });
+
+
+            var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+              var places = searchBox.getPlaces();
+              if (places.length == 0) {
+                return;
+            }
+
+              // Clear out the old markers.
+              markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+              markers = [];
+
+              // For each place, get the icon, name and location.
+              var bounds = new google.maps.LatLngBounds();
+              places.forEach(function(place) {
+                if (!place.geometry) {
+                  console.log("Returned place contains no geometry");
+                  return;
+              }
+              var icon = {
+                  url: place.icon,
+                  size: new google.maps.Size(71, 71),
+                  origin: new google.maps.Point(0, 0),
+                  anchor: new google.maps.Point(17, 34),
+                  scaledSize: new google.maps.Size(25, 25)
+              };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                  map: map,
+                  icon: icon,
+                  title: place.name,
+                  position: place.geometry.location
+              }));
+
+                if (place.geometry.viewport) {
+                  // Only geocodes have viewport.
+                  bounds.union(place.geometry.viewport);
+              } else {
+                  bounds.extend(place.geometry.location);
+              }
+          });
+              map.fitBounds(bounds);
+          });
+        }
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaZLZeh94-eXlNYVAQimvj8sEGw7xBdR8&libraries=places&callback=initAutocomplete"
-         async defer></script>
-    
-    
-   
-    
-    
-    
- 
-    
-     
-    
+    async defer></script>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/js/materialize.js"></script>
-  <script src="/js/init.js"></script>
-    
-  <script>
+
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="/js/init.js"></script>
+
+    <script>
       $(document).ready(function(){
-    
+        $('.modal').modal();
 
-      });
-      
-      
-     
-  </script>
+    });
 
-  </body>
+
+
+</script>
+
+</body>
 </html>

@@ -53,21 +53,22 @@
        <div id="map"></div>
     
      <div class="row">
-    <form class="col s12">
+<!--
+    <form class="col s12" role="form" method="get" action="/createMyTrail">
       <div class="row">
         <div class="input-field col s12">
-          <input id="icon_prefix" type="text" class="validate">
+          <input id="icon_prefix" type="text" class="validate" name="trailname">
           <label for="icon_prefix2">Trail Name</label>
         </div>
         <div class="input-field col s12">
 <p class="range-field">
-            <input type="range" id="test5" min="0" max="10" placeholder="0" />
+            <input type="range" id="test5" min="0" max="10" placeholder="0" name="difficulty"/>
         </p>          
             <label for="icon_prefix2">Difficulty</label>
         </div>
           
           <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <textarea id="textarea1" class="materialize-textarea" name="description"></textarea>
           <label for="textarea1">Description</label>
         </div>
           
@@ -77,26 +78,50 @@
         <input type="file">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+        <input class="file-path validate" type="text" name="imageURL">
       </div>
     </div>
       </div>
-    </form>
-  </div>
-    
-    <div class="row">
+      <div class="row">
         <div class="col s7">
                 <a href="/"  class="waves-effect waves-light btn red">Cancel Submission</a>
         </div>
         <div class="col s5">
-            <a href="/" class="waves-effect waves-light btn">Submit Trail</a>
+            <a href="/" type="submit" id="submitBtn" class="waves-effect waves-light btn" value="Add the friend">Submit Trail</a>
         </div>
         
     </div>
-    
-
-    
-
+  </div>
+    </form>
+    -->
+    <div class="container">
+    <form id="addTrailForm" role="form" method="get" action="/createMyTrail">
+        <div class="form-group">
+          <input type="text" class="form-control" id="name"  placeholder="trailName" name="trailname">
+        </div>
+        <div class="input-field col s12">
+<p class="range-field">
+            <input type="range" id="test5" min="0" max="10" placeholder="0" name="difficulty"/>
+        </p>          
+            <label for="icon_prefix2">Difficulty</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="description" placeholder="Description" name="description">
+        </div>
+        <div class="form-group">
+          <div class="file-field input-field">
+      <div class="btn">
+        <span>image</span>
+        <input type="file" name="imageURL">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+        </div>
+        <input type="submit" id="submitBtn" class="waves-effect waves-light btn" value="submit the trail"></input>
+    </form>
+    </div>
 
     
   
