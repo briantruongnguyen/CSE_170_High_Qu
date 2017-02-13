@@ -9,37 +9,37 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    
-    <style>
-  #map {
-    height: 40.5%;
-    position:relative;
-  }
-        #contactform{
-            z-index:5;
-            position:absolute;
-            width: 90%;
-            padding-top: 20%;
-            padding-left: 10%;
-        }
-          #warnings{
-            top: 75%;
-            left: 5%;
-            z-index:6;
-            position:absolute;
-        }
-      #stoprecording{
-            width: 100%;
-            height: 10%;
-        }
-   
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    z-index: 0;
-  }
-</style>
+
+  <style>
+    #map {
+      height: 40.5%;
+      position:relative;
+    }
+    #contactform{
+      z-index:5;
+      position:absolute;
+      width: 90%;
+      padding-top: 20%;
+      padding-left: 10%;
+    }
+    #warnings{
+      top: 75%;
+      left: 5%;
+      z-index:6;
+      position:absolute;
+    }
+    #stoprecording{
+      width: 100%;
+      height: 10%;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      z-index: 0;
+    }
+  </style>
 </head>
 <body>
   <nav class="light-green lighten-1" role="navigation">
@@ -48,19 +48,46 @@
     </div>
   </nav>
 
+
+
+  <h6>Hello! Sign up view in progress.</h6>
+
+  <div class="container">
+    <form id="addTrailForm" role="form" method="get" action="/createMyProfile">
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="name"  placeholder="Your Name" name="p_name">
+      </div>
+
+      <div class="input-field col s12">         
+
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="description" placeholder="Tell me about yourself." name="description">
+      </div>
+
+      <div class="form-group">
+        <div class="file-field input-field">
+
+          
+
+      
+        </div>
+      </div>
+
+      <input type="submit" id="submitBtn" class="waves-effect waves-light btn" value="submit your profile."></input>
+    </form>
     
-    
-  <h6>Hello! This is being built right now!</h6>
-    
-    
-    
+  </div>
+
 
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/js/materialize.js"></script>
   <script src="/js/init.js"></script>
-    
 
-  </body>
+
+</body>
 </html>

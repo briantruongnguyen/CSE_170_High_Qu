@@ -1,6 +1,6 @@
 var data = require("../data.json");
 
-exports.addNewTrail = function(req, res) {    
+exports.addNewTrail = function(req, res) { 
 	// Your code goes here
 	var trailname=req.query.trailname;
 	var difficulty=req.query.difficulty;
@@ -16,4 +16,4 @@ exports.addNewTrail = function(req, res) { 
 	console.log(newTrail);
 	data.createdTrails.push(newTrail);
 	res.render('index');
- }
+}
