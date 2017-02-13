@@ -176,7 +176,7 @@
               
          /** Add the MyLocation button here **/
             setTimeout(function(){
-                $(".pac-container").append('<div id="mylocation" class="pac-item areasearch" onmousedown="modifyMap()"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>My Location</b></span> <span></span></div>');
+                $(".pac-container").append('<div id="mylocation" class="pac-item areasearch" onmousedown="modifyMap()"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>Current Location</b></span> <span></span></div>');
             }, 500);
               
               
@@ -277,7 +277,10 @@
     <script>
       $(document).ready(function(){
         $('.modal').modal();
-      
+        $('#search').val(' ');
+
+
+
       
 
   
@@ -287,20 +290,22 @@
     $("#search").on("focus", function(){
         
         function showSuggestions(){
-        
-            $(".pac-container").show();            
+            
+            $(".pac-container").show();
+            
         }
         searchBarShowInterval = setInterval(showSuggestions,10);
-        
 
     });
+        
+    
         
      $("#search").on("blur", function(){
         clearInterval(searchBarShowInterval);            
     });
     
     function modifyMap(){
-        $("#search").val("My Location");
+        $("#search").val("Current Location");
         
          var myLocationClicked = new Event('myLocationClicked');
          document.dispatchEvent(myLocationClicked);
