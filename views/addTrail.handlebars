@@ -107,6 +107,19 @@
               handleLocationError(false, infoWindow, map.getCenter());
           }
           
+        poly = new google.maps.Polyline({
+          strokeColor: '#000000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+        poly.setMap(map);
+
+        
+          
+          var medianDataPoints = [];
+          var recordingsLat = [];
+          var recordingsLng = [];
+          var numRecordings = 0;
           setInterval(recordLocation, 10);
           function recordLocation(){
               if (navigator.geolocation) {
@@ -119,7 +132,28 @@
               infoWindow.setPosition(pos);
               infoWindow.setContent(pos.lat + " , " +pos.lng);
               map.setCenter(pos);
-              console.log(pos);
+              recordingsLat.push(pos.lat);
+              recordingsLng.push(pos.lng);
+              numRecordings++;
+              if(numRecordings === 200){
+                recordingsLat.sort();
+                recordingsLng.sort();
+                var posMedian = {
+                  lat: recordingsLat[numRecordings/2],
+                  lng: recordingsLng[numRecordings/2]
+                  };
+                medianDataPoints.push(posMedian);
+                
+                console.log(posMedian);
+                recordingsLat = [];
+                recordingsLng = [];
+                numRecordings = 0;
+                console.log(medianDataPoints);
+                       var path = poly.getPath();
+                path.push(new google.maps.LatLng(posMedian.lat, posMedian.lng));
+                  
+              }
+              
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
