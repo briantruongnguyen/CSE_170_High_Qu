@@ -128,6 +128,8 @@
           // This example requires the Places library. Include the libraries=places
           // parameter when you first load the API. For example:
           // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+         
+    
 
           function initAutocomplete() {
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -169,16 +171,20 @@
             map.addListener('bounds_changed', function() {
               searchBox.setBounds(map.getBounds());
           });
-
-
-            // Method call to add the "My Location" function
+              
+              
+              
+         /** Add the MyLocation button here **/
             setTimeout(function(){
-                $(".pac-container").append('<div id="mylocation" class="pac-item areasearch"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>My Location</b></span> <span></span></div>');
+                $(".pac-container").append('<div id="mylocation" class="pac-item areasearch" onmousedown="modifyMap()"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>My Location</b></span> <span></span></div>');
             }, 500);
+              
+              
+        /** Add a new event listener for My Location clicks **/
+        document.addEventListener("myLocationClicked", myLocationClicked, false);
 
-
-
-            $("#mylocation").on("click",function(){
+              
+        function myLocationClicked(){
 
              if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
@@ -197,7 +203,13 @@
               // Browser doesn't support Geolocation
               handleLocationError(false, infoWindow, map.getCenter());
           }
-      });
+      }
+              
+
+
+
+
+
 
 
             var markers = [];
@@ -265,10 +277,38 @@
     <script>
       $(document).ready(function(){
         $('.modal').modal();
+      
+      
+
+  
+      });
+
+    var searchBarShowInterval;
+    $("#search").on("focus", function(){
+        
+        function showSuggestions(){
+        
+            $(".pac-container").show();            
+        }
+        searchBarShowInterval = setInterval(showSuggestions,10);
+        
 
     });
+        
+     $("#search").on("blur", function(){
+        clearInterval(searchBarShowInterval);            
+    });
+    
+    function modifyMap(){
+        $("#search").val("My Location");
+        
+         var myLocationClicked = new Event('myLocationClicked');
+         document.dispatchEvent(myLocationClicked);
 
-
+        
+    }
+   
+    
 
 </script>
 
