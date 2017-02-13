@@ -107,7 +107,7 @@
               handleLocationError(false, infoWindow, map.getCenter());
           }
           
-          setInterval(recordLocation, 5000);
+          setInterval(recordLocation, 10);
           function recordLocation(){
               if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
