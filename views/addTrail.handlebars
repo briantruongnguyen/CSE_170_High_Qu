@@ -98,13 +98,16 @@
               map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
-        });
+        }, 
+        {enableHighAccuracy: true}
+                                                      
+);
           } else {
               // Browser doesn't support Geolocation
               handleLocationError(false, infoWindow, map.getCenter());
           }
           
-          setInterval(recordLocation, 500);
+          setInterval(recordLocation, 5000);
           function recordLocation(){
               if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
