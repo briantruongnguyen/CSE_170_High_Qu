@@ -19,6 +19,7 @@ var settings = require('./routes/settings');
 var submitTrail = require('./routes/submitTrail');
 var createMyTrail = require('./routes/createMyTrail');
 var createMyProfile = require('./routes/createMyProfile');
+var login = require('./routes/login');
 
 
 
@@ -59,6 +60,7 @@ app.get('/settings', settings.view);
 app.get('/submitTrail', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
+app.get('/login', login.view);
 
 // Example route
 // app.get('/users', user.list);
