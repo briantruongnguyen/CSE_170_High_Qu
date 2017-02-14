@@ -23,6 +23,20 @@
             padding-left: 10%;
         }
           #warnings{
+            top: 55%;
+            left: 5%;
+            z-index:6;
+            position:absolute;
+        }
+        
+           #pointofinterest{
+            top: 65%;
+            left: 5%;
+            z-index:6;
+            position:absolute;
+        }
+        
+        #musiclibrary{
             top: 75%;
             left: 5%;
             z-index:6;
@@ -33,6 +47,12 @@
             height: 10%;
         }
    
+        #recentermap{
+            top: 80%;
+            left: 50%;
+            z-index:6;
+            position:absolute;
+        }
   html, body {
     height: 100%;
     margin: 0;
@@ -50,17 +70,15 @@
     
     
     
-          <div class="fixed-action-btn click-to-toggle" id = "warnings">
-    <a class="btn-floating btn-large blue">
-      <i class="material-icons">menu</i>
-    </a>
-    <ul style="left:-85%; top: -90%;">
-      <li><a href="#modalwarning" class="waves-effect btn-floating red"><i class="material-icons">warning</i></a></li>
-      <li><a href="#modalmusic" class="waves-effect btn-floating yellow darken-1"><i class="material-icons">library_music</i></a></li>
-      <li><a href="#modalpoi" class="waves-effect btn-floating orange darken-1"><i class="material-icons">local_see</i></a></li>
+ 
+    <a href="#modalwarning" id="warnings"  class="waves-effect btn-floating btn-large red"><i class="material-icons">warning</i></a>
+    <a href="#modalpoi" id="pointofinterest" class="waves-effect btn-floating btn-large orange darken-1"><i class="material-icons">local_see</i></a>
 
-    </ul>
-  </div>
+    <a href="#modalmusic" id="musiclibrary" class="waves-effect btn-floating btn-large blue darken-1"><i class="material-icons">library_music</i></a>
+    
+    <a class="waves-effect waves-light blue darken-1 btn" id="recentermap">Recenter<br/>Map</a>
+
+
     
     
        <div id="map"></div>
@@ -81,7 +99,7 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+          zoom: 20
         });
        // Try HTML5 geolocation.
                       var infoWindow = new google.maps.InfoWindow({map: map});
@@ -113,6 +131,44 @@
           strokeWeight: 3
         });
         poly.setMap(map);
+          
+      var shouldCenterMap = true;
+      map.addListener('zoom_changed', uncenterMap);
+      map.addListener('drag', uncenterMap);
+          
+      function uncenterMap(){
+         shouldCenterMap = false;
+         $("#recentermap").show();
+          
+      }
+    
+      function centerMap(){
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('Location found.');
+              map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        }, 
+        {enableHighAccuracy: true}
+                                                      
+);
+          } else {
+              // Browser doesn't support Geolocation
+              handleLocationError(false, infoWindow, map.getCenter());
+          }
+          
+          shouldCenterMap = true;
+      }
+          
+      document.addEventListener('centerMap', centerMap);
+          
 
         
           
@@ -131,7 +187,9 @@
 
               infoWindow.setPosition(pos);
               infoWindow.setContent(pos.lat + " , " +pos.lng);
-              map.setCenter(pos);
+              if(shouldCenterMap){
+                  map.setCenter(pos);
+              }
               recordingsLat.push(pos.lat);
               recordingsLng.push(pos.lng);
               numRecordings++;
@@ -242,6 +300,15 @@
       $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
+    $("#recentermap").hide();
+          
+    $("#recentermap").on("click", function(){
+         var centerMap = new Event('centerMap');
+         document.dispatchEvent(centerMap);
+         
+         $(this).delay(2000).hide();
+   
+    });
          
   });
          
