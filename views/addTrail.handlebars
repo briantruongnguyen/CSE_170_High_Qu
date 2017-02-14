@@ -120,7 +120,7 @@
           var recordingsLat = [];
           var recordingsLng = [];
           var numRecordings = 0;
-          setInterval(recordLocation, 10);
+          setInterval(recordLocation, 100);
           function recordLocation(){
               if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
@@ -135,7 +135,7 @@
               recordingsLat.push(pos.lat);
               recordingsLng.push(pos.lng);
               numRecordings++;
-              if(numRecordings === 200){
+              if(numRecordings >= 20){
                 recordingsLat.sort();
                 recordingsLng.sort();
                 var posMedian = {
