@@ -92,7 +92,7 @@
 
 <div class ="container" id ="contactform">
    <div class="input-field" style="background-color:white;">
-      <input id="search" class="controls" type="search" placeholder="Enter a Location">
+      <input id="search" class="controls tooltipped" type="search" data-tooltip="Not interested in anything around you? Make a search!" placeholder="Enter a Location">
       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
   </div>
 </div>
@@ -275,15 +275,15 @@
     <script src="/js/init.js"></script>
 
     <script>
+      var showTipInterval;
       $(document).ready(function(){
         $('.modal').modal();
         $('#search').val('Current Location');
-
-
-
-      
-
-  
+        showTipInterval = setInterval(showTip,10);
+        function showTip()){
+             $("#search").mouseover();
+         }
+        
       });
 
     var searchBarShowInterval;
