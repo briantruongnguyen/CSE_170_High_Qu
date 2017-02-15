@@ -51,7 +51,7 @@
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">High-Qu</a>
 
      
-    <ul id="nav-mobile" class="side-nav">
+    <ul id="nav-mobile" class="side-nav show-on-large">
      <li><div class="userView">
       <div class="background">
         <img style="width:100%;" src="img/materialize-bg.jpg">
@@ -84,7 +84,7 @@
 <li><a class="waves-effect" href="login">Login Page</a></li>
 
 </ul>
-<a  href="#" id="hamburger" data-activates="nav-mobile" class="button-collapse">
+<a  href="#" id="hamburger" data-activates="nav-mobile" class="button-collapse show-on-large">
   <i  class="material-icons">menu</i>
 </a>
 </div>
@@ -93,12 +93,12 @@
 
 <div class ="container" id ="contactform">
    <div class="input-field" style="background-color:white;">
-      <input id="search" class="controls tooltipped" type="search" data-tooltip="Not interested in anything around you? Make a search!" placeholder="Enter a Location">
+      <input id="search" class="controls tooltipped" type="search" data-tooltip="Not interested in anything around you? Search trails elsewhere!" placeholder="Enter a Location">
       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
   </div>
 </div>
 
-<a id="addbutton" href="#modalstart" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+<a id="addbutton" href="#modalstart" class="btn-floating btn-large waves-effect waves-light blue "><i class="material-icons">add</i></a>
 
 
 <div id="map"></div>
@@ -109,10 +109,10 @@
 <div id="modalstart" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Start Recording</h4>
-      <p>User Agreement: We are not responsible if you die using our app. Thanks.</p>
+      <p>User Agreement: Please watch where you are going, as not looking around can cause injury or death. We want you to have fun, not die. Thanks.</p>
   </div>
   <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+      <a href="#!" id="disagree" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
       <a href="addTrail" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
   </div>
 </div>
@@ -295,6 +295,25 @@
         }
         searchBarShowInterval = setInterval(showSuggestions,10);
 
+    });
+        
+    $("#addbutton").on("click", function(){
+        $('#search').tooltip('hide');
+
+        
+    });
+    $("#hamburger").on("click", function(){
+        $('#search').tooltip('hide');   
+    });
+        
+    $("#map").on("click", function(){
+        $('#search').blur();   
+    });
+        
+    $("#disagree").on("click", function(){
+                $('#search').tooltip('show');   
+
+        $("#search").trigger('mouseenter');
     });
         
     
