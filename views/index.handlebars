@@ -280,19 +280,17 @@
       $(document).ready(function(){
         $('.modal').modal();
         $('#search').val('Current Location');
-        showTipInterval = setInterval(showTip,10);
-        function showTip()){
-             $("#search").mouseover();
-         }
-        
+        $("#search").trigger('mouseenter');
       });
 
     var searchBarShowInterval;
     $("#search").on("focus", function(){
-        
+                $('#search').tooltip('remove');
+
         function showSuggestions(){
             
             $(".pac-container").show();
+            
             
         }
         searchBarShowInterval = setInterval(showSuggestions,10);
