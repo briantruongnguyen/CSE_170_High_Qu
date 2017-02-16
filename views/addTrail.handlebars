@@ -74,8 +74,9 @@
     
     
     
- 
+    <!-- The three buttons for adding waypoints and warnings -->
     <a href="#modalwarning" id="warnings"  class="waves-effect btn-floating btn-large red"><i class="material-icons">warning</i></a>
+    
     <a href="#modalpoi" id="pointofinterest" class="waves-effect btn-floating btn-large orange darken-1"><i class="material-icons">local_see</i></a>
 
     <a href="#modalmusic" id="musiclibrary" class="waves-effect btn-floating btn-large blue darken-1"><i class="material-icons">library_music</i></a>
@@ -240,7 +241,16 @@
     <div class="modal-content">
       <h4>Add a Warning</h4>
       <p>OMG SO DANGEROUS!!!!!</p>
+        
+        <div class="form-group">
+        <input type="text" class="form-control" id="name"  
+               placeholder="What warning do you want others to see?" 
+               name="warningText">
+      </div>
     </div>
+      
+      
+      
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
@@ -252,10 +262,18 @@
     <div class="modal-content">
       <h4>Add a Playlist</h4>
       <p>MUCH MUSIC!!!!</p>
+         <div class="form-group">
+        <input type="text" class="form-control" id="musicName"  
+               placeholder="Keep this form until spotifyable" 
+               name="musicText">
+      </div>
     </div>
+      
+      
+      
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
     
@@ -264,10 +282,29 @@
     <div class="modal-content">
       <h4>Add a Point of Interest</h4>
       <p>MUCH INTERESTING!!!</p>
+         <div class="form-group">
+        <input type="text" class="form-control" id="waypointText"  
+               placeholder="What sight would you want others to see?" 
+               name="waypoint">
+      </div>
+        
+        <div class="form-group">
+          <div class="file-field input-field">
+      <div class="btn">
+        <span>image</span>
+        <input type="file" name="imageURL">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+              
     </div>
+      
+      
+      
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
     
