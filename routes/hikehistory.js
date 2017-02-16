@@ -2,7 +2,9 @@
 /*
  * GET hike history page.
  */
-
+var data = require("../data.json");
 exports.view = function(req, res){
-  res.render('hikehistory');
+ 
+  res.render('hikehistory',data);
+
 };

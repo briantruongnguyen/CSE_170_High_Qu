@@ -56,14 +56,16 @@
       <div class="background">
         <img style="width:100%;" src="img/materialize-bg.jpg">
     </div>
+    {{#each createdProfiles}}
     <div class="row">
      <div class="col s4">
-         <a href="#!user"><img class="circle" src="img/doge.jpeg"></a>
+         <a href="#!user"><img class="circle" src={{imageURL}}></a>
      </div>
      <div class="col s8">
-         <h5 class="white-text">Dogest Doge</h5>
+         <h5 class="white-text">{{name}}</h5>
      </div>
  </div>
+ {{/each}}
  <div class="divider"></div>
 
  <!-- TODO  -->
