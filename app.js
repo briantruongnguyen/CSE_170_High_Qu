@@ -20,6 +20,7 @@ var submitTrail = require('./routes/submitTrail');
 var createMyTrail = require('./routes/createMyTrail');
 var createMyProfile = require('./routes/createMyProfile');
 var login = require('./routes/login');
+var review = require('./routes/review');
 
 
 
@@ -61,6 +62,9 @@ app.get('/submitTrail', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/login', login.view);
+
+// for review trails upon finishing an experience
+app.get('/review', review.view)
 // Example route
 // app.get('/users', user.list);
 
