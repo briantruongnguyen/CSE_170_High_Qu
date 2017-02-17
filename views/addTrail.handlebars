@@ -88,7 +88,7 @@
     
        <div id="map"></div>
     
-       <a href="submitTrail" class="btn-large red" id="stoprecording">Stop Recording</a>
+       <a class="btn-large red" id="stoprecording">Stop Recording</a>
 
     
 
@@ -174,7 +174,8 @@
           
       document.addEventListener('centerMap', centerMap);
           
-
+      document.addEventListener('submitTrail', submitTrail);
+          
         
           
           var medianDataPoints = [];
@@ -225,6 +226,15 @@
               handleLocationError(false, infoWindow, map.getCenter());
           }
               
+          }
+          
+          function submitTrail(){
+              $.post('/addTrail/add', JSON.parse(JSON.stringify({trailData:medianDataPoints})),trailIdCallback);
+          }
+          
+          function trailIdCallback(results){
+              console.log(results.trailId);
+              window.location.href = "/submitTrail/" +results.trailId
           }
 
           
@@ -349,6 +359,13 @@
          
          $(this).delay(2000).hide();
    
+    });
+          
+          
+    $("#stoprecording").on("click", function(){
+         var submitTrail = new Event('submitTrail');
+         document.dispatchEvent(submitTrail);
+         console.log("GG");
     });
          
   });
