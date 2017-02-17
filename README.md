@@ -1,4 +1,6 @@
-repo
+CSE 170 - HighQu 
 ====
 
-Project Description
+Brian Nguyen, Hans Yuan, Xu Li 
+
+Share and experience a new path through the mountains or a new route through the city. 

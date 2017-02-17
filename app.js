@@ -21,6 +21,7 @@ var submitTrail = require('./routes/submitTrail');
 var createMyTrail = require('./routes/createMyTrail');
 var createMyProfile = require('./routes/createMyProfile');
 var login = require('./routes/login');
+var review = require('./routes/review');
 
 
 
@@ -71,6 +72,8 @@ app.get('/login', login.view);
 app.get('/loadTrails', submitTrail.sendTrails);
 app.get('/loadTrailsWithData', submitTrail.sendTrailWithInfo);
 
+
+app.get('/review', review.view);
 // Example route
 // app.get('/users', user.list);
 
