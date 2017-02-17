@@ -7,6 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
+var bodyParser = require('body-parser')
 
 var addTrail = require('./routes/addTrail');
 var favs = require('./routes/favs');
@@ -33,13 +34,19 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('Intro HCI secret key'));
 app.use(express.session());
+app.use(express.bodyParser());
+   
+
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -57,12 +64,16 @@ app.get('/hikehistory', hikehistory.view);
 app.get('/mytrails', mytrails.view);
 app.get('/profile', profile.view);
 app.get('/settings', settings.view);
-app.get('/submitTrail', submitTrail.view);
+app.get('/submitTrail/:trail_id', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/login', login.view);
 // Example route
 // app.get('/users', user.list);
+
+
+app.post('/addTrail/add', addTrail.addTrailToJSON);
+
 
 
 http.createServer(app).listen(app.get('port'), function(){
