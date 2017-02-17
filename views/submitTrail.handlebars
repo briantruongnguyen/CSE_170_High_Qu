@@ -39,6 +39,11 @@
     padding: 0;
     z-index: 0;
   }
+  #toast-container {
+
+  bottom: 40%;
+
+}
 </style>
 </head>
 <body>
@@ -95,7 +100,7 @@
     </form>
     -->
     <div class="container">
-    <form id="addTrailForm" role="form" method="get" action="/createMyTrail">
+    <form id="addTrailForm" role="form" method="get" action="/createMyTrail" onsubmit="return validate_form(this)">
         <div class="form-group">
           <input type="text" class="form-control" id="name"  placeholder="Trail Name" name="trailname">
         </div>
@@ -194,7 +199,33 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/js/materialize.js"></script>
   <script src="/js/init.js"></script>
-    
+   <script type="text/javascript">
+function validate_required(field,alerttxt)
+{
+with (field)
+  {
+  if (value==null||value=="")
+    {Materialize.toast(alerttxt, 5000,'rounded');return false}
+    //{alert(alerttxt);return false}
+  else {return true}
+  }
+}
+
+function validate_form(thisform)
+{
+with (thisform)
+  {
+  if (validate_required(trailname,"trailname must be filled out!")==false)
+    {trailname.focus();return false}
+  else if (validate_required(difficulty,"difficulty must be filled out!")==false)
+    {difficulty.focus();return false}
+  else if (validate_required(description,"description must be filled out!")==false)
+    {difficulty.focus();return false}
+  else if (validate_required(imageURL,"image must be filled out!")==false)
+    {imageURL.focus();return false}
+  }
+}
+</script>
 
   </body>
 </html>
