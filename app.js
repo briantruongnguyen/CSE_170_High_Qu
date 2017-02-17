@@ -10,6 +10,7 @@ var handlebars = require('express3-handlebars')
 var bodyParser = require('body-parser')
 
 var addTrail = require('./routes/addTrail');
+var hikeTrail = require('./routes/hikeTrail');
 var favs = require('./routes/favs');
 var help = require('./routes/help');
 var hikehistory = require('./routes/hikehistory');
@@ -59,6 +60,8 @@ if ('development' == app.get('env')) {
 // Add routes here
 app.get('/', index.view);
 app.get('/addTrail', addTrail.view);
+app.get('/HikeTrail/:trail_id', hikeTrail.view);
+app.get('/loadHikingTrail', hikeTrail.loadTrail);
 app.get('/favs', favs.view);
 app.get('/help', help.view);
 app.get('/hikehistory', hikehistory.view);
@@ -71,6 +74,7 @@ app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/login', login.view);
 app.get('/loadTrails', submitTrail.sendTrails);
 app.get('/loadTrailsWithData', submitTrail.sendTrailWithInfo);
+
 
 
 app.get('/review', review.view);
