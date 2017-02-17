@@ -235,13 +235,10 @@
 
           
           function submitTrail(){
-              $.post('/addTrail/add', JSON.parse(JSON.stringify({trailData:medianDataPoints})),trailIdCallback);
+              window.location.href = "/review/";
           }
           
-          function trailIdCallback(results){
-              console.log(results.trailId);
-              window.location.href = "/submitTrail/" +results.trailId
-          }
+    
 
           
         
