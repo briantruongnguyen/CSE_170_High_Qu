@@ -1,0 +1,36 @@
+/** Gets the Add Trail Page */
+
+var data = require("../data.json")
+var trailToHike;
+exports.view = function(req, res){
+  trailToHike = req.params.trail_id;
+  console.log(trailToHike);
+  res.render('hikeTrail');
+};
+
+exports.loadTrail = function(req, res){
+        
+   var list_of_trails = data.createdTrails;
+   var the_trail;
+   for(var i = 0; i < list_of_trails.length; i++)
+   {
+        var the_trail = list_of_trails[i];
+        var name = the_trail.name;
+        var difficulty = the_trail.difficulty; 
+        var description = the_trail.description; 
+        var trail = the_trail.trail;
+       
+        if(the_trail.id == trailToHike){
+            the_trail  = trail;
+            break;
+        }
+   }
+   console.log(the_trail);
+   res.json(the_trail);
+};
+
+
+
+
+
+
