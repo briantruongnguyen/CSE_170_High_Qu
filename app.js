@@ -68,6 +68,9 @@ app.get('/submitTrail/:trail_id', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/login', login.view);
+app.get('/loadTrails', submitTrail.sendTrails);
+app.get('/loadTrailsWithData', submitTrail.sendTrailWithInfo);
+
 // Example route
 // app.get('/users', user.list);
 

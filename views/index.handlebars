@@ -208,6 +208,49 @@
           }
       }
               
+              
+              
+    $.get("/loadTrailsWithData", addTrail);
+    
+    function addTrail(result){
+        var list_of_trails = result;
+        console.log(list_of_trails);
+        for(var i = 0; i < list_of_trails.length; i++)
+        {
+             var the_trail = list_of_trails[i];
+             var name = the_trail.name;
+             var difficulty = the_trail.difficulty; 
+             var description = the_trail.description; 
+             var trail = the_trail.trail;
+            
+             var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h5 id="firstHeading" class="firstHeading">'+name+'</h5>'+
+      '<div id="bodyContent">'+
+      '<p><b>Description: </b><br>'+description+'<br></p>'+
+      '<p><b>Difficulty: <br></b>'+difficulty+'</p>'+
+      '</div>'+
+      '</div>';
+            
+              var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+             
+            var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(trail[0].lat, trail[0].lng),
+            map: map,
+            title:name});
+            
+            
+             marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+            
+        }
+    }
+
+              
 
 
 

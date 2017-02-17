@@ -18,3 +18,8 @@ exports.addTrailToJSON = function(req, res){
     res.json({trailId: trailId++});
 };
 
+
+
+
+
+
