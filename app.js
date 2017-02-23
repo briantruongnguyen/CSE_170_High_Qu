@@ -23,7 +23,7 @@ var createMyTrail = require('./routes/createMyTrail');
 var createMyProfile = require('./routes/createMyProfile');
 var login = require('./routes/login');
 var review = require('./routes/review');
-
+var updateProfile = require('./routes/updateProfile');
 
 
 // Example route
@@ -74,6 +74,7 @@ app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/login', login.view);
 app.get('/loadTrails', submitTrail.sendTrails);
 app.get('/loadTrailsWithData', submitTrail.sendTrailWithInfo);
+app.get('/updateProfile',updateProfile.updateProfile);
 
 
 

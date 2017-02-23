@@ -80,40 +80,6 @@ Hans Yuan
 		</div>
 	</nav>
 
-
-	<div class="container">
-		<!-- start form fields --> 
-		<form id="addTrailForm" role="form" method="get" action="/createMyProfile">
-
-			<!-- Include a photo -->
-
-			<!-- TODO JS the fields if JSONObject already exists -->
-			<div class="form-group">
-				<input type="text" class="form-control" id="name"  placeholder="Your Name" name="p_name">
-			</div>
-
-			<div class="input-field col s12">         
-
-			</div>
-
-			<div class="form-group">
-				<input type="text" class="form-control" id="description" placeholder="Tell me about yourself." name="description">
-			</div>
-
-			<div class="form-group">
-				<div class="file-field input-field">
-
-
-
-
-				</div>
-			</div>
-
-
-
-	</div>
-
-	
 	{{#each createdProfiles}}
 	<div class="card">
 		<div class="card-header">
@@ -125,11 +91,37 @@ Hans Yuan
 		</div>
 	</div>
 	{{/each}}
+	<div class="container">
+		<!-- start form fields --> 
+		<form id="addTrailForm" role="form" method="get" action="/updateProfile">
+
+			<!-- Include a photo -->
+
+			<!-- TODO JS the fields if JSONObject already exists -->
+			<div class="form-group">
+				<input type="text" class="form-control" id="p_name"  placeholder="Your name" name="p_name">
+			</div>
+
+			<div class="input-field col s12">         
+
+			</div>
+
+			<div class="form-group">
+				<input type="text" class="form-control" id="description" placeholder="Tell me about yourself." name="description">
+			</div>
+
+			<div style="text-align:center">
+				<input type="submit" id="submitBtn" class="waves-effect waves-light btn" value="save my changes"></input>
+			</div>
+		
+		</form>
 
 
-	<div style="text-align:center">
-		<input type="submit" id="submitBtn" class="waves-effect waves-light btn" value="save my changes"></input>
+
 	</div>
+
+
+	
 
 
 	<!--  Scripts-->
