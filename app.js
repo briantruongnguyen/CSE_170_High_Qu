@@ -28,6 +28,7 @@ var updateProfile = require('./routes/updateProfile');
 
 
 
+
 // Example route
 // var user = require('./routes/user');
 
@@ -73,6 +74,7 @@ app.get('/settings', settings.view);
 app.get('/submitTrail/:trail_id', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
+app.get('/favs/:trail_id/:trail_name/:trail_desc/:trail_diff', favs.addFavorite);
 
 
 

@@ -142,21 +142,19 @@
        <b>Description: </b><p id="traildescription">A bunch of text</p>
        <b>Difficulty: </b><p id="traildifficulty">A bunch of text</p>
        <b>Reviews </b><br>
-
         
-        
+  
   <ul id="reviews" class="collection">
 
   </ul>
         
-        
-        
-        
-        
+
     </div>
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        
       <a id = "HikeTrailButton" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Hike This Trail</a>
+        <a href="#!" class=" modal-action waves-effect waves-green btn-flat" id = "favoriting_the_trail">Favorite</a>
     </div>
       
     
@@ -341,6 +339,24 @@
                     $("#traildescription").text(this.trail_description);
                     $("#HikeTrailButton").attr("href", "/HikeTrail/" + this.id);
                     $("#traildifficulty").text(this.difficulty);
+
+                    //CODE FOR FAVORITE
+                    var temp_id = this.id;
+                    var temp_name = this.trail_name;
+                    var temp_description = this.trail_description;
+                    var temp_difficulty = this.difficulty;
+
+
+                    $("#favoriting_the_trail").on("click", function() { 
+                        $.get("/favs/" + 
+                          temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty
+                          , function() {
+                            alert("Fav saved.")
+                            console.log("Fav Saved.")
+                        } /** TODO */ );  
+                        // Just got the IDs
+                    }
+                                                 );
 
                         
 
