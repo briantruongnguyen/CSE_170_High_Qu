@@ -26,6 +26,8 @@ var review = require('./routes/review');
 var updateProfile = require('./routes/updateProfile');
 
 
+
+
 // Example route
 // var user = require('./routes/user');
 
@@ -71,10 +73,17 @@ app.get('/settings', settings.view);
 app.get('/submitTrail/:trail_id', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
+
+
+// Whether I am logged in or not
+loggedOut = false
+login['logged'] = loggedOut
+
 app.get('/login', login.view);
 app.get('/loadTrails', submitTrail.sendTrails);
 app.get('/loadTrailsWithData', submitTrail.sendTrailWithInfo);
 app.get('/updateProfile',updateProfile.updateProfile);
+app.get('/logout', login.logout);
 
 
 

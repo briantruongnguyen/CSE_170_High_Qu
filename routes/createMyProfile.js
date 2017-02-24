@@ -2,6 +2,7 @@ var profile = require("../profile.json");
 
 exports.addNewProfile = function(req, res) {
 	// Your code goes here
+    profile.createdProfiles = []
 	var profilename=req.query.p_name;
 	var description=req.query.description;
 	var imageURL=req.query.imageURL;
@@ -15,5 +16,6 @@ exports.addNewProfile = function(req, res) {
 	console.log(profile);
     console.log("This is happening.");
 	profile.createdProfiles.push(newProfile);
-	res.render('index');
+	loggedOut=false
+    res.redirect("/")
 }
