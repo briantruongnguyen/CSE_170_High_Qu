@@ -95,7 +95,7 @@
     </form>
   -->
   <div class="container">
-    <form id="addTrailForm" role="form" method="get" action="/">
+    <form id="addTrailForm" role="form" method="get" action="/submitReview">
       
       <div class="input-field col s12">
         <p class="range-field">
@@ -104,7 +104,7 @@
         <label for="icon_prefix2">Difficulty</label>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="description" placeholder="Description" name="description">
+        <input type="text" class="form-control" id="description" placeholder="Comment" name="comment">
       </div>
       <div class="form-group">
         <div class="file-field input-field">
@@ -121,7 +121,7 @@
 
       <div class="form-group">
         <input type="text" class="form-control" id="musicName"  
-        placeholder="Keep this form until spotifyable" 
+        placeholder="Enter a playlist." 
         name="musicText">
 
         <div class="form-group">
@@ -135,7 +135,7 @@
                 <a href="/"  class="waves-effect waves-light btn red">  No Review  </a>
         </div>
         <div class="col s7">
-               <input href="/" type="submit" id="submitBtn" class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input href="/submitReview/{{trail_id}}" type="submit" id="submitBtn" class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         
     </div>

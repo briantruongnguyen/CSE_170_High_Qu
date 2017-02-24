@@ -26,7 +26,7 @@ exports.loadTrail = function(req, res){
         }
    }
    console.log(the_trail);
-   res.json(the_trail);
+   res.json({"the_trail":the_trail, "trail_id":trailToHike});
 };
 
 
