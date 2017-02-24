@@ -321,11 +321,17 @@
 
                     mappreview.setCenter(new google.maps.LatLng(this.trail[0].lat, this.trail[0].lng));
 
-                    
+                    var id_for_review = this.id;
                     $.get("/getReview/"+this.id, addReviews);
                     function addReviews(results){
+                         console.log("The length " + results.length);
+                         if(results.length == 0){
+                             var toAdd = "<li class=\"collection-item\"><span class=\"title\">Oh hey there. This trail currently does not have any reviews.</span><br><a href=\"/review/"+id_for_review+"\"><b>Add your review here!</b></a></li>";
+                             $("#reviews").append(toAdd);
+                         }
+                             
                          for(var j = 0; j <results.length; j++){
-                             var toAdd = "<li class=\"collection-item avatar\"><span class=\"title\">Difficulty: "+results[j].difficulty+"</span><p><b>Comment: </b> "+results[j].comment+"<br><b>Playlist Recommandations:</b> "+results[j].musicText+"<br><b>Warnings: </b> "+results[j].warningText+"</p></li>";
+                             var toAdd = "<li class=\"collection-item\"><span class=\"title\">Difficulty: "+results[j].difficulty+"</span><p><b>Comment: </b> "+results[j].comment+"<br><b>Playlist Recommandations:</b> "+results[j].musicText+"<br><b>Warnings: </b> "+results[j].warningText+"</p></li>";
                              $("#reviews").append(toAdd);
                          }
 
