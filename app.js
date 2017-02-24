@@ -75,6 +75,7 @@ app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
 
 
+
 // Whether I am logged in or not
 loggedOut = false
 login['logged'] = loggedOut
@@ -99,7 +100,8 @@ app.get('/review/:trail_id', review.view);
 
 
 app.post('/addTrail/add', addTrail.addTrailToJSON);
-
+app.post('/addAnnotation', addTrail.addAnnotation);
+app.get('/getAnnotations', addTrail.getAnnotations);
 
 
 http.createServer(app).listen(app.get('port'), function(){

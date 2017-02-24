@@ -135,6 +135,20 @@
               handleLocationError(false, infoWindow, map.getCenter());
           }
           
+        
+                    $.get("/getAnnotations", addAnnotations);
+          function addAnnotations(annotations){
+              var list_of_annotations = annotations;
+              for(var i = 0; i< list_of_annotations.length; i++){
+                  var annotation_text = list_of_annotations[i].annotation;
+        
+                  var infoWindow = new google.maps.InfoWindow({map: map});
+                  infoWindow.setPosition(new google.maps.LatLng(list_of_annotations[i].lat, list_of_annotations[i].lng));
+                  infoWindow.setContent(annotation_text);
+              }
+          }
+        
+          
         poly = new google.maps.Polyline({
           strokeColor: '#000000',
           strokeOpacity: 1.0,
@@ -200,7 +214,8 @@
       document.addEventListener('submitTrail', submitTrail);
           
           
-          
+          var recordingsLat = [];
+          var recordingsLng = [];
         setInterval(recordLocation, 10);
           function recordLocation(){
               if (navigator.geolocation) {
@@ -209,6 +224,9 @@
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
               };
+                  
+              recordingsLat.push(pos.lat);
+              recordingsLng.push(pos.lng);
 
               infoWindow.setPosition(pos);
               infoWindow.setContent(pos.lat + " , " +pos.lng);
@@ -225,6 +243,38 @@
           }
               
           }
+          
+          
+           $('#addWarning').on("click", function(){
+                  $.post("/addAnnotation", {"annotation": "Warning: " + $("#warningText").val(), "position" : {
+                  lat: recordingsLat[recordingsLat.length-1],
+                  lng: recordingsLng[recordingsLat.length-1]
+                  }});
+                 
+                  var infoWindow = new google.maps.InfoWindow({map: map});
+                  infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
+                  infoWindow.setContent("Warning: " + $("#warningText").val());
+        
+               });
+              $('#addPoi').on("click", function(){
+                  $.post("/addAnnotation", {"annotation": "Point of Interest: " + $("#poiText").val(), "position" : {
+                  lat: recordingsLat[recordingsLat.length-1],
+                  lng: recordingsLng[recordingsLat.length-1]
+                  }});
+                  var infoWindow = new google.maps.InfoWindow({map: map});
+                  infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
+                  infoWindow.setContent("Point of Interest: " + $("#poiText").val());
+              });
+              $('#addMusic').on("click", function(){
+            
+                  $.post("/addAnnotation", {"annotation": "Music Suggestion: " + $("#musicText").val(), "position" : {
+                  lat: recordingsLat[recordingsLat.length-1],
+                  lng: recordingsLng[recordingsLat.length-1]
+                  }});
+                  var infoWindow = new google.maps.InfoWindow({map: map});
+                  infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
+                  infoWindow.setContent("Music Suggestion: " + $("#musicText").val());
+              });
           
         
       
@@ -250,14 +300,14 @@
     
     
    
-  <!-- Modal Structure -->
+ <!-- Modal Structure -->
   <div id="modalwarning" class="modal">
     <div class="modal-content">
       <h4>Add a Warning</h4>
       <p>OMG SO DANGEROUS!!!!!</p>
         
         <div class="form-group">
-        <input type="text" class="form-control" id="name"  
+        <input id = "warningText" type="text" class="form-control"
                placeholder="What warning do you want others to see?" 
                name="warningText">
       </div>
@@ -267,7 +317,7 @@
       
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      <a id = "addWarning" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
     
@@ -277,7 +327,7 @@
       <h4>Add a Playlist</h4>
       <p>MUCH MUSIC!!!!</p>
          <div class="form-group">
-        <input type="text" class="form-control" id="musicName"  
+        <input id = "musicText" type="text" class="form-control"
                placeholder="Keep this form until spotifyable" 
                name="musicText">
       </div>
@@ -287,7 +337,7 @@
       
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      <a id = "addMusic" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
     
@@ -297,7 +347,7 @@
       <h4>Add a Point of Interest</h4>
       <p>MUCH INTERESTING!!!</p>
          <div class="form-group">
-        <input type="text" class="form-control" id="waypointText"  
+        <input id = "poiText" type="text" class="form-control" id="waypointText"  
                placeholder="What sight would you want others to see?" 
                name="waypoint">
       </div>
@@ -318,9 +368,10 @@
       
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      <a id = "addPoi" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
+    
     
  
     
