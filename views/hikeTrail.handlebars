@@ -142,10 +142,11 @@
         });
         poly.setMap(map);
           
-          
+          var trail_id;
             $.get("/loadHikingTrail", addTrail);
         function addTrail(result){
-        var the_trail_to_add = result;
+        var the_trail_to_add = result.the_trail;
+            trail_id = result.trail_id;
         
              for(var j = 0; j < the_trail_to_add.length; j++){
                 var path = poly.getPath();
@@ -235,7 +236,7 @@
 
           
           function submitTrail(){
-              window.location.href = "/review/";
+              window.location.href = "/review/"+trail_id;
           }
           
     

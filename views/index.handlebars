@@ -14,6 +14,11 @@
             height: 91.5%;
             position:relative;
         }
+        #map2 {
+            height: 60%;
+            width: 100%;
+            position:relative;
+        }
         #contactform{
             z-index:5;
             position:absolute;
@@ -30,6 +35,12 @@
         #hamburger{
             left: -8%;
         }
+          
+        #trailinfo, #trailinfocontent {
+            min-height: 90%;
+            min-width: 100%;
+          }
+        
 
         html, body {
             height: 100%;
@@ -54,7 +65,7 @@
     <ul id="nav-mobile" class="side-nav show-on-large">
      <li><div class="userView">
       <div class="background">
-        <img style="width:100%;" src="img/materialize-bg.jpg">
+        <img style="width:100%;" src="/img/materialize-bg.jpg">
     </div>
     {{#each createdProfiles}}
     <div class="row">
@@ -122,7 +133,41 @@
   </div>
 </div>
 
+<!-- Modal Structure -->
+  <div id="trailinfo" class="modal modal-fixed-footer">
+    <div id="trailinfocontent" class="modal-content">
+      <h4 id="trailname">Modal Header</h4>
+        <div id="map2"></div>
 
+       <b>Description: </b><p id="traildescription">A bunch of text</p>
+       <b>Difficulty: </b><p id="traildifficulty">A bunch of text</p>
+       <b>Reviews </b><br>
+
+        
+        
+  <ul id="reviews" class="collection">
+
+  </ul>
+        
+        
+        
+        
+        
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+      <a id = "HikeTrailButton" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Hike This Trail</a>
+    </div>
+      
+    
+  </div>
+
+
+
+    
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="/js/init.js"></script>
 
 
 
@@ -143,7 +188,15 @@
               zoom: 14,
               mapTypeId: 'roadmap'
           });
+              
+           var mappreview = new google.maps.Map(document.getElementById('map2'), {
+                       center: {lat: -33.8688, lng: 151.2195},
+                        zoom: 12,
+                        mapTypeId: 'roadmap'
+                        });
+              
 
+              
             /** Get current location here **/
             var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -156,8 +209,10 @@
               };
 
               infoWindow.setPosition(pos);
-              infoWindow.setContent('Location found.');
+              infoWindow.setContent('Your Current Location');
               map.setCenter(pos);
+              mappreview.setCenter(pos);
+
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -200,7 +255,7 @@
               };
 
               infoWindow.setPosition(pos);
-              infoWindow.setContent('Location found.');
+              infoWindow.setContent('Your Current Location.');
               map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -210,7 +265,9 @@
               handleLocationError(false, infoWindow, map.getCenter());
           }
       }
+    
               
+
               
               
     $.get("/loadTrailsWithData", addTrail);
@@ -218,6 +275,7 @@
     function addTrail(result){
         var list_of_trails = result;
         console.log(list_of_trails);
+        
         for(var i = 0; i < list_of_trails.length; i++)
         {
              var the_trail = list_of_trails[i];
@@ -233,29 +291,80 @@
       '<div id="bodyContent">'+
       '<p><b>Description: </b><br>'+description+'<br></p>'+
       '<p><b>Difficulty: <br></b>'+difficulty+'</p>'+
-      '<p><a href="/HikeTrail/'+the_trail.id+'">Hike This Trail</a></p>'+
+      '<p><a class="linkformap" href="#trailinfo">Read More About Trail</a></p>'+
       '</div>'+
       '</div>';
             
-              var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-             
+            console.log(description);
             var marker = new google.maps.Marker({
             position: new google.maps.LatLng(trail[0].lat, trail[0].lng),
             map: map,
-            title:name});
+            title:name,
+            html: contentString,
+            });
             
+            console.log(name);
+            console.log("the description " +description);
+            marker.trail_name =  name;
+            marker.trail_description =  description;
+            marker.difficulty = difficulty;
+            marker.id = the_trail.id;
+            marker.trail = trail;
             
-             marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-            
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                var infowindow = new google.maps.InfoWindow();
+                                    google.maps.event.trigger(map, 'resize');
+
+
+          
+                return function () {
+
+                    mappreview.setCenter(new google.maps.LatLng(this.trail[0].lat, this.trail[0].lng));
+
+                    
+                    $.get("/getReview/"+this.id, addReviews);
+                    function addReviews(results){
+                         for(var j = 0; j <results.length; j++){
+                             var toAdd = "<li class=\"collection-item avatar\"><span class=\"title\">Difficulty: "+results[j].difficulty+"</span><p><b>Comment: </b> "+results[j].comment+"<br><b>Playlist Recommandations:</b> "+results[j].musicText+"<br><b>Warnings: </b> "+results[j].warningText+"</p></li>";
+                             $("#reviews").append(toAdd);
+                         }
+
+                    }
+
+                    $("#trailname").text(this.trail_name);
+                    $("#traildescription").text(this.trail_description);
+                    $("#HikeTrailButton").attr("href", "/HikeTrail/" + this.id);
+                    $("#traildifficulty").text(this.difficulty);
+
+                        
+
+                    infowindow.setContent( this.html);
+                    infowindow.open(map, this);
+                    
+                    polyline = new google.maps.Polyline({
+          strokeColor: '#000000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+        polyline.setMap(mappreview);
+                var the_trail_to_add = this.trail;
+                    for(var j = 0; j < the_trail_to_add.length; j++){
+                var path = polyline.getPath();
+                 path.push(new google.maps.LatLng(the_trail_to_add[j].lat, the_trail_to_add[j].lng));
+             }
+                    
+                    
+
+                }
+  
+
+                
+            })(marker, i)); 
+                
         }
+        
+        
     }
-
-              
-
 
 
 
@@ -320,14 +429,28 @@
 
 
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
-    <script src="/js/init.js"></script>
 
     <script>
       var showTipInterval;
       $(document).ready(function(){
         $('.modal').modal();
+          
+          $('#trailinfo').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '4%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        window.dispatchEvent(new Event('resize'));
+          $('#search').tooltip('hide');
+
+        console.log(modal, trigger);
+      },
+      complete: function() { } // Callback for Modal close
+    }
+  );
         $('#search').val('Current Location');
         $("#search").trigger('mouseenter');
       });
@@ -364,6 +487,8 @@
 
         $("#search").trigger('mouseenter');
     });
+        
+
         
     
         

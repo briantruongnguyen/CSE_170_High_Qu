@@ -74,10 +74,14 @@ app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/login', login.view);
 app.get('/loadTrails', submitTrail.sendTrails);
 app.get('/loadTrailsWithData', submitTrail.sendTrailWithInfo);
+app.get('/submitReview', review.saveReview);
+app.get('/getReview/:trail_id', review.getReview);
 
 
 
-app.get('/review', review.view);
+
+
+app.get('/review/:trail_id', review.view);
 // Example route
 // app.get('/users', user.list);
 
