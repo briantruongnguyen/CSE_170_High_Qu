@@ -3,7 +3,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+    {{#if loggedOut}}
+  <title>Log Out?</title>
+    {{else}}
+    <title>Login</title>
+    {{/if}}
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -50,9 +54,16 @@
     {{#if logged}}
     <div>
   <nav class="light-green lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Login</a>
+      {{#if loggedOut}}
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Log Out?</a>
       <a href="/"><i class="material-icons">backspace</i></a>
     </div>
+      {{else}}
+<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Login/Register</a>
+      <a href="/"><i class="material-icons">backspace</i></a>
+    </div>
+      {{/if}}
+      
   </nav>
      
       <div class="container">
@@ -72,7 +83,7 @@
           
           <h6>No account yet? Register!</h6>
           
-          <input  type="submit" id="submitBtn" class="waves-effect waves-light btn" value="register"></input>
+    <input  type="submit" id="submitBtn" class="waves-effect waves-light btn" value="register"></input>
     </form>
     
   </div>
@@ -82,7 +93,7 @@
 <!-- If logged in and want to log out: -->
     {{else}}
 <nav class="light-green lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Login</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Log out?</a>
       <a href="/"><i class="material-icons">backspace</i></a>
     </div>
   </nav>
