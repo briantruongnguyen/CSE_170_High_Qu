@@ -35,5 +35,5 @@ exports.addNewTrail = function(req, res) {
 	};
 	console.log(newTrail);
 	data.createdTrails.push(newTrail);
-	res.render('index');
+	res.redirect('index');
 }
