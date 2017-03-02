@@ -40,6 +40,10 @@
             min-height: 90%;
             min-width: 100%;
           }
+        #loginmodal, #trailcontent {
+            min-height: 90%;
+            min-width: 100%;
+          }
         
 
         html, body {
@@ -67,16 +71,13 @@
       <div class="background">
         <img style="width:100%;" src="/img/materialize-bg.jpg">
     </div>
-    {{#each createdProfiles}}
     <div class="row">
      <div class="col s4">
-         <a href="#!user"><img class="circle" src={{imageURL}}></a>
      </div>
      <div class="col s8">
-         <h5 class="white-text">{{name}}</h5>
-     </div>
+         <h5 id="profile_user_name" class="white-text"></h5>
+     </div> 
  </div>
- {{/each}}
  <div class="divider"></div>
 
  <!-- TODO  -->
@@ -134,7 +135,7 @@
 </div>
 
 <!-- Modal Structure -->
-  <div id="trailinfo" class="modal modal-fixed-footer">
+  <div id="trailinfo" class="modal bottom-sheet">
     <div id="trailinfocontent" class="modal-content">
       <h4 id="trailname">Modal Header</h4>
         <div id="map2"></div>
@@ -159,11 +160,34 @@
       
     
   </div>
+    
 
+<!-- Modal for Login -->
+  <div id="loginmodal" class="modal bottom-sheet">
+    <div id="logincontent" class="modal-content">
+      <h4>Login</h4>
 
+      <div class="container">
+          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+              <div class="input-field col s7">
+                  <input id="user_name" type="text" class="validate" name="username">
+                  <label for="user_name" >Username</label>
+              </div>
+    
+              <div class="input-field col s6">
+                  <input id="pw" type="text" class="validate" name="password">
+                  <label for="pw">Password</label>
+              </div>
+              <input  type="submit" id="login" class="waves-effect waves-light btn" value="login"></input>
+              <h6>No account yet? Register!</h6>
+              <input  type="submit" id="register" class="waves-effect waves-light btn" value="register"></input>
+          </form>
+     </div>
+    </div>
+  </div>
 
     
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/js/materialize.js"></script>
     <script src="/js/init.js"></script>
 
@@ -475,7 +499,20 @@
   );
         $('#search').val('Current Location');
         $("#search").trigger('mouseenter');
-      });
+          
+        if(!window.sessionStorage.getItem("username"))
+        {
+            $('#search').tooltip('hide');
+            $('#loginmodal').modal('open');
+        }
+        else{
+            console.log(window.sessionStorage.username);
+            $("#profile_user_name").text(window.sessionStorage.username);
+
+        }
+          
+
+    
 
     var searchBarShowInterval;
     $("#search").on("focus", function(){
@@ -490,6 +527,8 @@
         searchBarShowInterval = setInterval(showSuggestions,10);
 
     });
+          
+        
         
     $("#addbutton").on("click", function(){
         $('#search').tooltip('hide');
@@ -517,6 +556,7 @@
      $("#search").on("blur", function(){
         clearInterval(searchBarShowInterval);            
     });
+          
     
     function modifyMap(){
         $("#search").val("Current Location");
@@ -526,6 +566,36 @@
 
         
     }
+      });
+        
+    function validate_required(field,alerttxt)
+{
+with (field)
+  {
+  if (value==null||value=="")
+    {Materialize.toast(alerttxt, 8000,'rounded');return false}
+    //{alert(alerttxt);return false}
+  else {return true}
+  }
+}
+
+function validate_form(thisform)
+{
+with (thisform)
+  {
+  if (validate_required(username,"username must be filled out!")==false)
+    {username.focus();return false}
+  else{
+      console.log(username);
+      sessionStorage.username = username.value
+  }
+  if (validate_required(password,"password must be filled out!")==false)
+    {password.focus();return false}
+  }
+   
+}
+    
+
    
     
 
