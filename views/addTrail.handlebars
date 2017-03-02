@@ -252,7 +252,7 @@
                 
                 var latDataPoint = medianDataPoints[medianDataPoints.length - 1].lat;
                 var lngDataPoint = medianDataPoints[medianDataPoints.length - 1].lng;
-                var differential = lngDataPoint/2 - posMedian.lng/2 + latDataPoint - posMedian.lat;
+                var differential = abs(lngDataPoint/2) - abs(posMedian.lng/2) + abs(latDataPoint) - abs(posMedian.lat);
                 if(differential < 0.001){
                     medianDataPoints.push(posMedian);
                     var path = poly.getPath();
