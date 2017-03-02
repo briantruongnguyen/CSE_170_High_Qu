@@ -118,6 +118,7 @@
    <div class="input-field" style="background-color:white;">
       <input id="search" class="controls tooltipped" type="search" data-tooltip="Not interested in anything around you? Search trails elsewhere!" placeholder="Enter a Location">
       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+      <i id = "searchbarx" class="material-icons">close</i>
   </div>
 </div>
 
@@ -583,6 +584,10 @@
         sessionStorage.clear();
         location.reload();
         
+    });
+          
+    $("#searchbarx").on("click", function(){
+        $("#search").val("");
     });
         
     $("#register").on("click", function(){

@@ -96,7 +96,7 @@
 
     <a href="#modalmusic" id="musiclibrary" class="waves-effect btn-floating btn-large blue darken-1"><i class="material-icons">library_music</i></a>
     
-    <a class="waves-effect waves-light blue darken-1 btn" id="recentermap">Recenter<br/>Map</a>
+    <a class="waves-effect waves-light blue darken-1 btn" id="recentermap">Recenter</a>
 
 
     
@@ -217,6 +217,7 @@
           var recordingsLat = [];
           var recordingsLng = [];
           var numRecordings = 0;
+          var firstTime = true;
           setInterval(recordLocation, 10);
           function recordLocation(){
               if (navigator.geolocation) {
@@ -233,6 +234,13 @@
               }
               recordingsLat.push(pos.lat);
               recordingsLng.push(pos.lng);
+              if(firstTime){
+                                                           var path = poly.getPath();
+
+                  path.push(new google.maps.LatLng(pos.lat, pos.lng));
+
+                  firstTime = false;
+              }
               numRecordings++;
               if(numRecordings >= 200){
                 recordingsLat.sort();
