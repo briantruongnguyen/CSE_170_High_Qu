@@ -40,10 +40,16 @@
             min-height: 90%;
             min-width: 100%;
           }
-        #loginmodal, #trailcontent {
-            min-height: 90%;
+        #loginmodal, #logincontent {
+            min-height: 100%;
             min-width: 100%;
           }
+        
+        #registermodal, #registercontent {
+            min-height: 100%;
+            min-width: 100%;
+          }
+        
         
 
         html, body {
@@ -98,7 +104,7 @@
 <li><a class="waves-effect" href="help">Help</a></li>
 <li><a class="waves-effect" href="settings">Settings</a></li>
 -->
-<li><a class="waves-effect" href="login">Login Page</a></li>
+<li><a id="logout" class="waves-effect">Logout</a></li>
 
 </ul>
 <a  href="#" id="hamburger" data-activates="nav-mobile" class="button-collapse show-on-large">
@@ -178,9 +184,33 @@
                   <input id="pw" type="text" class="validate" name="password">
                   <label for="pw">Password</label>
               </div>
+              <input type="submit" id="login" class="waves-effect waves-light btn" value="Register"></input>
+              <h6>No account yet? Register!</h6>
+              <a id="register" class="waves-effect waves-light btn">Login</a>
+          </form>
+     </div>
+    </div>
+  </div>
+
+<!-- Modal for Login -->
+  <div id="registermodal" class="modal bottom-sheet">
+    <div id="registercontent" class="modal-content">
+      <h4>Register</h4>
+
+      <div class="container">
+          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+              <div class="input-field col s7">
+                  <input id="user_name" type="text" class="validate" name="username">
+                  <label for="user_name" >Username</label>
+              </div>
+    
+              <div class="input-field col s6">
+                  <input id="pw" type="text" class="validate" name="password">
+                  <label for="pw">Password</label>
+              </div>
               <input  type="submit" id="login" class="waves-effect waves-light btn" value="login"></input>
               <h6>No account yet? Register!</h6>
-              <input  type="submit" id="register" class="waves-effect waves-light btn" value="register"></input>
+              <input type="submit" id="register" class="waves-effect waves-light btn" value="register"></input>
           </form>
      </div>
     </div>
@@ -548,6 +578,21 @@
 
         $("#search").trigger('mouseenter');
     });
+    
+    $("#logout").on("click", function(){
+        sessionStorage.clear();
+        location.reload();
+        
+    });
+        
+    $("#register").on("click", function(){
+        $('#loginmodal').modal('close');
+        $('#registermodal').modal('open');
+
+
+        
+    });
+ 
         
 
         
