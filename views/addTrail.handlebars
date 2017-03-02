@@ -235,11 +235,11 @@
               recordingsLat.push(pos.lat);
               recordingsLng.push(pos.lng);
               if(firstTime){
-                                                           var path = poly.getPath();
-
+                  var path = poly.getPath();
                   path.push(new google.maps.LatLng(pos.lat, pos.lng));
-
                   firstTime = false;
+                  medianDataPoints.push({lat:pos.lat, lng: pos.lng});
+
               }
               numRecordings++;
               if(numRecordings >= 200){
@@ -249,15 +249,23 @@
                   lat: recordingsLat[numRecordings/2],
                   lng: recordingsLng[numRecordings/2]
                   };
-                medianDataPoints.push(posMedian);
                 
-                console.log(posMedian);
+                var latDataPoint = medianDataPoints[medianDataPoints.length - 1].lat;
+                var lngDataPoint = medianDataPoints[medianDataPoints.length - 1].lng;
+                var differential = lngDataPoint/2 - posMedian.lng/2 + latDataPoint - posMedian.lat;
+                if(differential < 0.002){
+                    medianDataPoints.push(posMedian);
+                    var path = poly.getPath();
+                    console.log(posMedian);
+                    path.push(new google.maps.LatLng(posMedian.lat, posMedian.lng));
+                    console.log(medianDataPoints);
+
+                }
+                
                 recordingsLat = [];
                 recordingsLng = [];
                 numRecordings = 0;
-                console.log(medianDataPoints);
-                       var path = poly.getPath();
-                path.push(new google.maps.LatLng(posMedian.lat, posMedian.lng));
+                 
                   
               }
               
@@ -310,13 +318,6 @@
                   infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
                   infoWindow.setContent("Music Suggestion: " + $("#musicText").val());
               });
-        
-          
-          
- 
-          
-           
-          
         
       }
     </script>
