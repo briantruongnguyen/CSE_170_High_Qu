@@ -58,7 +58,8 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/', index.view);
+app.get('/', index.viewA);
+app.get('/B', index.viewB);
 app.get('/addTrail', addTrail.view);
 app.get('/HikeTrail/:trail_id', hikeTrail.view);
 app.get('/loadHikingTrail', hikeTrail.loadTrail);

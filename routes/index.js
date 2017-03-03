@@ -4,15 +4,26 @@
  */
 var profile = require("../profile.json");
 
-profile['showDefault'] = true;
+
 console.log("I got here")
-exports.view = function(req, res){
+
+exports.viewA = function(req, res){
   console.log(profile);
-    
+    profile['showDefault'] = true;
     // A/B testing
     
     
   res.render('index',profile);
 };
+
+exports.viewB = function(req, res){
+  console.log(profile);
+    profile['showDefault'] = false;
+    // A/B testing
+    
+    
+  res.render('index',profile);
+};
+
 
 // hello?
