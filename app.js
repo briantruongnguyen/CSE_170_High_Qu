@@ -91,7 +91,9 @@ app.get('/logout', login.logout);
 
 
 
-app.get('/review/:trail_id', review.view);
+app.get('/review/:trail_id', review.viewA);
+app.get('/reviewing/:trail_id', review.viewB);
+
 // Example route
 // app.get('/users', user.list);
 

@@ -131,6 +131,9 @@
 
         </div>
         <div class="row">
+            
+        <!-- With NOSUBMIT --> 
+            {{#if showDefault}}
         <div class="col s5">
                 <a href="/"  class="waves-effect waves-light btn red">  No Review  </a>
         </div>
@@ -138,6 +141,13 @@
                <input href="/submitReview/{{trail_id}}" type="submit" id="submitBtn" class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         
+          <!-- Without NOSUBMIT --> 
+          {{else}}
+          <div class="col s5">
+               <input href="/submitReview/{{trail_id}}" type="submit" id="submitBtn" class="waves-effect waves-light btn" value="Submit Review"></input>
+        </div>
+        {{/if}}
+          
     </div>
 
 
