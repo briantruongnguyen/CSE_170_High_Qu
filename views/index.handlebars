@@ -739,9 +739,11 @@ complete: function() { } // Callback for Modal close
     $("#register").on("click", function(){
       $('#loginmodal').modal('close');
       $('#registermodal').modal('open');
-
-
-
+    });
+        
+    $("#toLoginModal").on("click", function(){
+      $('#registermodal').modal('close');
+      $('#loginmodal').modal('open');
     });
 
 
