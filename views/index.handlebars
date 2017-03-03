@@ -122,7 +122,7 @@
   </div>
 </div>
 
-<a id="addbutton" href="#modalstart" class="btn-floating btn-large waves-effect waves-light blue "><i class="material-icons">add</i></a>
+<a id="addbutton" href="#modalstart" class="btn-large waves-effect waves-light red ">Record a Trail</a>
 
 
 <div id="map"></div>
@@ -510,6 +510,21 @@
     <script>
       var showTipInterval;
       $(document).ready(function(){
+         var json =  {
+  "location": {
+    "lat": -33.8669710,
+    "lng": 151.1958750
+  },
+  "accuracy": 50,
+  "name": "Google Shoes!",
+  "phone_number": "(02) 9374 4000",
+  "address": "48 Pirrama Road, Pyrmont, NSW 2009, Australia",
+  "types": ["shoe_store"],
+  "website": "http://www.google.com.au/",
+  "language": "en-AU"
+}
+        $.post("https://maps.googleapis.com/maps/api/place/add/json?key=AIzaSyDzUdmleaVgHH9Dq8riOAtrLVzpJ_C_rp0", json, null);
+          
         $('.modal').modal();
           
           $('#trailinfo').modal({
