@@ -95,7 +95,7 @@
     </form>
   -->
   <div class="container">
-    <form id="addTrailForm" role="form" method="get" action="/submitReview">
+    <form id="addTrailForm" role="form" method="get">
       
       <div class="input-field col s12">
         <p class="range-field">
@@ -138,13 +138,13 @@
                 <a href="/"  class="waves-effect waves-light btn red">  No Review  </a>
         </div>
         <div class="col s7">
-               <input href="/submitReview/{{trail_id}}" type="submit" id="submitBtn" class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         
           <!-- Without NOSUBMIT --> 
           {{else}}
           <div class="col s5">
-               <input href="/submitReview/{{trail_id}}" type="submit" id="submitBtn" class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         {{/if}}
           
@@ -154,6 +154,76 @@
       </div>
     </form>
   </div>
+    
+    
+    
+  <div id="loginmodal" class="modal bottom-sheet">
+      
+      
+
+
+    <div id="logincontent" class="modal-content">
+      <div class="container">
+        <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+          <h5>Login to HighQu</h3>
+            <div class="input-field col s7">
+              <input id="user_name" type="text" class="validate" name="username">
+              <label for="user_name" >Username</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="pw" type="text" class="validate" name="password">
+              <label for="pw">Password</label>
+            </div>
+            <input type="submit" id="login" class="waves-effect waves-light btn" value="Login"></input>
+
+            <div> <h1> </h1> </div>
+            <div><p> </p></div>
+            <div><p> </p></div>
+            <div><p> </p></div>
+
+            <h6>No account yet? Register! {{#if showDefault}}Just trying us out? If you'd like, you can just...<a href="#!" class = "guest" >Continue as Guest</a>{{/if}}</h6>
+            <a id="register" class="waves-effect waves-light btn">Register</a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Modal for Register -->
+    <div id="registermodal" class="modal bottom-sheet">
+      <div id="registercontent" class="modal-content">
+          
+        <a id="toLoginModal" class="waves-effect waves-light btn">Back to Login</a>
+        <p> </p>
+        <h4>Register:</h4>
+
+        <div class="container">
+          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+            <div class="input-field col s7">
+              <input id="user_name" type="text" class="validate" name="username">
+              <label for="user_name" >Username</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="pw" type="text" class="validate" name="password">
+              <label for="pw">Type Password</label>
+
+            </div>
+              
+              <div class="input-field col s6">
+              <input id="p2w" type="text" class="validate" name="password">
+              <label for="pw2">Confirm Password</label>
+            </div>
+            <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register"></input>
+            {{#if showDefault}} <h6>Just trying us out? If you'd like, you can just...<a href="#!" class = "guest" >Continue as Guest</a></h6>{{/if}}
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
 
 
 
@@ -212,6 +282,64 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt2_jkQWKuHl6iy02idQyWXAQTGJLx2io&callback=initMap"
   async defer></script>
 
+  <script>
+    $(document).ready(function(){
+        var submitReviewLink = $("#submitReview").attr('href');
+        if(window.sessionStorage.username == "Guest User"){
+            $("#submitReview").attr('href',"#!");
+        }        
+         $("#submitReview").on("click", function(){
+            if(window.sessionStorage.username == "Guest User"){
+                $('#loginmodal').modal('open');
+            }}); 
+    
+    $("#register").on("click", function(){
+      $('#loginmodal').modal('close');
+      $('#registermodal').modal('open');
+    });
+        
+    $("#toLoginModal").on("click", function(){
+      $('#registermodal').modal('close');
+      $('#loginmodal').modal('open');
+    });
+        
+          function validate_required(field,alerttxt)
+  {
+    with (field)
+    {
+      if (value==null||value=="")
+        {Materialize.toast(alerttxt, 8000,'rounded');return false}
+//{alert(alerttxt);return false}
+else {return true}
+}
+}
+
+function validate_form(thisform)
+{
+  with (thisform)
+  {
+    if (validate_required(username,"username must be filled out!")==false)
+      {username.focus();return false}
+    else{
+      console.log(username);
+      sessionStorage.username = username.value
+    }
+    if (validate_required(password,"password must be filled out!")==false)
+      {password.focus();return false}
+      $('#loginmodal').modal('close');
+      $('#registermodal').modal('close');
+      $("#submitReview").attr('href',submitReviewLink);
+
+
+
+    
+  }
+
+}
+
+    });
+
+  </script>
 
 
 
