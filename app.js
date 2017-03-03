@@ -26,9 +26,6 @@ var review = require('./routes/review');
 var updateProfile = require('./routes/updateProfile');
 
 
-
-
-
 // Example route
 // var user = require('./routes/user');
 
@@ -77,7 +74,6 @@ app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/favs/:trail_id/:trail_name/:trail_desc/:trail_diff', favs.addFavorite);
 
 
-
 // Whether I am logged in or not
 loggedOut = false
 login['logged'] = loggedOut
@@ -91,8 +87,6 @@ app.get('/getReview/:trail_id', review.getReview);
 
 app.get('/updateProfile',updateProfile.updateProfile);
 app.get('/logout', login.logout);
-
-
 
 
 

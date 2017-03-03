@@ -10,96 +10,93 @@
       <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
       <style>
-          #map {
-            height: 91.5%;
-            position:relative;
+        #map {
+          height: 91.5%;
+          position:relative;
         }
         #map2 {
-            height: 60%;
-            width: 100%;
-            position:relative;
+          height: 60%;
+          width: 100%;
+          position:relative;
         }
         #contactform{
-            z-index:5;
-            position:absolute;
-            width: 80%;
-            top: 20%;
-            left: 10%;
+          z-index:5;
+          position:absolute;
+          width: 80%;
+          top: 20%;
+          left: 10%;
         }
         #addbutton{
-            top: 85%;
-            left: 5%;
-            z-index:6;
-            position:absolute;
+          top: 85%;
+          left: 5%;
+          z-index:6;
+          position:absolute;
         }
         #hamburger{
-            left: -8%;
+          left: -8%;
         }
-          
+
         #trailinfo, #trailinfocontent {
-            min-height: 90%;
-            min-width: 100%;
-          }
+          min-height: 90%;
+          min-width: 100%;
+        }
         #loginmodal, #logincontent {
-            min-height: 100%;
-            min-width: 100%;
-          }
+          min-height: 100%;
+          min-width: 100%;
+        }
         
         #registermodal, #registercontent {
-            min-height: 100%;
-            min-width: 100%;
-          }
+          min-height: 100%;
+          min-width: 100%;
+        }
         
         
 
         html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            z-index: 0;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          z-index: 0;
         }
-    </style>
-</head>
+      </style>
+    </head>
 
-
-
-
-
-
-
+        
+        
+        
 <body>
   <nav class="light-green lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">High-Qu</a>
 
-     
-    <ul id="nav-mobile" class="side-nav show-on-large">
-     <li><div class="userView">
-      <div class="background">
-        <img style="width:100%;" src="/img/materialize-bg.jpg">
-    </div>
-    <div class="row">
-     <div class="col s4">
-     </div>
-     <div class="col s8">
-         <h5 id="profile_user_name" class="white-text"></h5>
-     </div> 
- </div>
- <div class="divider"></div>
 
- <!-- TODO  -->
- <h6 class="white-text">123 Trails Hiked</h6>
- <h6 class="white-text">75 Reviews</h6>
- <h6 class="white-text">69 Photos</h6>
- <br>
+      <ul id="nav-mobile" class="side-nav show-on-large">
+       <li><div class="userView">
+        <div class="background">
+          <img style="width:100%;" src="/img/materialize-bg.jpg">
+        </div>
+        <div class="row">
+         <div class="col s4">
+         </div>
+         <div class="col s8">
+           <h5 id="profile_user_name" class="white-text"></h5>
+         </div> 
+       </div>
+       <div class="divider"></div>
+
+       <!-- TODO  -->
+       <h6 class="white-text">123 Trails Hiked</h6>
+       <h6 class="white-text">75 Reviews</h6>
+       <h6 class="white-text">69 Photos</h6>
+       <br>
 
 
-<!-- Menu Page --> 
-</div></li>
-<li><a class="waves-effect" href="/">Explore</a></li>
-<li><a class="waves-effect" href="mytrails">My Created Trails</a></li>
-<li><a class="waves-effect" href="hikehistory">Hike History</a></li>
-<li><a class="waves-effect" href="favs">Favorites</a></li>
-<li><a class="waves-effect" href="profile">Profile</a></li>
+       <!-- Menu Page --> 
+     </div></li>
+     <li><a class="waves-effect" href="/">Explore</a></li>
+     <li><a class="waves-effect" href="mytrails">My Created Trails</a></li>
+     <li><a class="waves-effect" href="hikehistory">Hike History</a></li>
+     <li><a class="waves-effect" href="favs">Favorites</a></li>
+     <li><a class="waves-effect" href="profile">Profile</a></li>
 <!--
 <li><a class="waves-effect" href="help">Help</a></li>
 <li><a class="waves-effect" href="settings">Settings</a></li>
@@ -115,11 +112,11 @@
 
 
 <div class ="container" id ="contactform">
-   <div class="input-field" style="background-color:white;">
-      <input id="search" class="controls tooltipped" type="search" data-tooltip="Not interested in anything around you? Search trails elsewhere!" placeholder="Enter a Location">
-      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-      <i id = "searchbarx" class="material-icons">close</i>
-  </div>
+ <div class="input-field" style="background-color:white;">
+  <input id="search" class="controls tooltipped" type="search" data-tooltip="Not interested in anything around you? Search trails elsewhere!" placeholder="Enter a Location">
+  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+  <i id = "searchbarx" class="material-icons">close</i>
+</div>
 </div>
 
 <a id="addbutton" href="#modalstart" class="btn-floating btn-large waves-effect waves-light blue "><i class="material-icons">add</i></a>
@@ -131,523 +128,672 @@
 
 <!-- Modal Structure -->
 <div id="modalstart" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>Start Recording</h4>
-      <p>User Agreement: Please watch where you are going, as not looking around can cause injury or death. We want you to have fun, not die. Thanks.</p>
+  <div class="modal-content">
+    <h4>Start Recording</h4>
+    <p>User Agreement: Please watch where you are going, as not looking around can cause injury or death. We want you to have fun, not die. Thanks.</p>
   </div>
   <div class="modal-footer">
-      <a href="#!" id="disagree" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
-      <a href="addTrail" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    <a href="#!" id="disagree" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+    <a href="addTrail" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
   </div>
 </div>
 
 <!-- Modal Structure -->
-  <div id="trailinfo" class="modal bottom-sheet">
-    <div id="trailinfocontent" class="modal-content">
-      <h4 id="trailname">Modal Header</h4>
-        <div id="map2"></div>
+<div id="trailinfo" class="modal bottom-sheet">
+  <div id="trailinfocontent" class="modal-content">
+    <h4 id="trailname">Modal Header</h4>
+    <div id="map2"></div>
 
-       <b>Description: </b><p id="traildescription">A bunch of text</p>
-       <b>Difficulty: </b><p id="traildifficulty">A bunch of text</p>
-       <b>Reviews </b><br>
-        
-  
-  <ul id="reviews" class="collection">
+    <b>Description: </b><p id="traildescription">A bunch of text</p>
+    <b>Difficulty: </b><p id="traildifficulty">A bunch of text</p>
+    <b>Reviews </b><br>
 
-  </ul>
-        
 
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-        
-      <a id = "HikeTrailButton" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Hike This Trail</a>
-        <a href="#!" class=" modal-action waves-effect waves-green btn-flat" id = "favoriting_the_trail">Favorite</a>
-    </div>
-      
-    
+    <ul id="reviews" class="collection">
+
+    </ul>
+
+
   </div>
-    
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
 
-<!-- Modal for Login -->
+    <a id = "HikeTrailButton" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Hike This Trail</a>
+    <a href="#!" class=" modal-action waves-effect waves-green btn-flat" id = "favoriting_the_trail">Favorite</a>
+  </div>
+
+
+</div>
+
+
+
+
+<!-- *******************************************************************
+
+A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
+
+
+******************************************************************* -->
+
+
+
+
+<!-- 
+    A/B Testing:
+    A: Register button is the register button as written first.
+    B: Combine the Login and Register Button. Add error prevention. 
+  -->
+
+
+  <!-- Modal for Login -->
+    
   <div id="loginmodal" class="modal bottom-sheet">
+      
+      
+{{#if showDefault}} <!-- TEST A -->
+
     <div id="logincontent" class="modal-content">
-      <h4>Login</h4>
-
       <div class="container">
-          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
-              <div class="input-field col s7">
-                  <input id="user_name" type="text" class="validate" name="username">
-                  <label for="user_name" >Username</label>
-              </div>
-    
-              <div class="input-field col s6">
-                  <input id="pw" type="text" class="validate" name="password">
-                  <label for="pw">Password</label>
-              </div>
-              <input type="submit" id="login" class="waves-effect waves-light btn" value="Login"></input>
-              <h6>No account yet? Register!</h6>
-              <a id="register" class="waves-effect waves-light btn">Register</a>
+        <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+          <h5>Login to HighQu</h3>
+            <div class="input-field col s7">
+              <input id="user_name" type="text" class="validate" name="username">
+              <label for="user_name" >Username</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="pw" type="text" class="validate" name="password">
+              <label for="pw">Password</label>
+            </div>
+            <input type="submit" id="login" class="waves-effect waves-light btn" value="Login"></input>
+
+            <div> <h1> </h1> </div>
+            <div><p> </p></div>
+            <div><p> </p></div>
+            <div><p> </p></div>
+
+            <h6>No account yet? Register!</h6>
+
+            <input id="register" class="waves-effect waves-light btn col s9" value="Register"></input>
+            <!-- <a id="register" class="waves-effect waves-light btn">Register</a> -->
           </form>
-     </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-<!-- Modal for Register -->
-  <div id="registermodal" class="modal bottom-sheet">
-    <div id="registercontent" class="modal-content">
-      <h4>Register</h4>
-
-      <div class="container">
-          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
-              <div class="input-field col s7">
-                  <input id="user_name" type="text" class="validate" name="username">
-                  <label for="user_name" >Username</label>
-              </div>
-    
-              <div class="input-field col s6">
-                  <input id="pw" type="text" class="validate" name="password">
-                  <label for="pw">Password</label>
-              </div>
-              <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register"></input>
-              <h6>No account yet? Register!</h6>
-              <a type="submit" id="register" class="waves-effect waves-light btn">Login</a>
-          </form>
-     </div>
-    </div>
-  </div>
-
-    
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
-    <script src="/js/init.js"></script>
 
 
 
-<script>
-          // This example adds a search box to a map, using the Google Place Autocomplete
-          // feature. People can enter geographical searches. The search box will return a
-          // pick list containing a mix of places and predicted search terms.
-
-          // This example requires the Places library. Include the libraries=places
-          // parameter when you first load the API. For example:
-          // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-         
-    
-
-          function initAutocomplete() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: -33.8688, lng: 151.2195},
-              zoom: 14,
-              mapTypeId: 'roadmap'
-          });
-              
-           var mappreview = new google.maps.Map(document.getElementById('map2'), {
-                       center: {lat: -33.8688, lng: 151.2195},
-                        zoom: 12,
-                        mapTypeId: 'roadmap'
-                        });
-              
-
-              
-            /** Get current location here **/
-            var infoWindow = new google.maps.InfoWindow({map: map});
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-              };
-
-              infoWindow.setPosition(pos);
-              infoWindow.setContent('Your Current Location');
-              map.setCenter(pos);
-              mappreview.setCenter(pos);
-
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-          } else {
-              // Browser doesn't support Geolocation
-              handleLocationError(false, infoWindow, map.getCenter());
-          }
-
-
-          /** Get searchbar here */
-
-            // Create the search box and link it to the UI element.
-            var input = document.getElementById('search');
-            var searchBox = new google.maps.places.SearchBox(input);
-
-            // Bias the SearchBox results towards current map's viewport.
-            map.addListener('bounds_changed', function() {
-              searchBox.setBounds(map.getBounds());
-          });
-              
-              
-              
-         /** Add the MyLocation button here **/
-            setTimeout(function(){
-                $(".pac-container").append('<div id="mylocation" class="pac-item areasearch" onmousedown="modifyMap()"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>Current Location</b></span> <span></span></div>');
-            }, 500);
-              
-              
-        /** Add a new event listener for My Location clicks **/
-        document.addEventListener("myLocationClicked", myLocationClicked, false);
-
-              
-        function myLocationClicked(){
-
-             if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-              };
-
-              infoWindow.setPosition(pos);
-              infoWindow.setContent('Your Current Location.');
-              map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-          } else {
-              // Browser doesn't support Geolocation
-              handleLocationError(false, infoWindow, map.getCenter());
-          }
-      }
-    
-              
-
-              
-              
-    $.get("/loadTrailsWithData", addTrail);
-    
-    function addTrail(result){
-        var list_of_trails = result;
-        console.log(list_of_trails);
-        
-        for(var i = 0; i < list_of_trails.length; i++)
-        {
-             var the_trail = list_of_trails[i];
-             var name = the_trail.name;
-             var difficulty = the_trail.difficulty; 
-             var description = the_trail.description; 
-             var trail = the_trail.trail;
-            
-             var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h5 id="firstHeading" class="firstHeading">'+name+'</h5>'+
-      '<div id="bodyContent">'+
-      '<p><b>Description: </b><br>'+description+'<br></p>'+
-      '<p><b>Difficulty: <br></b>'+difficulty+'</p>'+
-      '<p><a class="linkformap" href="#trailinfo">Read More About Trail</a></p>'+
-      '</div>'+
-      '</div>';
-            
-            console.log(description);
-            var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(trail[0].lat, trail[0].lng),
-            map: map,
-            title:name,
-            html: contentString,
-            });
-            
-            console.log(name);
-            console.log("the description " +description);
-            marker.trail_name =  name;
-            marker.trail_description =  description;
-            marker.difficulty = difficulty;
-            marker.id = the_trail.id;
-            marker.trail = trail;
-            
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                var infowindow = new google.maps.InfoWindow();
-                                    google.maps.event.trigger(map, 'resize');
-
-
+    <!-- Modal for Register -->
+    <div id="registermodal" class="modal bottom-sheet">
+      <div id="registercontent" class="modal-content">
           
-                return function () {
+        <a id="toLoginModal" class="waves-effect waves-light btn">Back to Login</a>
+        <p> </p>
+        <h4>Register:</h4>
 
-                    mappreview.setCenter(new google.maps.LatLng(this.trail[0].lat, this.trail[0].lng));
+        <div class="container">
+          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+            <div class="input-field col s7">
+              <input id="user_name" type="text" class="validate" name="username">
+              <label for="user_name" >Username</label>
+            </div>
 
-                    var id_for_review = this.id;
-                    $.get("/getReview/"+this.id, addReviews);
-                    function addReviews(results){
-                         console.log("The length " + results.length);
-                         if(results.length == 0){
-                             var toAdd = "<li class=\"collection-item\"><span class=\"title\">Oh hey there. This trail currently does not have any reviews.</span><br><a href=\"/review/"+id_for_review+"\"><b>Add your review here!</b></a></li>";
-                             $("#reviews").append(toAdd);
-                         }
-                             
-                         for(var j = 0; j <results.length; j++){
-                             var toAdd = "<li class=\"collection-item\"><span class=\"title\">Difficulty: "+results[j].difficulty+"</span><p><b>Comment: </b> "+results[j].comment+"<br><b>Playlist Recommandations:</b> "+results[j].musicText+"<br><b>Warnings: </b> "+results[j].warningText+"</p></li>";
-                             $("#reviews").append(toAdd);
-                         }
+            <div class="input-field col s6">
+              <input id="pw" type="text" class="validate" name="password">
+              <label for="pw">Type Password</label>
 
-                    }
-
-                    $("#trailname").text(this.trail_name);
-                    $("#traildescription").text(this.trail_description);
-                    $("#HikeTrailButton").attr("href", "/HikeTrail/" + this.id);
-                    $("#traildifficulty").text(this.difficulty);
-
-                    //CODE FOR FAVORITE
-                    var temp_id = this.id;
-                    var temp_name = this.trail_name;
-                    var temp_description = this.trail_description;
-                    var temp_difficulty = this.difficulty;
+            </div>
+              
+              <div class="input-field col s6">
+              <input id="p2w" type="text" class="validate" name="password">
+              <label for="pw2">Confirm Password</label>
+            </div>
+            <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register"></input>
+            <h6>No account yet? Register!</h6>
+            
+          </form>
+        </div>
+      </div>
+    </div>
 
 
-                    $("#favoriting_the_trail").on("click", function() { 
-                        $.get("/favs/" + 
-                          temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty
-                          , function() {
-                            alert("Fav saved.")
-                            console.log("Fav Saved.")
-                        } /** TODO */ );  
-                        // Just got the IDs
-                    }
-                                                 );
 
-                        
+{{else}}
+<!-- THE ALTERNATE LOGIN SCREEN -->
+ <!-- THE B TEEST FOR THE LOGIN REGISTER MODAL -->
 
-                    infowindow.setContent( this.html);
-                    infowindow.open(map, this);
-                    
-                    polyline = new google.maps.Polyline({
+    <!-- Modal for Login 
+        Give choice of signing in or registering first. 
+
+        Clicking the button will update the text by HTML injection
+-->
+<div id="logincontent" class="modal-content">
+    <!-- <h4>Login</h4> -->
+
+    <div class="container">
+      <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+
+        <h5>Login or Register to HighQu</h3>
+
+          <a id="openLoginArea" class="waves-effect waves-light btn">Sign in</a> 
+          <a id="openRegArea"   class="waves-effect waves-light btn">Sign up</a> 
+
+          <h4></h4>
+          <h4>Welcome back!</h4>
+          <div class="input-field col s7">
+            <input id="user_name" type="text" class="validate" name="username">
+            <label for="user_name" >Username</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="pw" type="text" class="validate" name="password">
+            <label for="pw">Password</label>
+          </div>
+
+          <input type="submit" id="login" class="waves-effect waves-light btn" value="Login"></input>
+
+          <!-- <a id="register" class="waves-effect waves-light btn">Register</a> -->
+        </form>
+
+        <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+          <h4>Welcome!</h4>
+          <div class="input-field col s7">
+
+
+            <input id="user_name2" type="text" class="validate" name="username">
+            <label for="user_name2" >Username</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="pw" type="text" class="validate" name="password">
+            <label for="pw">Type Password</label>
+          </div>
+
+
+          <div class="input-field col s6">
+            <input id="pw2" type="text" class="validate" name="password2">
+            <label for="pw2">Confirm Password</label>
+
+          </div>
+          <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register"></input>
+
+
+        </form>
+      </div>
+    </div>
+
+
+<div id="registermodal" class="modal bottom-sheet">
+      <div id="registercontent" class="modal-content">
+        <a type="submit" id="register" class="waves-effect waves-light btn">Back to Login</a>
+        <p> </p>
+        <h4>Register:</h4>
+
+        <div class="container">
+          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+            <div class="input-field col s7">
+              <input id="user_name" type="text" class="validate" name="username">
+              <label for="user_name" >Username</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="pw" type="text" class="validate" name="password">
+              <label for="pw">Type Password</label>
+              <label for="pw2">Confirm Password</label>
+            </div>
+            <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register"></input>
+            <h6>No account yet? Register!</h6>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+{{/if}}
+
+
+
+   
+
+
+
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+
+  <!--***********   JAVASCRIPT CODE   ************** -->
+
+
+  <script>
+
+  // This example adds a search box to a map, using the Google Place Autocomplete
+  // feature. People can enter geographical searches. The search box will return a
+  // pick list containing a mix of places and predicted search terms.
+
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+  function initAutocomplete() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -33.8688, lng: 151.2195},
+      zoom: 14,
+      mapTypeId: 'roadmap'
+    });
+
+    var mappreview = new google.maps.Map(document.getElementById('map2'), {
+     center: {lat: -33.8688, lng: 151.2195},
+     zoom: 12,
+     mapTypeId: 'roadmap'
+   });
+
+
+
+    /** Get current location here **/
+    var infoWindow = new google.maps.InfoWindow({map: map});
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Your Current Location');
+      map.setCenter(pos);
+      mappreview.setCenter(pos);
+
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+  // Browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
+}
+
+
+/** Get searchbar here */
+
+// Create the search box and link it to the UI element.
+var input = document.getElementById('search');
+var searchBox = new google.maps.places.SearchBox(input);
+
+// Bias the SearchBox results towards current map's viewport.
+map.addListener('bounds_changed', function() {
+  searchBox.setBounds(map.getBounds());
+});
+
+
+
+/** Add the MyLocation button here **/
+setTimeout(function(){
+  $(".pac-container").append('<div id="mylocation" class="pac-item areasearch" onmousedown="modifyMap()"><span class="pac-icon pac-icon-areas"></span><span class="pac-item-query"><span class="pac-matched"></span><b>Current Location</b></span> <span></span></div>');
+}, 500);
+
+
+/** Add a new event listener for My Location clicks **/
+document.addEventListener("myLocationClicked", myLocationClicked, false);
+
+
+function myLocationClicked(){
+
+ if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+
+    infoWindow.setPosition(pos);
+    infoWindow.setContent('Your Current Location.');
+    map.setCenter(pos);
+  }, function() {
+    handleLocationError(true, infoWindow, map.getCenter());
+  });
+} else {
+  // Browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
+}
+}
+
+
+
+
+
+$.get("/loadTrailsWithData", addTrail);
+
+function addTrail(result){
+  var list_of_trails = result;
+  console.log(list_of_trails);
+
+  for(var i = 0; i < list_of_trails.length; i++)
+  {
+   var the_trail = list_of_trails[i];
+   var name = the_trail.name;
+   var difficulty = the_trail.difficulty; 
+   var description = the_trail.description; 
+   var trail = the_trail.trail;
+
+   var contentString = '<div id="content">'+
+   '<div id="siteNotice">'+
+   '</div>'+
+   '<h5 id="firstHeading" class="firstHeading">'+name+'</h5>'+
+   '<div id="bodyContent">'+
+   '<p><b>Description: </b><br>'+description+'<br></p>'+
+   '<p><b>Difficulty: <br></b>'+difficulty+'</p>'+
+   '<p><a class="linkformap" href="#trailinfo">Read More About Trail</a></p>'+
+   '</div>'+
+   '</div>';
+
+   console.log(description);
+   var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(trail[0].lat, trail[0].lng),
+    map: map,
+    title:name,
+    html: contentString,
+  });
+
+   console.log(name);
+   console.log("the description " +description);
+   marker.trail_name =  name;
+   marker.trail_description =  description;
+   marker.difficulty = difficulty;
+   marker.id = the_trail.id;
+   marker.trail = trail;
+
+   google.maps.event.addListener(marker, 'click', (function (marker, i) {
+    var infowindow = new google.maps.InfoWindow();
+    google.maps.event.trigger(map, 'resize');
+
+
+
+    return function () {
+
+      mappreview.setCenter(new google.maps.LatLng(this.trail[0].lat, this.trail[0].lng));
+
+      var id_for_review = this.id;
+      $.get("/getReview/"+this.id, addReviews);
+      function addReviews(results){
+       console.log("The length " + results.length);
+       if(results.length == 0){
+         var toAdd = "<li class=\"collection-item\"><span class=\"title\">Oh hey there. This trail currently does not have any reviews.</span><br><a href=\"/review/"+id_for_review+"\"><b>Add your review here!</b></a></li>";
+         $("#reviews").append(toAdd);
+       }
+
+       for(var j = 0; j <results.length; j++){
+         var toAdd = "<li class=\"collection-item\"><span class=\"title\">Difficulty: "+results[j].difficulty+"</span><p><b>Comment: </b> "+results[j].comment+"<br><b>Playlist Recommandations:</b> "+results[j].musicText+"<br><b>Warnings: </b> "+results[j].warningText+"</p></li>";
+         $("#reviews").append(toAdd);
+       }
+
+     }
+
+     $("#trailname").text(this.trail_name);
+     $("#traildescription").text(this.trail_description);
+     $("#HikeTrailButton").attr("href", "/HikeTrail/" + this.id);
+     $("#traildifficulty").text(this.difficulty);
+
+        //CODE FOR FAVORITE
+        var temp_id = this.id;
+        var temp_name = this.trail_name;
+        var temp_description = this.trail_description;
+        var temp_difficulty = this.difficulty;
+
+
+        $("#favoriting_the_trail").on("click", function() { 
+          $.get("/favs/" + 
+            temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty
+            , function() {
+              alert("Fav saved.")
+              console.log("Fav Saved.")
+            } /** TODO */ );  
+            // Just got the IDs
+          }
+          );
+
+
+
+        infowindow.setContent( this.html);
+        infowindow.open(map, this);
+        
+        polyline = new google.maps.Polyline({
           strokeColor: '#000000',
           strokeOpacity: 1.0,
           strokeWeight: 3
         });
         polyline.setMap(mappreview);
-                var the_trail_to_add = this.trail;
-                    for(var j = 0; j < the_trail_to_add.length; j++){
-                var path = polyline.getPath();
-                 path.push(new google.maps.LatLng(the_trail_to_add[j].lat, the_trail_to_add[j].lng));
-             }
-                    
-                    
-
-                }
-  
-
-                
-            })(marker, i)); 
-                
+        var the_trail_to_add = this.trail;
+        for(var j = 0; j < the_trail_to_add.length; j++){
+          var path = polyline.getPath();
+          path.push(new google.maps.LatLng(the_trail_to_add[j].lat, the_trail_to_add[j].lng));
         }
         
         
+
+      }
+
+
+
+    })(marker, i)); 
+
+ }
+
+
+}
+
+
+
+
+
+
+var markers = [];
+// Listen for the event fired when the user selects a prediction and retrieve
+// more details for that place.
+searchBox.addListener('places_changed', function() {
+  var places = searchBox.getPlaces();
+  if (places.length == 0) {
+    return;
+  }
+
+  // Clear out the old markers.
+  markers.forEach(function(marker) {
+    marker.setMap(null);
+  });
+  markers = [];
+
+  // For each place, get the icon, name and location.
+  var bounds = new google.maps.LatLngBounds();
+  places.forEach(function(place) {
+    if (!place.geometry) {
+      console.log("Returned place contains no geometry");
+      return;
+    }
+    var icon = {
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25)
+    };
+
+    // Create a marker for each place.
+    markers.push(new google.maps.Marker({
+      map: map,
+      icon: icon,
+      title: place.name,
+      position: place.geometry.location
+    }));
+
+    if (place.geometry.viewport) {
+      // Only geocodes have viewport.
+      bounds.union(place.geometry.viewport);
+    } else {
+      bounds.extend(place.geometry.location);
+    }
+  });
+  map.fitBounds(bounds);
+});
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaZLZeh94-eXlNYVAQimvj8sEGw7xBdR8&libraries=places&callback=initAutocomplete"
+async defer></script>
+
+
+
+
+
+<!--  Scripts-->
+
+<script>
+  var showTipInterval;
+  $(document).ready(function(){
+    $('.modal').modal();
+
+    $('#trailinfo').modal({
+dismissible: true, // Modal can be dismissed by clicking outside of the modal
+opacity: .5, // Opacity of modal background
+inDuration: 300, // Transition in duration
+outDuration: 200, // Transition out duration
+startingTop: '4%', // Starting top style attribute
+endingTop: '10%', // Ending top style attribute
+ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+  window.dispatchEvent(new Event('resize'));
+  $('#search').tooltip('hide');
+
+  console.log(modal, trigger);
+},
+complete: function() { } // Callback for Modal close
+}
+);
+    $('#search').val('Current Location');
+    $("#search").trigger('mouseenter');
+
+    if(!window.sessionStorage.getItem("username"))
+    {
+      $('#search').tooltip('hide');
+      $('#loginmodal').modal('open');
+    }
+    else{
+      console.log(window.sessionStorage.username);
+      $("#profile_user_name").text(window.sessionStorage.username);
+
     }
 
 
 
-
-
-
-            var markers = [];
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function() {
-              var places = searchBox.getPlaces();
-              if (places.length == 0) {
-                return;
-            }
-
-              // Clear out the old markers.
-              markers.forEach(function(marker) {
-                marker.setMap(null);
-            });
-              markers = [];
-
-              // For each place, get the icon, name and location.
-              var bounds = new google.maps.LatLngBounds();
-              places.forEach(function(place) {
-                if (!place.geometry) {
-                  console.log("Returned place contains no geometry");
-                  return;
-              }
-              var icon = {
-                  url: place.icon,
-                  size: new google.maps.Size(71, 71),
-                  origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(17, 34),
-                  scaledSize: new google.maps.Size(25, 25)
-              };
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                  map: map,
-                  icon: icon,
-                  title: place.name,
-                  position: place.geometry.location
-              }));
-
-                if (place.geometry.viewport) {
-                  // Only geocodes have viewport.
-                  bounds.union(place.geometry.viewport);
-              } else {
-                  bounds.extend(place.geometry.location);
-              }
-          });
-              map.fitBounds(bounds);
-          });
-        }
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaZLZeh94-eXlNYVAQimvj8sEGw7xBdR8&libraries=places&callback=initAutocomplete"
-    async defer></script>
-
-
-
-
-
-    <!--  Scripts-->
-
-    <script>
-      var showTipInterval;
-      $(document).ready(function(){
-        $('.modal').modal();
-          
-          $('#trailinfo').modal({
-      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      inDuration: 300, // Transition in duration
-      outDuration: 200, // Transition out duration
-      startingTop: '4%', // Starting top style attribute
-      endingTop: '10%', // Ending top style attribute
-      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-        window.dispatchEvent(new Event('resize'));
-          $('#search').tooltip('hide');
-
-        console.log(modal, trigger);
-      },
-      complete: function() { } // Callback for Modal close
-    }
-  );
-        $('#search').val('Current Location');
-        $("#search").trigger('mouseenter');
-          
-        if(!window.sessionStorage.getItem("username"))
-        {
-            $('#search').tooltip('hide');
-            $('#loginmodal').modal('open');
-        }
-        else{
-            console.log(window.sessionStorage.username);
-            $("#profile_user_name").text(window.sessionStorage.username);
-
-        }
-          
-
-    
 
     var searchBarShowInterval;
     $("#search").on("focus", function(){
-                $('#search').tooltip('remove');
+      $('#search').tooltip('remove');
 
-        function showSuggestions(){
-            
-            $(".pac-container").show();
-            
-            
-        }
-        searchBarShowInterval = setInterval(showSuggestions,10);
+      function showSuggestions(){
+
+        $(".pac-container").show();
+
+
+      }
+      searchBarShowInterval = setInterval(showSuggestions,10);
 
     });
-          
-        
-        
-    $("#addbutton").on("click", function(){
-        $('#search').tooltip('hide');
 
-        
+
+
+    $("#addbutton").on("click", function(){
+      $('#search').tooltip('hide');
+
+
     });
     $("#hamburger").on("click", function(){
-        $('#search').tooltip('hide');   
+      $('#search').tooltip('hide');   
     });
-        
+
     $("#map").on("click", function(){
-        $('#search').blur();   
+      $('#search').blur();   
     });
-        
+
     $("#disagree").on("click", function(){
-                $('#search').tooltip('show');   
+      $('#search').tooltip('show');   
 
-        $("#search").trigger('mouseenter');
+      $("#search").trigger('mouseenter');
     });
-    
+
     $("#logout").on("click", function(){
-        sessionStorage.clear();
-        location.reload();
-        
+      sessionStorage.clear();
+      location.reload();
+
     });
-          
+
     $("#searchbarx").on("click", function(){
-        $("#search").val("");
+      $("#search").val("");
     });
-        
+
     $("#register").on("click", function(){
-        $('#loginmodal').modal('close');
-        $('#registermodal').modal('open');
+      $('#loginmodal').modal('close');
+      $('#registermodal').modal('open');
 
 
-        
+
     });
- 
-        
 
-        
-    
-        
-     $("#search").on("blur", function(){
-        clearInterval(searchBarShowInterval);            
+
+
+
+
+
+    $("#search").on("blur", function(){
+      clearInterval(searchBarShowInterval);            
     });
-          
-    
+
+
     function modifyMap(){
-        $("#search").val("Current Location");
-        
-         var myLocationClicked = new Event('myLocationClicked');
-         document.dispatchEvent(myLocationClicked);
+      $("#search").val("Current Location");
 
-        
+      var myLocationClicked = new Event('myLocationClicked');
+      document.dispatchEvent(myLocationClicked);
+
+
     }
-      });
-        
-    function validate_required(field,alerttxt)
-{
-with (field)
+  });
+
+  function validate_required(field,alerttxt)
   {
-  if (value==null||value=="")
-    {Materialize.toast(alerttxt, 8000,'rounded');return false}
-    //{alert(alerttxt);return false}
-  else {return true}
-  }
+    with (field)
+    {
+      if (value==null||value=="")
+        {Materialize.toast(alerttxt, 8000,'rounded');return false}
+//{alert(alerttxt);return false}
+else {return true}
+}
 }
 
 function validate_form(thisform)
 {
-with (thisform)
+  with (thisform)
   {
-  if (validate_required(username,"username must be filled out!")==false)
-    {username.focus();return false}
-  else{
+    if (validate_required(username,"username must be filled out!")==false)
+      {username.focus();return false}
+    else{
       console.log(username);
       sessionStorage.username = username.value
+    }
+    if (validate_required(password,"password must be filled out!")==false)
+      {password.focus();return false}
   }
-  if (validate_required(password,"password must be filled out!")==false)
-    {password.focus();return false}
-  }
-   
-}
-    
 
-   
-    
+}
+
+
+
+
 
 </script>
 
