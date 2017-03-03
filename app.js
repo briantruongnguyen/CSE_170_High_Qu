@@ -26,9 +26,6 @@ var review = require('./routes/review');
 var updateProfile = require('./routes/updateProfile');
 
 
-
-
-
 // Example route
 // var user = require('./routes/user');
 
@@ -61,7 +58,8 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/', index.view);
+app.get('/', index.viewA);
+app.get('/B', index.viewB);
 app.get('/addTrail', addTrail.view);
 app.get('/HikeTrail/:trail_id', hikeTrail.view);
 app.get('/loadHikingTrail', hikeTrail.loadTrail);
@@ -75,7 +73,6 @@ app.get('/submitTrail/:trail_id', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/favs/:trail_id/:trail_name/:trail_desc/:trail_diff', favs.addFavorite);
-
 
 
 // Whether I am logged in or not
@@ -94,9 +91,9 @@ app.get('/logout', login.logout);
 
 
 
+app.get('/review/:trail_id', review.viewA);
+app.get('/reviewing/:trail_id', review.viewB);
 
-
-app.get('/review/:trail_id', review.view);
 // Example route
 // app.get('/users', user.list);
 

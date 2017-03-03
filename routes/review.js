@@ -5,10 +5,27 @@
 var comments = require("../comments.json");
 
 
-exports.view = function(req, res){
+exports.viewA = function(req, res){
  var trail_id = req.params.trail_id;
-  res.render('review', {"trail_id": trail_id});
+  res.render('review', 
+        {
+      "trail_id": trail_id,
+      "showDefault": true
+        }
+            );
 };
+
+exports.viewB = function(req, res){
+ var trail_id = req.params.trail_id;
+  res.render('review', 
+        {
+      "trail_id": trail_id,
+      "showDefault": false
+        }
+            );
+};
+
+
 
 exports.saveReview = function(req, res){
   	var difficulty=req.query.difficulty;
