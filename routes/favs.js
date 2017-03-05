@@ -19,6 +19,7 @@ exports.addFavorite = function(req, res){
         "description"   : t_desc,
         "difficulty"    : t_diff
     }
+
     console.log("In the javascript file.")
     console.log(newjson);
     data.favorites.push(newjson);
