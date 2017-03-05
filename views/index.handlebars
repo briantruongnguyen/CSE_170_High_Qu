@@ -467,13 +467,13 @@ function addTrail(result){
 
 
         $("#favoriting_the_trail").on("click", function() { 
-          $.get("/favs/" + 
-            temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty
-            , function() {
-              alert("Fav saved.")
-              console.log("Fav Saved.")
-            } /** TODO */ );  
+          
+          $.get("/favs/" + temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty, 
+            function() {console.log();} /** TODO */ );  
             // Just got the IDs
+            //alert("Fav saved.");
+            toast("Fav saved")
+          console.log("Fav Saved.");
           }
           );
 
@@ -724,6 +724,9 @@ complete: function() { } // Callback for Modal close
 else {return true}
 }
 }
+
+function toast(alerttxt)  {Materialize.toast(alerttxt, 8000,'rounded');return false}
+
 
 function validate_form(thisform)
 {
