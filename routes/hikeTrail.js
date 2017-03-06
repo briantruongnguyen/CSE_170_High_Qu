@@ -1,6 +1,14 @@
 /** Gets the Add Trail Page */
 
 var data = require("../data.json")
+var history = require("../history.json"); // for saving into the history json 
+
+
+var name ;
+var difficulty;
+var description ;
+var trail ;
+
 var trailToHike;
 exports.view = function(req, res){
   trailToHike = req.params.trail_id;
@@ -15,10 +23,10 @@ exports.loadTrail = function(req, res){
    for(var i = 0; i < list_of_trails.length; i++)
    {
         var the_trail = list_of_trails[i];
-        var name = the_trail.name;
-        var difficulty = the_trail.difficulty; 
-        var description = the_trail.description; 
-        var trail = the_trail.trail;
+        name = the_trail.name;
+        difficulty = the_trail.difficulty; 
+        description = the_trail.description; 
+        trail = the_trail.trail;
        
         if(the_trail.id == trailToHike){
             the_trail  = trail;
@@ -28,6 +36,17 @@ exports.loadTrail = function(req, res){
    console.log(the_trail);
    res.json({"the_trail":the_trail, "trail_id":trailToHike});
 };
+
+
+
+/*
+    This method will get the information about the trail and save it 
+    into the hike history json file 
+*/
+exports.saveIntoHistory = function ( req, res ){
+  // push the information into the history. 
+
+}
 
 
 

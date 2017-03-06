@@ -116,6 +116,7 @@
     
     <script>
       var map;
+      var global_id;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
@@ -171,6 +172,7 @@
         function addTrail(result){
         var the_trail_to_add = result.the_trail;
             trail_id = result.trail_id;
+            global_id = result.trail_id
         
              for(var j = 0; j < the_trail_to_add.length; j++){
                 var path = poly.getPath();
@@ -421,14 +423,42 @@
    
     });
           
-          
+// Even though the id is stoprecording, the code is actually stophike  
     $("#stoprecording").on("click", function(){
          var submitTrail = new Event('submitTrail');
          document.dispatchEvent(submitTrail);
          console.log("GG");
+
+
+         // Grab the id, the trail name, description, and difficulty. 
+
+         // Do a get request with the above variables. 
+         $.get("")
+         // Pass global_id here and probably other info
+
+         // Make sure that the get request works. 
+
+
     });
          
   });
+
+
+      //copy 
+      var temp_id = this.id;
+var temp_name = this.trail_name;
+var temp_description = this.trail_description;
+var temp_difficulty = this.difficulty;
+$("#favoriting_the_trail").on("click", function() { 
+
+  $.get("/favs/" + temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty, 
+    function() {console.log();} /** TODO */ );  
+            // Just got the IDs
+            //alert("Fav saved.");
+            toast("Fav saved")
+            console.log("Fav Saved.");
+          }
+          );
          
     </script>
 
