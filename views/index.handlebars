@@ -681,17 +681,16 @@ complete: function() { } // Callback for Modal close
    }
 
     $('#pw, #pw2').on('blur', function () {
-    if ($('#pw').val() != $('#pw2').val()) {
-        $( "#registerUser").off("click", addUser );
-        $("#registerUser").attr("type", "button");
-        $("#registerUser").on("click", needPwMatch);
-    } 
-    else{
-        $( "#registerUser").off("click", needPwMatch );
-        $("#registerUser").attr("type", "submit");
-        $("#registerUser").on("click",addUser);
+        if ($('#pw').val() != $('#pw2').val()) {
+             $("#registerUser").attr("type", "button"); 
+             newPwMatch();
+        }
+        else{
+             $("#registerUser").attr("type", "submit");
+             addUser();
         }
     });
+       
 
 
     
