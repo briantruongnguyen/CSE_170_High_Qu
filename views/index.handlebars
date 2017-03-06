@@ -281,7 +281,7 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
             </div>
 
             <div class="input-field col s6">
-              <input id="p2w" type="password" class="validate" name="password">
+              <input id="pw2" type="password" class="validate" name="password">
               <label for="pw2">Confirm Password</label>
             </div>
             <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register" onclick="ga('send', 'event', 'Register', 'On Login Page');"></input>
@@ -775,6 +775,29 @@ function validate_form(thisform)
     }
     if (validate_required(password,"password must be filled out!")==false)
       {password.focus();return false}
+  }
+
+}
+
+function validate_form_register(thisform)
+{
+  with (thisform)
+  {
+    if (validate_required(username,"username must be filled out!")==false)
+      {username.focus();return false}
+     if (validate_required(pw,"password must be filled out!")==false)
+      {pw.focus();return false}
+     if (validate_required(pw2,"password must be filled out!")==false)
+      {pw.focus();return false}
+     if(pw!=pw2){
+         pw = null;
+     }
+     if (validate_required(pw,"Passwords must match!")==false)
+      {pw.focus();return false}
+
+      console.log(username);
+      sessionStorage.username = username.value
+    
   }
 
 }
