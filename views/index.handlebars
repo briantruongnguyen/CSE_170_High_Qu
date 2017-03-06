@@ -658,7 +658,7 @@ complete: function() { } // Callback for Modal close
     var numOfClicksOnRegister = 0;
     $('#pw, #pw2').on('blur', function () {
     if ($('#pw').val() != $('#pw2').val()) {
-        $( "#registerUser").unbind( "click" );
+        $( "#registerUser").off("click" );
         $("#registerUser").attr("type", "button");
         $("#registerUser").on("click", function(){
             if(numOfClicksOnRegister <1){
@@ -667,9 +667,9 @@ complete: function() { } // Callback for Modal close
             numOfClicksOnRegister++;
 
         });
-
-    } else{
-        $( "#registerUser").unbind( "click" );
+    } 
+    else{
+        $( "#registerUser").off("click" );
         $("#registerUser").attr("type", "submit");
         $("#registerUser").on("click", function(){
             console.log("Password is GUCCI");
@@ -685,7 +685,8 @@ complete: function() { } // Callback for Modal close
             $("#authpw2").submit();
         });
         numOfClicksOnRegister = 0;
-}});
+    }
+    });
 
 
     
