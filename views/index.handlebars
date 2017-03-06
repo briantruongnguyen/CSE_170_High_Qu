@@ -643,7 +643,7 @@ complete: function() { } // Callback for Modal close
 
     }
       
-    $('#pw, #pw2').on('keyup', function () {
+    $('#pw, #pw2').on('blur', function () {
     if ($('#pw').val() != $('#pw2').val()) {
         $("#registerUser").attr("type", "button");
         $("#registerUser").on("click", function(){
