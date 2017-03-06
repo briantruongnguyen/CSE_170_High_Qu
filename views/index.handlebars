@@ -275,14 +275,14 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
             </div>
 
             <div class="input-field col s6">
-              <input id="pw" type="password" class="validate" name="pw">
-              <label for="pw">Type Password</label>
+              <input id="pw_reg" type="password" class="validate" name="pw_reg">
+              <label for="pw_reg">Type Password</label>
 
             </div>
 
             <div class="input-field col s6">
-              <input id="pw2" type="password" class="validate" name="pw2">
-              <label for="pw2">Confirm Password</label>
+              <input id="pw2_reg" type="password" class="validate" name="pw2_reg">
+              <label for="pw2_reg">Confirm Password</label>
             </div>
             <input  type="submit" id="registerUser" class="waves-effect waves-light btn" value="Register" onclick="ga('send', 'event', 'Register', 'On Login Page');"></input>
             {{#if showDefault}} <h6>Just trying us out? If you'd like, you can just...<a href="#!" class = "guest" >Continue as Guest</a></h6>{{/if}}
@@ -686,7 +686,7 @@ complete: function() { } // Callback for Modal close
             numOfClicksOnRegister = 0;
    }
       
-    $('#pw, #pw2').on('blur', function () {
+    $('#pw_reg, #pw2_reg').on('blur', function () {
         if ($('#pw').val() != $('#pw2').val()) {
              $("#registerUser").attr("type", "button"); 
         }
@@ -699,9 +699,9 @@ complete: function() { } // Callback for Modal close
     });
       
     $("#registerUser").on("click", function(){
-         if ($('#pw').val() != $('#pw2').val()) {
+         if ($('#pw_reg').val() != $('#pw2_reg').val()) {
              needPwMatch();
-             console.log($('#pw').val() +"     " + $('#pw2').val())
+             console.log($('#pw_reg').val() +"     " + $('#pw2_reg').val())
         }
         else{
              findUser();
