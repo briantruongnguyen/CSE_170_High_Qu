@@ -644,11 +644,17 @@ complete: function() { } // Callback for Modal close
     }
       
     $('#pw, #pw2').on('keyup', function () {
-    if ($('#pw').val() == $('#pw2').val()) {
+    if ($('#pw').val() != $('#pw2').val()) {
         $("#registerUser").attr("type", "");
+        $("#regiserUser").on("click", function(){
+            Materialize.toast("Passwords Must Match!", 8000,'rounded');
+        });
+
     } else 
         $("#registerUser").attr("type", "submit");
-        Materialize.toast("Passwords Must Match!", 8000,'rounded');
+        $("#regiserUser").on("click", function(){
+            console.log("Password is GUCCI");
+        });
 });
 
 
