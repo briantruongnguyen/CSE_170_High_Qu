@@ -97,7 +97,7 @@ app.get('/updateProfile',updateProfile.updateProfile);
 app.get('/logout', login.logout);
 
 
-
+app.get('/reviewing/:version', review.view2);
 app.get('/review/:version', review.view);
 
 // Example route

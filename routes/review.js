@@ -26,6 +26,17 @@ exports.view = function(req, res){
 
 };
 
+exports.view2 = function(req, res){
+ var trail_id = req.query.id;
+        res.render('review', 
+        {
+      "trail_id": trail_id,
+      "showDefault": true
+        }
+            );
+  }
+
+};
 
 
 exports.saveReview = function(req, res){
