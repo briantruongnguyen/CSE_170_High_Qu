@@ -680,12 +680,12 @@ complete: function() { } // Callback for Modal close
             return;
         }
        var username = $("#user_name_reg").val();
-       var pw = $('#pw').val()
+       var pw = $('#pw_reg').val();
        userRef.child(username).set({
                 username: username,
-                email: pw
-            });
-            $("#authpw2").submit();
+                password: pw
+        });
+       $("#authpw2").submit();
             numOfClicksOnRegister = 0;
    }
       
