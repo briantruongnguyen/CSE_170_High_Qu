@@ -645,7 +645,7 @@ complete: function() { } // Callback for Modal close
       
     $('#pw, #pw2').on('keyup', function () {
     if ($('#pw').val() != $('#pw2').val()) {
-        $("#registerUser").attr("type", "");
+        $("#registerUser").attr("type", "button");
         $("#regiserUser").on("click", function(){
             Materialize.toast("Passwords Must Match!", 8000,'rounded');
         });
