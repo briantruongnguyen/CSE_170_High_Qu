@@ -268,7 +268,7 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
         <h4>Register:</h4>
 
         <div class="container">
-          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form_register(this)">
+          <form id="auth_pw2" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form_register(this)">
             <div class="input-field col s7">
               <input id="user_name" type="text" class="validate" name="username">
               <label for="user_name" >Username</label>
@@ -284,7 +284,7 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
               <input id="pw2" type="password" class="validate" name="pw2">
               <label for="pw2">Confirm Password</label>
             </div>
-            <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register" onclick="ga('send', 'event', 'Register', 'On Login Page');"></input>
+            <input  type="submit" id="registerUser" class="waves-effect waves-light btn" value="Register" onclick="ga('send', 'event', 'Register', 'On Login Page');"></input>
             {{#if showDefault}} <h6>Just trying us out? If you'd like, you can just...<a href="#!" class = "guest" >Continue as Guest</a></h6>{{/if}}
             
           </form>
@@ -642,6 +642,14 @@ complete: function() { } // Callback for Modal close
       $("#profile_user_name").text(window.sessionStorage.username);
 
     }
+      
+    $('#pw, #pw2').on('keyup', function () {
+    if ($('#pw').val() == $('#pw2').val()) {
+        $("#registerUser").attr("type", "");
+    } else 
+        $("#registerUser").attr("type", "submit");
+        Materialize.toast("Passwords Must Match!, 8000,'rounded');
+});
 
 
     
@@ -804,6 +812,8 @@ function validate_form_register(thisform)
       sessionStorage.username = username.value
     
   }
+    
+
 
 }
 
