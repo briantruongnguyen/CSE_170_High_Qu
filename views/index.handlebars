@@ -656,36 +656,41 @@ complete: function() { } // Callback for Modal close
     }
     
     var numOfClicksOnRegister = 0;
-    $('#pw, #pw2').on('blur', function () {
-    if ($('#pw').val() != $('#pw2').val()) {
-        $( "#registerUser").off("click" );
-        $("#registerUser").attr("type", "button");
-        $("#registerUser").on("click", function(){
+    function needPwMatch(){
             if(numOfClicksOnRegister <1){
                 Materialize.toast("Passwords Must Match!", 8000,'rounded');
             }
             numOfClicksOnRegister++;
 
-        });
-    } 
-    else{
-        $( "#registerUser").off("click" );
-        $("#registerUser").attr("type", "submit");
-        $("#registerUser").on("click", function(){
+        }
+      
+   function addUser(){
             console.log("Password is GUCCI");
             var rootRef = firebase.database().ref();
             if(firebase.database().ref('/users/' + $("#user_name_reg").val()) != rootRef){
                 Materialize.toast("Passwords Must Match!", 8000,'rounded');
                 return;
             }
-            firebase.database().ref('users/' + userId).set({
+            firebase.database().ref('users/' + $("#user_name_reg").val()).set({
                 username: $("#user_name_reg").val(),
-                email: $('#pw').val(),
+                email: $('#pw').val()
             });
             $("#authpw2").submit();
-        });
-        numOfClicksOnRegister = 0;
-    }
+                  numOfClicksOnRegister = 0;
+
+   }
+
+    $('#pw, #pw2').on('blur', function () {
+    if ($('#pw').val() != $('#pw2').val()) {
+        $( "#registerUser").off("click", addUser );
+        $("#registerUser").attr("type", "button");
+        $("#registerUser").on("click", needPwMatch);
+    } 
+    else{
+        $( "#registerUser").off("click", needPwMatch );
+        $("#registerUser").attr("type", "submit");
+        $("#registerUser").on("click",addUser);
+        }
     });
 
 
