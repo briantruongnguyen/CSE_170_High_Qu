@@ -753,7 +753,7 @@ complete: function() { } // Callback for Modal close
   {
     with (field)
     {
-      if (value==null||value=="")
+      if (value==null||value==""||value==false)
         {Materialize.toast(alerttxt, 8000,'rounded');return false}
 //{alert(alerttxt);return false}
 else {return true}
@@ -787,12 +787,9 @@ function validate_form_register(thisform)
       {username.focus();return false}
      if (validate_required(pw,"password must be filled out!")==false)
       {pw.focus();return false}
-     if (validate_required(pw2,"password must be filled out!")==false)
+     if (validate_required(pw2,"password confirmation must be filled out!")==false)
       {pw.focus();return false}
-     if(pw!=pw2){
-         pw = null;
-     }
-     if (validate_required(pw,"Passwords must match!")==false)
+     if (validate_required(pw==pw2,"Passwords must match!")==false)
       {pw.focus();return false}
 
       console.log(username);
