@@ -664,22 +664,20 @@ complete: function() { } // Callback for Modal close
 
         }
       
-   function addUser(){
-            console.log("Password is GUCCI");
-            var rootRef = firebase.database().ref();
-            if(firebase.database().ref('/users/' + $("#user_name_reg").val()) != rootRef){
-                Materialize.toast("Passwords Must Match!", 8000,'rounded');
-                return;
-            }
-            firebase.database().ref('users/' + $("#user_name_reg").val()).set({
+   function userExistsCallback(exists){
+       var userRef = new Firebase("https://cse170project-f5bb6.firebaseio.com/users");
+       if(exists){
+            Materialize.toast("Username already taken!", 8000,'rounded');
+            return;
+        }
+       userRef.child(("#user_name_reg").val()).set({
                 username: $("#user_name_reg").val(),
                 email: $('#pw').val()
             });
             $("#authpw2").submit();
-                  numOfClicksOnRegister = 0;
-
+            numOfClicksOnRegister = 0;
    }
-
+      
     $('#pw, #pw2').on('blur', function () {
         if ($('#pw').val() != $('#pw2').val()) {
              $("#registerUser").attr("type", "button"); 
@@ -695,7 +693,7 @@ complete: function() { } // Callback for Modal close
              needPwMatch();
         }
         else{
-             addUser();
+             findUser();
         }
     });
        
