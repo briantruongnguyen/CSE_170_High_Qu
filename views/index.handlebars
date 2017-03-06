@@ -665,7 +665,7 @@ complete: function() { } // Callback for Modal close
         }
     
   function findUser(){
-        var usersRef = firebase.database.ref("https://cse170project-f5bb6.firebaseio.com/users");
+        var usersRef = firebase.database().ref("https://cse170project-f5bb6.firebaseio.com/users");
         usersRef.child(("#user_name_reg").val()).once('value', function(snapshot) {
             var exists = (snapshot.val() !== null);
             userExistsCallback(exists);
@@ -673,7 +673,7 @@ complete: function() { } // Callback for Modal close
   }
       
    function userExistsCallback(exists){
-       var userRef = firebase.database.ref("https://cse170project-f5bb6.firebaseio.com/users");
+       var userRef = firebase.database().ref("https://cse170project-f5bb6.firebaseio.com/users");
        if(exists){
             Materialize.toast("Username already taken!", 8000,'rounded');
             return;
