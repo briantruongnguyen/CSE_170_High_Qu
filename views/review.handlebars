@@ -153,13 +153,13 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
                 <a href="/"  class="waves-effect waves-light btn red">  No Review  </a>
         </div>
         <div class="col s7">
-               <input type="submit" id="submitReview" onclick="ga('send', 'event', 'Register', 'With No Review');" class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input id="submitReview" onclick="ga('send', 'event', 'Review', 'With No Review');" class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         
           <!-- Without NOSUBMIT --> 
           {{else}}
           <div class="col s5">
-               <input  type="submit" id="submitReview" onclick="ga('send', 'event', 'Register', 'Without No Review');"class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input  type="submit" id="submitReview" onclick="ga('send', 'event', 'Review', 'Without No Review');"class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         {{/if}}
           
