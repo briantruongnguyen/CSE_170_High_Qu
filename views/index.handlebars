@@ -683,10 +683,18 @@ complete: function() { } // Callback for Modal close
     $('#pw, #pw2').on('blur', function () {
         if ($('#pw').val() != $('#pw2').val()) {
              $("#registerUser").attr("type", "button"); 
-             newPwMatch();
         }
         else{
              $("#registerUser").attr("type", "submit");
+        }
+       
+    });
+      
+    $("#registerUser").on("click", function(){
+         if ($('#pw').val() != $('#pw2').val()) {
+             needPwMatch();
+        }
+        else{
              addUser();
         }
     });
