@@ -7,7 +7,7 @@ var comments = require("../comments.json");
 
 exports.view = function(req, res){
  var trail_id = req.query.id;
-  if(req.params.version == ""){
+  if(req.params.version == "A"){
        res.render('review', 
         {
       "trail_id": trail_id,
