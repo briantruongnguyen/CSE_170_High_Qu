@@ -46,6 +46,15 @@ exports.loadTrail = function(req, res){
 exports.saveIntoHistory = function ( req, res ){
   // push the information into the history. 
 
+  // Take in the param ID
+  var id = req.params.trail_id;
+  for(var i = 0; i < 500; i++) {
+    console.log ("THE TRAIL ID IS: " + id);
+  }
+  // Match with for loop 
+  // Push to history JSON
+
+
 }
 
 

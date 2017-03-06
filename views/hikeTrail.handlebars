@@ -427,13 +427,13 @@
     $("#stoprecording").on("click", function(){
          var submitTrail = new Event('submitTrail');
          document.dispatchEvent(submitTrail);
-         console.log("GG");
+         console.log("stophike pressed");
 
 
-         // Grab the id, the trail name, description, and difficulty. 
+         // Grab the id, 
 
          // Do a get request with the above variables. 
-         $.get("")
+         $.get("/appendHistory/" + global_id)
          // Pass global_id here and probably other info
 
          // Make sure that the get request works. 
