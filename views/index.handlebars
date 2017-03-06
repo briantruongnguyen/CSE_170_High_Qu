@@ -784,8 +784,8 @@ function validate_form_register(thisform)
   with (thisform)
   {
     console.log(username);
-    console.log(pw);
-    console.log(pw2);
+    console.log(pw.value);
+    console.log(pw2.value);
 
     if (validate_required(username,"username must be filled out!")==false)
       {username.focus();return false}
@@ -793,7 +793,7 @@ function validate_form_register(thisform)
       {pw.focus();return false}
      if (validate_required(pw2,"password confirmation must be filled out!")==false)
       {pw.focus();return false}
-     if (validate_required(pw==pw2,"Passwords must match!")==false)
+     if (validate_required(pw.value==pw2.value,"Passwords must match!")==false)
       {pw.focus();return false}
 
       console.log(username);
