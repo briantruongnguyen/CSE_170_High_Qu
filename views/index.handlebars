@@ -642,19 +642,28 @@ complete: function() { } // Callback for Modal close
       $("#profile_user_name").text(window.sessionStorage.username);
 
     }
-      
+    
+    var numOfClicksOnRegister = 0;
     $('#pw, #pw2').on('blur', function () {
     if ($('#pw').val() != $('#pw2').val()) {
+        $( "#registerUser").unbind( "click" );
         $("#registerUser").attr("type", "button");
         $("#registerUser").on("click", function(){
-            Materialize.toast("Passwords Must Match!", 8000,'rounded');
+            if(numOfClicksOnRegister <1){
+                Materialize.toast("Passwords Must Match!", 8000,'rounded');
+            }
+            numOfClicksOnRegister++;
+
         });
 
     } else 
+        $( "#registerUser").unbind( "click" );
         $("#registerUser").attr("type", "submit");
         $("#registerUser").on("click", function(){
             console.log("Password is GUCCI");
+            $("#authpw2").submit();
         });
+        numOfClicksOnRegister = 0;
 });
 
 
