@@ -663,6 +663,14 @@ complete: function() { } // Callback for Modal close
             numOfClicksOnRegister++;
 
         }
+    
+  function findUser(){
+        var usersRef = new Firebase("https://cse170project-f5bb6.firebaseio.com/users");
+        usersRef.child(("#user_name_reg").val()).once('value', function(snapshot) {
+            var exists = (snapshot.val() !== null);
+            userExistsCallback(exists);
+        });
+  }
       
    function userExistsCallback(exists){
        var userRef = new Firebase("https://cse170project-f5bb6.firebaseio.com/users");
@@ -685,12 +693,15 @@ complete: function() { } // Callback for Modal close
         else{
              $("#registerUser").attr("type", "submit");
         }
+                    numOfClicksOnRegister = 0;
+
        
     });
       
     $("#registerUser").on("click", function(){
          if ($('#pw').val() != $('#pw2').val()) {
              needPwMatch();
+             console.log($('#pw').val() +"     " + $('#pw2').val())
         }
         else{
              findUser();
