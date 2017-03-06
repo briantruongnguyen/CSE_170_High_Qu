@@ -34,9 +34,7 @@ exports.view2 = function(req, res){
       "showDefault": true
         }
             );
-  }
-
-};
+  };
 
 
 exports.saveReview = function(req, res){
