@@ -380,6 +380,7 @@ function submitTrail(){
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt2_jkQWKuHl6iy02idQyWXAQTGJLx2io&callback=initMap"
+<<<<<<< HEAD
 async defer></script>
 
 
@@ -502,13 +503,19 @@ $(document).ready(function(){
 				console.log("GG");
 
 
-				// Grab the id, the trail name, description, and difficulty. 
+				         // Grab the id, 
 
-				// Do a get request with the above variables. 
-				$.get("")
-				// Pass global_id here and probably other info
+         // Do a get request with the above variables. 
+         $.get("/appendHistory/" + global_id, function() {
+          console.log("callback function append history ");
+         });
 
-				// Make sure that the get request works. 
+         toast("save")
+         console.log("save")
+         // Pass global_id here and probably other info
+
+         // Make sure that the get request works. 
+
 
 
 				});
@@ -528,6 +535,9 @@ $(document).ready(function(){
 				});
 
 });
+    
+       function toast(alerttxt)  {Materialize.toast(alerttxt, 8000,'rounded');return false}      
+
 
 
 //copy 

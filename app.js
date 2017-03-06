@@ -78,6 +78,7 @@ app.get('/favs/:trail_id/:trail_name/:trail_desc/:trail_diff', favs.addFavorite)
 app.get('/brandingPage',brandingPage.view);
 
 app.get('/hikeTrail/:trail_id/:trail_name/:trail_desc/:trail_diff' , hikeTrail.saveIntoHistory)
+app.get('/appendHistory/:trail_id' , hikeTrail.saveIntoHistory)
 
 
 

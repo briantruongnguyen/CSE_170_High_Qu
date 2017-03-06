@@ -1,26 +1,4 @@
 {
     "history":[
-        {
-            "trailId":"1",
-            "name": "first trail",
-            "difficulty" : "easy",
-            "description" : "most recent trail",
-            "imageURL": "http://lorempixel.com/400/400/people"
-        },
-        {
-            "trailId":"2",
-            "name": "second trail",
-            "difficulty" : "medium",
-            "description" : "next recent trail",
-            "imageURL": "http://lorempixel.com/400/400/people"
-        },
-        {
-            "trailId":"3",
-            "name": "third trail",
-            "difficulty" : "should we keep this ",
-            "description" : "least recent trail",
-            "imageURL": "http://lorempixel.com/400/400/people"
-        }
-
     ]
 }
