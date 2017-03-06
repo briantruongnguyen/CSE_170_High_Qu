@@ -153,13 +153,13 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
                 <a href="/"  class="waves-effect waves-light btn red">  No Review  </a>
         </div>
         <div class="col s7">
-               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" onclick="ga('send', 'event', 'Register', 'With No Review');" class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         
           <!-- Without NOSUBMIT --> 
           {{else}}
           <div class="col s5">
-               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" onclick="ga('send', 'event', 'Register', 'Without No Review');"class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         {{/if}}
           
@@ -307,6 +307,20 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 
   </script>
 
+
+
+
+
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+
+
+
   <script>
     $(document).ready(function(){
         var submitReviewLink = $("#submitReview").attr('href');
@@ -354,10 +368,6 @@ function validate_form(thisform)
       $('#loginmodal').modal('close');
       $('#registermodal').modal('close');
       $("#submitReview").attr('href',submitReviewLink);
-      $("#submitReview").on("click", function(){
-        ga('send', 'event', 'Register', 'Without No Review');
-        $("#addTrailForm").submit();
-      });
 
 
 
@@ -370,17 +380,6 @@ function validate_form(thisform)
 
   </script>
 
-
-
-
-
-
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/js/materialize.js"></script>
-  <script src="/js/init.js"></script>
 
 
 </body>
