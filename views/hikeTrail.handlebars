@@ -433,7 +433,12 @@
          // Grab the id, 
 
          // Do a get request with the above variables. 
-         $.get("/appendHistory/" + global_id)
+         $.get("/appendHistory/" + global_id, function() {
+          console.log("callback function append history ");
+         });
+
+         toast("save")
+         console.log("save")
          // Pass global_id here and probably other info
 
          // Make sure that the get request works. 
@@ -444,22 +449,8 @@
   });
 
 
-      //copy 
-      var temp_id = this.id;
-var temp_name = this.trail_name;
-var temp_description = this.trail_description;
-var temp_difficulty = this.difficulty;
-$("#favoriting_the_trail").on("click", function() { 
-
-  $.get("/favs/" + temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty, 
-    function() {console.log();} /** TODO */ );  
-            // Just got the IDs
-            //alert("Fav saved.");
-            toast("Fav saved")
-            console.log("Fav Saved.");
-          }
-          );
-         
+   
+   function toast(alerttxt)  {Materialize.toast(alerttxt, 8000,'rounded');return false}      
     </script>
 
   </body>

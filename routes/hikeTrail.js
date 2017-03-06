@@ -48,10 +48,33 @@ exports.saveIntoHistory = function ( req, res ){
 
   // Take in the param ID
   var id = req.params.trail_id;
-  for(var i = 0; i < 500; i++) {
-    console.log ("THE TRAIL ID IS: " + id);
-  }
+  console.log ("THE TRAIL ID IS: " + id);
+
   // Match with for loop 
+var list_of_trails = data.createdTrails;
+   var the_trail;
+  for(var i = 0; i < list_of_trails.length; i++)
+   {
+        var the_trail = list_of_trails[i];
+        var name = the_trail.name;
+        var difficulty = the_trail.difficulty; 
+        var description = the_trail.description; 
+        var trail = the_trail.trail;
+       
+        if(the_trail.id == id) {
+            console.log("Matched");
+            var jsonPush = {
+              "trailId"       : id,
+              "name"          : name,
+              "difficulty"    : difficulty,
+              "description"   : description,
+
+            }
+            history.history.push(jsonPush);
+            break;
+        }
+   }
+
   // Push to history JSON
 
 
