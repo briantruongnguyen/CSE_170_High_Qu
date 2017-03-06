@@ -456,7 +456,7 @@ function addTrail(result){
       $.get("/getReview/"+this.id, addReviews);
       function addReviews(results){
        console.log("The length " + results.length);
-       var toAdd = "<li class=\"collection-item\"><span class=\"title\"></span><br><a class=\"reviews\" href=\"/review/"+id_for_review+"\"><b>Add your review here!</b></a></li>";
+       var toAdd = "<li class=\"collection-item\"><span class=\"title\"></span><br><a class=\"reviews\" href=\"/review/?id="+id_for_review+"\"><b>Add your review here!</b></a></li>";
        $("#reviews").append(toAdd);
        if(window.sessionStorage.username == "Guest User"){
         $(".reviews").attr("href", "#!");

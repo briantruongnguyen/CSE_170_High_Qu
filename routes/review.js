@@ -5,24 +5,25 @@
 var comments = require("../comments.json");
 
 
-exports.viewA = function(req, res){
- var trail_id = req.params.trail_id;
-  res.render('review', 
+exports.view = function(req, res){
+ var trail_id = req.query.id;
+  if(req.params.version == ""){
+       res.render('review', 
         {
       "trail_id": trail_id,
       "showDefault": true
         }
-            );
-};
-
-exports.viewB = function(req, res){
- var trail_id = req.params.trail_id;
-  res.render('review', 
+            ); 
+  }
+  else{
+        res.render('review', 
         {
       "trail_id": trail_id,
       "showDefault": false
         }
             );
+  }
+
 };
 
 
@@ -45,7 +46,7 @@ exports.saveReview = function(req, res){
 	};
     console.log(newComment);
 	comments.comments.push(newComment);
-	res.render('index');  
+	res.redirect('/');  
 };
 
 exports.getReview = function(req,res){
