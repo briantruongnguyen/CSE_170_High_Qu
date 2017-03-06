@@ -24,6 +24,7 @@ var createMyProfile = require('./routes/createMyProfile');
 var login = require('./routes/login');
 var review = require('./routes/review');
 var updateProfile = require('./routes/updateProfile');
+var brandingPage = require('./routes/brandingPage');
 
 
 // Example route
@@ -73,7 +74,11 @@ app.get('/submitTrail/:trail_id', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
 app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/favs/:trail_id/:trail_name/:trail_desc/:trail_diff', favs.addFavorite);
+
+app.get('/brandingPage',brandingPage.view);
+
 app.get('/hikeTrail/:trail_id/:trail_name/:trail_desc/:trail_diff' , hikeTrail.saveIntoHistory)
+
 
 
 // Whether I am logged in or not
