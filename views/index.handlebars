@@ -270,8 +270,8 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
         <div class="container">
           <form id="auth_pw2" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form_register(this)">
             <div class="input-field col s7">
-              <input id="user_name" type="text" class="validate" name="username">
-              <label for="user_name" >Username</label>
+              <input id="user_name_reg" type="text" class="validate" name="username">
+              <label for="user_name_reg" >Username</label>
             </div>
 
             <div class="input-field col s6">
@@ -293,6 +293,18 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
     </div>
 
 
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC6nu935tVcRbqEPcJpQTTLDVICv1TUVjo",
+    authDomain: "cse170project-f5bb6.firebaseapp.com",
+    databaseURL: "https://cse170project-f5bb6.firebaseio.com",
+    storageBucket: "cse170project-f5bb6.appspot.com",
+    messagingSenderId: "306370954797"
+  };
+  firebase.initializeApp(config);
+</script>
 
 
 
@@ -656,15 +668,24 @@ complete: function() { } // Callback for Modal close
 
         });
 
-    } else 
+    } else{
         $( "#registerUser").unbind( "click" );
         $("#registerUser").attr("type", "submit");
         $("#registerUser").on("click", function(){
             console.log("Password is GUCCI");
+            var rootRef = firebase.database().ref();
+            if(firebase.database().ref('/users/' + $("#user_name_reg").val()) != rootRef){
+                Materialize.toast("Passwords Must Match!", 8000,'rounded');
+                return;
+            }
+            firebase.database().ref('users/' + userId).set({
+                username: $("#user_name_reg").val(),
+                email: $('#pw').val(),
+            });
             $("#authpw2").submit();
         });
         numOfClicksOnRegister = 0;
-});
+}});
 
 
     
