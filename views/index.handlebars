@@ -689,6 +689,8 @@ complete: function() { } // Callback for Modal close
        numOfClicksOnRegister = 0;
        Materialize.toast("Successfully registered as: " + username, 4000,'rounded');
        window.sessionStorage.username = username;
+       $("#profile_user_name").text(window.sessionStorage.username);
+
 
    }
       
