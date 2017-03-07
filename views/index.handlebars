@@ -713,7 +713,7 @@ complete: function() { } // Callback for Modal close
             $("#login").attr("type", "button"); 
 
         }
-        else if(snapshot.val().password != pw.val()){
+        else if(snapshot.val().password != $('#pw').val()){
             $("#login").attr("type", "button"); 
 
         }
