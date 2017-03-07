@@ -733,12 +733,12 @@ complete: function() { } // Callback for Modal close
         usersRef.child(actual_username).once('value', function(snapshot) {
         if(snapshot.val() === null){
             Materialize.toast("Username does not exist.", 8000, 'rounded');
-            username.focus();
+            $("#username").focus();
             return;
         }
         if(snapshot.val().password != $("#pw").val()){
             Materialize.toast("Incorrect password.", 8000, 'rounded');
-            pw.focus();
+            $('#pw').focus();
             return;
         }
         window.sessionStorage.username = $("#username").val();
