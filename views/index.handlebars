@@ -704,6 +704,54 @@ complete: function() { } // Callback for Modal close
        
     });
       
+    $("#username, #pw").on("blur", function(){
+        var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
+        var actual_username = $("#username").val();
+        var valid = true;
+        usersRef.child(actual_username).once('value', function(snapshot) {
+        if(snapshot.val() === null){
+            $("#login").attr("type", "button"); 
+
+        }
+        else if(snapshot.val().password != pw.val()){
+            $("#login").attr("type", "button"); 
+
+        }
+        else{
+            $("#registerUser").attr("type", "submit"); 
+
+        }
+        
+        });
+        
+    });
+    
+    $("#login").on("click", function(){
+        var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
+        var actual_username = $("#username").val();
+        var valid = true;
+        usersRef.child(actual_username).once('value', function(snapshot) {
+        if(snapshot.val() === null){
+            Materialize.toast("Username does not exist.", 8000, 'rounded');
+            username.focus();
+            return;
+        }
+        if(snapshot.val().password != pw.val()){
+            Materialize.toast("Incorrect password.", 8000, 'rounded');
+            pw.focus();
+            return;
+        }
+        window.sessionStorage.username = $("#username").val();
+        $("#profile_user_name").text(window.sessionStorage.username);
+        $("#loginmodal").modal('close');
+
+            
+
+        
+        });
+        
+    });
+      
     $("#registerUser").on("click", function(){
          if ($('#pw_reg').val() != $('#pw2_reg').val()) {
              needPwMatch();
@@ -843,25 +891,7 @@ function validate_form(thisform)
       {username.focus();return false}
     if (validate_required(pw,"password must be filled out!")==false)
       {pw.focus();return false}
-    var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
-    var actual_username = $("#username").val();
-    var valid = true;
-    usersRef.child(actual_username).once('value', function(snapshot) {
-        if(snapshot.val() === null){
-            Materialize.toast("Username does not exist.", 8000, 'rounded');
-            username.focus();
-            valid = false;
-        }
-        if(snapshot.val().password != pw.val()){
-            Materialize.toast("Incorrect password.", 8000, 'rounded');
-            pw.focus();
-            valid = false;
-        }
-        
-    });
-    return valid;
-
-}
+  }
 }
 
 function validate_form_register(thisform)
