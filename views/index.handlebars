@@ -844,7 +844,7 @@ function validate_form(thisform)
     if (validate_required(password,"password must be filled out!")==false)
       {password.focus();return false}
     var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
-    var username = $("#user_name_reg").val();
+    var username = $("#user_name").val();
     var valid = true;
     usersRef.child(username).once('value', function(snapshot) {
         if(snapshot.val() === null){
