@@ -841,8 +841,8 @@ function validate_form(thisform)
   {
     if (validate_required(username,"username must be filled out!")==false)
       {username.focus();return false}
-    if (validate_required(password,"password must be filled out!")==false)
-      {password.focus();return false}
+    if (validate_required(pw,"password must be filled out!")==false)
+      {pw.focus();return false}
     var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
     var actual_username = $("#username").val();
     var valid = true;
@@ -852,9 +852,9 @@ function validate_form(thisform)
             username.focus();
             valid = false;
         }
-        if(snapshot.val().password != password.val()){
+        if(snapshot.val().password != pw.val()){
             Materialize.toast("Incorrect password.", 8000, 'rounded');
-            password.focus();
+            pw.focus();
             valid = false;
         }
         
