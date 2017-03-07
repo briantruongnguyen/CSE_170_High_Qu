@@ -736,7 +736,7 @@ complete: function() { } // Callback for Modal close
             username.focus();
             return;
         }
-        if(snapshot.val().password != pw.val()){
+        if(snapshot.val().password != $("#pw").val()){
             Materialize.toast("Incorrect password.", 8000, 'rounded');
             pw.focus();
             return;
