@@ -685,8 +685,11 @@ complete: function() { } // Callback for Modal close
                 username: username,
                 password: pw
         });
-       $("#authpw2").submit();
-            numOfClicksOnRegister = 0;
+       $("#registermodal").modal('close');
+       numOfClicksOnRegister = 0;
+       Materialize.toast("Successfully registered as: " + username, 4000,'rounded');
+       window.sessionStorage.username = username;
+
    }
       
     $('#pw_reg, #pw2_reg').on('blur', function () {
@@ -838,13 +841,25 @@ function validate_form(thisform)
   {
     if (validate_required(username,"username must be filled out!")==false)
       {username.focus();return false}
-    else{
-      console.log(username);
-      sessionStorage.username = username.value
-    }
     if (validate_required(password,"password must be filled out!")==false)
       {password.focus();return false}
-  }
+    var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
+    var username = $("#user_name_reg").val();
+    var valid = true;
+    usersRef.child(username).once('value', function(snapshot) {
+        if(snapshot.val() === null){
+            Materialize.toast("Username does not exist.", 8000, 'rounded');
+            username.focus();
+            valid = false;
+        }
+        if(snapshot.val().password != password.val()){
+            Materialize.toast("Incorrect password.", 8000, 'rounded');
+            password.focus();
+            valid = false;
+        }
+        
+    });
+    return valid;
 
 }
 
