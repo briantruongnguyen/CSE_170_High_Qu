@@ -235,12 +235,12 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
         <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
           <h5>Login to HighQu</h3>
             <div class="input-field col s7">
-              <input id="user_name" type="text" class="validate" name="username">
+              <input id="username" type="text" class="validate" name="username">
               <label for="user_name" >Username</label>
             </div>
 
             <div class="input-field col s6">
-              <input id="pw" type="password" class="validate" name="password">
+              <input id="pw" type="password" class="validate" name="pw">
               <label for="pw">Password</label>
             </div>
             <input type="submit" id="login" class="waves-effect waves-light btn" value="Login"></input>
@@ -844,9 +844,9 @@ function validate_form(thisform)
     if (validate_required(password,"password must be filled out!")==false)
       {password.focus();return false}
     var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
-    var username = $("#user_name").val();
+    var actual_username = $("#username").val();
     var valid = true;
-    usersRef.child(username).once('value', function(snapshot) {
+    usersRef.child(actual_username).once('value', function(snapshot) {
         if(snapshot.val() === null){
             Materialize.toast("Username does not exist.", 8000, 'rounded');
             username.focus();
