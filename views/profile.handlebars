@@ -91,17 +91,20 @@ Hans Yuan
 		</div>
 	</nav>
 
-	{{#each createdProfiles}}
 	<div class="card">
 		<div class="card-header">
-			<img src={{imageURL}}>
+			<img src="/img/doge.jpeg">
 		</div>
 		<div class="card-content">
-			<h4>{{name}}</h4>
-			<h4>{{description}}</h4>
+			<p id="profile_user_name"></p>
+			{{#each createdProfiles}}
+			<h4 id="desc">{{description}}</h4>
+			{{/each}}
 		</div>
 	</div>
-	{{/each}}
+
+
+
 	<div class="container">
 		<!-- start form fields --> 
 		<form id="addTrailForm" role="form" method="get" action="/updateProfile">
@@ -109,6 +112,7 @@ Hans Yuan
 			<!-- Include a photo -->
 
 			<!-- TODO JS the fields if JSONObject already exists -->
+			<!--
 			<div class="form-group">
 				<input type="text" class="form-control" id="p_name"  placeholder="Your name" name="p_name">
 			</div>
@@ -116,6 +120,7 @@ Hans Yuan
 			<div class="input-field col s12">         
 
 			</div>
+		-->
 
 			<div class="form-group">
 				<input type="text" class="form-control" id="description" placeholder="Tell me about yourself." name="description">
@@ -132,14 +137,21 @@ Hans Yuan
 	</div>
 
 
-	
-
-
 	<!--  Scripts-->
+
+	
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="/js/materialize.js"></script>
 	<script src="/js/init.js"></script>
-
-
+	<script>
+	$(document).ready(function() {
+    $('#profile_user_name').text(window.sessionStorage.username);
+    console.log(window.sessionStorage.username);
+	});
+	var description = $('#description').val();
+	$( '#submitBtn' ).click(function() {
+ 		('desc').text(description);
+	});
+	</script>
 </body>
 </html>
