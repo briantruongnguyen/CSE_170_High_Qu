@@ -78,6 +78,7 @@ app.get('/favs/:trail_id/:trail_name/:trail_desc/:trail_diff', favs.addFavorite)
 app.get('/brandingPage',brandingPage.view);
 
 app.get('/hikeTrail/:trail_id/:trail_name/:trail_desc/:trail_diff' , hikeTrail.saveIntoHistory)
+app.get('/appendHistory/:trail_id' , hikeTrail.saveIntoHistory)
 
 
 
@@ -96,7 +97,7 @@ app.get('/updateProfile',updateProfile.updateProfile);
 app.get('/logout', login.logout);
 
 
-
+app.get('/reviewing/:version', review.view2);
 app.get('/review/:version', review.view);
 
 // Example route

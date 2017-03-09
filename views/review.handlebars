@@ -110,7 +110,7 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
     </form>
   -->
   <div class="container">
-    <form id="addTrailForm" role="form" method="get" action="/submitReview/{{trail_id}}">
+    <form id="addTrailForm" role="form" method="get" action="/submitReview">
       
       <div class="input-field col s12">
         <p class="range-field">
@@ -153,13 +153,13 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
                 <a href="/"  class="waves-effect waves-light btn red">  No Review  </a>
         </div>
         <div class="col s7">
-               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" onclick="ga('send', 'event', 'Register', 'With No Review');" class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input type="submit" id="submitReview" onclick="ga('send', 'event', 'Review', 'Submitted');" class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         
           <!-- Without NOSUBMIT --> 
           {{else}}
           <div class="col s5">
-               <input href="/submitReview/{{trail_id}}" type="submit" id="submitReview" onclick="ga('send', 'event', 'Register', 'Without No Review');"class="waves-effect waves-light btn" value="Submit Review"></input>
+               <input  type="submit" id="submitReview" onclick="ga('send', 'event', 'Review', 'Submitted');"class="waves-effect waves-light btn" value="Submit Review"></input>
         </div>
         {{/if}}
           
@@ -369,9 +369,6 @@ function validate_form(thisform)
       $('#registermodal').modal('close');
       $("#submitReview").attr('href',submitReviewLink);
 
-
-
-    
   }
 
 }
@@ -379,8 +376,5 @@ function validate_form(thisform)
     });
 
   </script>
-
-
-
 </body>
 </html>

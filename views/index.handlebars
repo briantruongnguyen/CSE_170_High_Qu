@@ -6,6 +6,7 @@
 
 
 <!-- Google Analytics Content Experiment code -->
+
 <script>function utmx_section(){}function utmx(){}(function(){var
 k='141982473-0',d=document,l=d.location,c=d.cookie;
 if(l.search.indexOf('utm_expid='+k)>0)return;
@@ -18,6 +19,7 @@ length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
 valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
 </script><script>utmx('url','A/B'); </script>
+
 <!-- End of Google Analytics Content Experiment code -->
 
 
@@ -181,7 +183,7 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
   <div class="modal-footer">
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
 
-    <a id = "HikeTrailButton" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Hike This Trail</a>
+    <a id = "HikeTrailButton" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Hike It!</a>
     <a href="#!" class=" modal-action waves-effect waves-green btn-flat" id = "favoriting_the_trail">Favorite</a>
   </div>
 
@@ -233,12 +235,12 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
         <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
           <h5>Login to HighQu</h3>
             <div class="input-field col s7">
-              <input id="user_name" type="text" class="validate" name="username">
+              <input id="username" type="text" class="validate" name="username">
               <label for="user_name" >Username</label>
             </div>
 
             <div class="input-field col s6">
-              <input id="pw" type="password" class="validate" name="password">
+              <input id="pw" type="password" class="validate" name="pw">
               <label for="pw">Password</label>
             </div>
             <input type="submit" id="login" class="waves-effect waves-light btn" value="Login"></input>
@@ -266,23 +268,23 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
         <h4>Register:</h4>
 
         <div class="container">
-          <form id="auth_pw" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form(this)">
+          <form id="auth_pw2" role="form" method="get" action="/createMyProfile" onsubmit="return validate_form_register(this)">
             <div class="input-field col s7">
-              <input id="user_name" type="text" class="validate" name="username">
-              <label for="user_name" >Username</label>
+              <input id="user_name_reg" type="text" class="validate" name="username">
+              <label for="user_name_reg" >Username</label>
             </div>
 
             <div class="input-field col s6">
-              <input id="pw" type="password" class="validate" name="password">
-              <label for="pw">Type Password</label>
+              <input id="pw_reg" type="password" class="validate" name="pw_reg">
+              <label for="pw_reg">Type Password</label>
 
             </div>
 
             <div class="input-field col s6">
-              <input id="p2w" type="password" class="validate" name="password">
-              <label for="pw2">Confirm Password</label>
+              <input id="pw2_reg" type="password" class="validate" name="pw2_reg">
+              <label for="pw2_reg">Confirm Password</label>
             </div>
-            <input  type="submit" id="login" class="waves-effect waves-light btn" value="Register" onclick="ga('send', 'event', 'Register', 'On Login Page');"></input>
+            <input  type="submit" id="registerUser" class="waves-effect waves-light btn" value="Register" onclick="ga('send', 'event', 'Register', 'On Login Page');"></input>
             {{#if showDefault}} <h6>Just trying us out? If you'd like, you can just...<a href="#!" class = "guest" >Continue as Guest</a></h6>{{/if}}
             
           </form>
@@ -291,6 +293,18 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
     </div>
 
 
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC6nu935tVcRbqEPcJpQTTLDVICv1TUVjo",
+    authDomain: "cse170project-f5bb6.firebaseapp.com",
+    databaseURL: "https://cse170project-f5bb6.firebaseio.com",
+    storageBucket: "cse170project-f5bb6.appspot.com",
+    messagingSenderId: "306370954797"
+  };
+  firebase.initializeApp(config);
+</script>
 
 
 
@@ -325,6 +339,8 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
      zoom: 12,
      mapTypeId: 'roadmap'
    });
+      
+    
 
 
 
@@ -638,6 +654,116 @@ complete: function() { } // Callback for Modal close
       $("#profile_user_name").text(window.sessionStorage.username);
 
     }
+    
+    var numOfClicksOnRegister = 0;
+    function needPwMatch(){
+            if(numOfClicksOnRegister <1){
+                Materialize.toast("Passwords Must Match!", 8000,'rounded');
+            }
+            numOfClicksOnRegister++;
+
+        }
+    
+  function findUser(){
+        var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
+        var username = $("#user_name_reg").val();
+        usersRef.child(username).once('value', function(snapshot) {
+            var exists = (snapshot.val() !== null);
+            userExistsCallback(exists);
+        });
+  }
+      
+   function userExistsCallback(exists){
+       var userRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
+       if(exists){
+            Materialize.toast("Username already taken!", 8000,'rounded');
+            return;
+        }
+       var username = $("#user_name_reg").val();
+       var pw = $('#pw_reg').val();
+       userRef.child(username).set({
+                username: username,
+                password: pw
+        });
+       $("#registermodal").modal('close');
+       numOfClicksOnRegister = 0;
+       Materialize.toast("Successfully registered as: " + username, 4000,'rounded');
+       window.sessionStorage.username = username;
+       $("#profile_user_name").text(window.sessionStorage.username);
+
+
+   }
+      
+    $('#pw_reg, #pw2_reg').on('blur', function () {
+        if ($('#pw').val() != $('#pw2').val()) {
+             $("#registerUser").attr("type", "button"); 
+        }
+        else{
+             $("#registerUser").attr("type", "submit");
+        }
+                    numOfClicksOnRegister = 0;
+
+       
+    });
+      
+    $("#username, #pw").on("blur", function(){
+        var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
+        var actual_username = $("#username").val();
+        var valid = true;
+        usersRef.child(actual_username).once('value', function(snapshot) {
+        if(snapshot.val() === null){
+            $("#login").attr("type", "button"); 
+
+        }
+        else if(snapshot.val().password != $('#pw').val()){
+            $("#login").attr("type", "button"); 
+
+        }
+        else{
+            $("#registerUser").attr("type", "submit"); 
+
+        }
+        
+        });
+        
+    });
+    
+    $("#login").on("click", function(){
+        var usersRef = firebase.database().refFromURL("https://cse170project-f5bb6.firebaseio.com/users");
+        var actual_username = $("#username").val();
+        var valid = true;
+        usersRef.child(actual_username).once('value', function(snapshot) {
+        if(snapshot.val() === null){
+            Materialize.toast("Username does not exist.", 8000, 'rounded');
+            $("#username").focus();
+            return;
+        }
+        if(snapshot.val().password != $("#pw").val()){
+            Materialize.toast("Incorrect password.", 8000, 'rounded');
+            $('#pw').focus();
+            return;
+        }
+        window.sessionStorage.username = $("#username").val();
+        $("#profile_user_name").text(window.sessionStorage.username);
+        $("#loginmodal").modal('close');
+
+            
+
+        
+        });
+        
+    });
+      
+    $("#registerUser").on("click", function(){
+         if ($('#pw_reg').val() != $('#pw2_reg').val()) {
+             needPwMatch();
+             console.log($('#pw_reg').val() +"     " + $('#pw2_reg').val())
+        }
+        else{
+             findUser();
+        }
+    });
+       
 
 
     
@@ -765,15 +891,41 @@ function validate_form(thisform)
   {
     if (validate_required(username,"username must be filled out!")==false)
       {username.focus();return false}
-    else{
-      console.log(username);
-      sessionStorage.username = username.value
-    }
-    if (validate_required(password,"password must be filled out!")==false)
-      {password.focus();return false}
+    if (validate_required(pw,"password must be filled out!")==false)
+      {pw.focus();return false}
   }
+}
+
+function validate_form_register(thisform)
+{
+  with (thisform)
+  {
+    console.log(username);
+    console.log(pw.value);
+    console.log(pw2.value);
+
+    if (validate_required(username,"username must be filled out!")==false)
+      {username.focus();return false}
+     if (validate_required(pw,"password must be filled out!")==false)
+      {pw.focus();return false}
+     if (validate_required(pw2,"password confirmation must be filled out!")==false)
+      {pw.focus();return false}
+     if(pw.value!=pw2.value){
+         pw = null;
+         pw.focus();
+         return false;
+         validate_required(null,"Passwords must match!");
+     }
+
+      console.log(username);
+      sessionStorage.username = username.value;
+    
+  }
+    
+
 
 }
+
 
 
 

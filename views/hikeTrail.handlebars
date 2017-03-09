@@ -1,466 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>HighQu</title>
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+<title>HighQu</title>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-93049862-1', 'auto');
-      ga('send', 'pageview');
+ga('create', 'UA-93049862-1', 'auto');
+ga('send', 'pageview');
 
-  </script>
+</script>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    
-    <style>
-  #map {
-    height: 80%;
-    position:relative;
-  }
-        #contactform{
-            z-index:5;
-            position:absolute;
-            width: 90%;
-            padding-top: 20%;
-            padding-left: 10%;
-        }
-          #warnings{
-            top: 56%;
-            left: 5%;
-            z-index:6;
-            position:absolute;
-        }
-        
-           #pointofinterest{
-            top: 67%;
-            left: 5%;
-            z-index:6;
-            position:absolute;
-        }
-        
-        #musiclibrary{
-            top: 78%;
-            left: 5%;
-            z-index:6;
-            position:absolute;
-        }
-      #stoprecording{
-            width: 100%;
-            height: 10%;
-        }
-   
-        #recentermap{
-            top: 80%;
-            left: 33%;
-            z-index:6;
-            position:absolute;
-        }
-        
-        #navbar{
-            height:10%;
-        }
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    z-index: 0;
-  }
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+<style>
+#map {
+	height: 80%;
+position:relative;
+}
+#contactform{
+	z-index:5;
+position:absolute;
+width: 90%;
+       padding-top: 20%;
+       padding-left: 10%;
+}
+#warnings{
+top: 56%;
+left: 5%;
+      z-index:6;
+position:absolute;
+}
+
+#pointofinterest{
+top: 67%;
+left: 5%;
+      z-index:6;
+position:absolute;
+}
+
+#musiclibrary{
+top: 78%;
+left: 5%;
+      z-index:6;
+position:absolute;
+}
+#stoprecording{
+width: 100%;
+height: 10%;
+}
+
+#recentermap{
+top: 80%;
+left: 33%;
+      z-index:6;
+position:absolute;
+}
+
+#navbar{
+height:10%;
+}
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+	 z-index: 0;
+}
 </style>
 </head>
 <body>
-  <nav id="navbar" class="light-green lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Hiking Trail</a>
-      <a href="/"><i class="material-icons">backspace</i></a>
-    </div>
-  </nav>
-    
-    
-    
-    <!-- The three buttons for adding waypoints and warnings -->
-    <a href="#modalwarning" id="warnings"  class="waves-effect btn-floating btn-large red"><i class="material-icons">warning</i></a>
-    
-    <a href="#modalpoi" id="pointofinterest" class="waves-effect btn-floating btn-large orange darken-1"><i class="material-icons">local_see</i></a>
-
-    <a href="#modalmusic" id="musiclibrary" class="waves-effect btn-floating btn-large blue darken-1"><i class="material-icons">library_music</i></a>
-    
-    <a class="waves-effect waves-light blue darken-1 btn" id="recentermap">Recenter<br/>Map</a>
+<nav id="navbar" class="light-green lighten-1" role="navigation">
+<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Hiking Trail</a>
+<a href="/"><i class="material-icons">backspace</i></a>
+</div>
+</nav>
 
 
-    
-    
-       <div id="map"></div>
-    
-       <a class="btn-large red" id="stoprecording">Stop Hike</a>
 
-    
+<!-- The three buttons for adding waypoints and warnings -->
+<a href="#modalwarning" id="warnings"  class="waves-effect currentSpot btn-floating btn-large red"><i class="material-icons">warning</i></a>
+
+<a href="#modalpoi" id="pointofinterest" class="waves-effect currentSpot btn-floating btn-large orange darken-1"><i class="material-icons">local_see</i></a>
+
+<a href="#modalmusic" id="musiclibrary" class="waves-effect currentSpot btn-floating btn-large blue darken-1"><i class="material-icons">library_music</i></a>
+
+<a class="waves-effect waves-light blue darken-1 btn" id="recentermap">Recenter<br/>Map</a>
 
 
-    
-  
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/js/materialize.js"></script>
-  <script src="/js/init.js"></script>
-     
-       
-    
-    
-    <script>
-      var map;
-      var global_id;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 20
-        });
-       // Try HTML5 geolocation.
-                      var infoWindow = new google.maps.InfoWindow({map: map});
 
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-              };
+<div id="map"></div>
 
-              infoWindow.setPosition(pos);
-              infoWindow.setContent('Location found.');
-              map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        }, 
-        {enableHighAccuracy: true}
-                                                      
+<a class="btn-large red" id="stoprecording">Stop Hike</a>
+
+
+
+
+
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/js/materialize.js"></script>
+<script src="/js/init.js"></script>
+
+
+
+
+<script>
+var map;
+var global_id;
+function initMap() {
+	map = new google.maps.Map(document.getElementById('map'), {
+center: {lat: -34.397, lng: 150.644},
+zoom: 20
+});
+// Try HTML5 geolocation.
+var infoWindow = new google.maps.InfoWindow({map: map});
+
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(function(position) {
+			var pos = {
+lat: position.coords.latitude,
+lng: position.coords.longitude
+};
+
+infoWindow.setPosition(pos);
+infoWindow.setContent('Location found.');
+map.setCenter(pos);
+}, function() {
+handleLocationError(true, infoWindow, map.getCenter());
+}, 
+{enableHighAccuracy: true}
+
 );
-          } else {
-              // Browser doesn't support Geolocation
-              handleLocationError(false, infoWindow, map.getCenter());
-          }
-          
-        
-                    $.get("/getAnnotations", addAnnotations);
-          function addAnnotations(annotations){
-              var list_of_annotations = annotations;
-              for(var i = 0; i< list_of_annotations.length; i++){
-                  var annotation_text = list_of_annotations[i].annotation;
-        
-                  var infoWindow = new google.maps.InfoWindow({map: map});
-                  infoWindow.setPosition(new google.maps.LatLng(list_of_annotations[i].lat, list_of_annotations[i].lng));
-                  infoWindow.setContent(annotation_text);
-              }
-          }
-        
-          
-        poly = new google.maps.Polyline({
-          strokeColor: '#0000FF',
-          strokeOpacity: 1.0,
-          strokeWeight: 3
-        });
-        poly.setMap(map);
-          
-          var trail_id;
-            $.get("/loadHikingTrail", addTrail);
-        function addTrail(result){
-        var the_trail_to_add = result.the_trail;
-            trail_id = result.trail_id;
-            global_id = result.trail_id
-        
-             for(var j = 0; j < the_trail_to_add.length; j++){
-                var path = poly.getPath();
-                 path.push(new google.maps.LatLng(the_trail_to_add[j].lat, the_trail_to_add[j].lng));
-             }
-            
-        }
-          
-          
-          
-          
-          
-          
-      var shouldCenterMap = true;
-      map.addListener('zoom_changed', uncenterMap);
-      map.addListener('drag', uncenterMap);
-          
-      function uncenterMap(){
-         shouldCenterMap = false;
-         $("#recentermap").show();
-          
-      }
-    
-      function centerMap(){
-          if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-              };
+	} else {
+		// Browser doesn't support Geolocation
+		handleLocationError(false, infoWindow, map.getCenter());
+	}
 
-              infoWindow.setPosition(pos);
-              infoWindow.setContent('Location found.');
-              map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        }, 
-        {enableHighAccuracy: true}
-                                                      
+google.maps.event.addListener(map, 'click', function(event) {
+		placePrompt(event.latLng);
+		});
+
+var annotateCurrentSpot = true;
+var buttonPrompt = "<div class=\"container row\"><div class=\"col s4\"><a href=\"#modalwarning\" class=\"waves-effect notCurrentSpot btn-floating btn-large red\"><i class=\"material-icons\">warning</i></a></div><div class=\"col s4\"><a href=\"#modalpoi\"  class=\"waves-effect notCurrentSpot btn-floating btn-large orange darken-1 \"><i class=\"material-icons\">local_see</i></a></div><div class=\"col s4\"><a href=\"#modalmusic\" class=\"waves-effect notCurrentSpot btn-floating btn-large blue darken-1 \"><i class=\"material-icons\">library_music</i></a></div></div>";
+var promptMarker;
+function placePrompt(location) {
+	if(promptMarker != null){
+		promptMarker.close();
+		promptMarker = null;
+
+
+	}
+	promptMarker = new google.maps.InfoWindow({
+position: location, 
+map: map
+});
+promptMarker.setContent(buttonPrompt);
+}
+
+document.addEventListener("NotCurrentLocation", function(){
+		annotateCurrentSpot = false; 
+		console.log(annotateCurrentSpot + " is the current state of annotation");
+
+		});
+
+document.addEventListener("CurrentLocation", function(){
+		annotateCurrentSpot = true; 
+		console.log(annotateCurrentSpot + " is the current state of annotation");
+		});
+
+
+$.get("/getAnnotations", addAnnotations);
+function addAnnotations(annotations){
+	var list_of_annotations = annotations;
+	for(var i = 0; i< list_of_annotations.length; i++){
+		var annotation_text = list_of_annotations[i].annotation;
+
+		var infoWindow = new google.maps.InfoWindow({map: map});
+		infoWindow.setPosition(new google.maps.LatLng(list_of_annotations[i].lat, list_of_annotations[i].lng));
+		infoWindow.setContent(annotation_text);
+	}
+}
+
+
+poly = new google.maps.Polyline({
+strokeColor: '#0000FF',
+strokeOpacity: 1.0,
+strokeWeight: 3
+});
+poly.setMap(map);
+
+var trail_id;
+$.get("/loadHikingTrail", addTrail);
+function addTrail(result){
+	var the_trail_to_add = result.the_trail;
+	trail_id = result.trail_id;
+	global_id = result.trail_id
+
+		for(var j = 0; j < the_trail_to_add.length; j++){
+			var path = poly.getPath();
+			path.push(new google.maps.LatLng(the_trail_to_add[j].lat, the_trail_to_add[j].lng));
+		}
+
+}
+
+
+
+
+
+
+var shouldCenterMap = true;
+map.addListener('zoom_changed', uncenterMap);
+map.addListener('drag', uncenterMap);
+
+function uncenterMap(){
+	shouldCenterMap = false;
+	$("#recentermap").show();
+
+}
+
+function centerMap(){
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+				var pos = {
+lat: position.coords.latitude,
+lng: position.coords.longitude
+};
+
+infoWindow.setPosition(pos);
+infoWindow.setContent('Location found.');
+map.setCenter(pos);
+}, function() {
+handleLocationError(true, infoWindow, map.getCenter());
+}, 
+{enableHighAccuracy: true}
+
 );
-          } else {
-              // Browser doesn't support Geolocation
-              handleLocationError(false, infoWindow, map.getCenter());
-          }
-          
-          shouldCenterMap = true;
-      }
-          
-      document.addEventListener('centerMap', centerMap);
-          
-      document.addEventListener('submitTrail', submitTrail);
-          
-          
-          var recordingsLat = [];
-          var recordingsLng = [];
-        setInterval(recordLocation, 10);
-          function recordLocation(){
-              if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-              };
-                  
-              recordingsLat.push(pos.lat);
-              recordingsLng.push(pos.lng);
+		} else {
+			// Browser doesn't support Geolocation
+			handleLocationError(false, infoWindow, map.getCenter());
+		}
 
-              infoWindow.setPosition(pos);
-              infoWindow.setContent(pos.lat + " , " +pos.lng);
-              if(shouldCenterMap){
-                  map.setCenter(pos);
-              }
-              
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-          } else {
-              // Browser doesn't support Geolocation
-              handleLocationError(false, infoWindow, map.getCenter());
-          }
-              
-          }
-          
-          
-           $('#addWarning').on("click", function(){
-                  $.post("/addAnnotation", {"annotation": "Warning: " + $("#warningText").val(), "position" : {
-                  lat: recordingsLat[recordingsLat.length-1],
-                  lng: recordingsLng[recordingsLat.length-1]
-                  }});
-                 
-                  var infoWindow = new google.maps.InfoWindow({map: map});
-                  infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
-                  infoWindow.setContent("Warning: " + $("#warningText").val());
-        
-               });
-              $('#addPoi').on("click", function(){
-                  $.post("/addAnnotation", {"annotation": "Point of Interest: " + $("#poiText").val(), "position" : {
-                  lat: recordingsLat[recordingsLat.length-1],
-                  lng: recordingsLng[recordingsLat.length-1]
-                  }});
-                  var infoWindow = new google.maps.InfoWindow({map: map});
-                  infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
-                  infoWindow.setContent("Point of Interest: " + $("#poiText").val());
-              });
-              $('#addMusic').on("click", function(){
-            
-                  $.post("/addAnnotation", {"annotation": "Music Suggestion: " + $("#musicText").val(), "position" : {
-                  lat: recordingsLat[recordingsLat.length-1],
-                  lng: recordingsLng[recordingsLat.length-1]
-                  }});
-                  var infoWindow = new google.maps.InfoWindow({map: map});
-                  infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
-                  infoWindow.setContent("Music Suggestion: " + $("#musicText").val());
-              });
-          
-        
-      
-          
-   
-  
-          
-          
+shouldCenterMap = true;
+}
 
-          
-          function submitTrail(){
-              window.location.href = "/review/A?id="+trail_id;
-          }
-          
-    
+document.addEventListener('centerMap', centerMap);
 
-          
-        
-      }
-    </script>
+document.addEventListener('submitTrail', submitTrail);
+
+
+var recordingsLat = [];
+var recordingsLng = [];
+setInterval(recordLocation, 10);
+function recordLocation(){
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+				var pos = {
+lat: position.coords.latitude,
+lng: position.coords.longitude
+};
+
+recordingsLat.push(pos.lat);
+recordingsLng.push(pos.lng);
+
+infoWindow.setPosition(pos);
+infoWindow.setContent(pos.lat + " , " +pos.lng);
+if(shouldCenterMap){
+map.setCenter(pos);
+}
+
+}, function() {
+handleLocationError(true, infoWindow, map.getCenter());
+});
+} else {
+	// Browser doesn't support Geolocation
+	handleLocationError(false, infoWindow, map.getCenter());
+}
+
+}
+
+
+$('#addWarning').on("click", function(){
+		$.post("/addAnnotation", {"annotation": "Warning: " + $("#warningText").val(), "position" : {
+lat: recordingsLat[recordingsLat.length-1],
+lng: recordingsLng[recordingsLat.length-1]
+}});
+
+		var infoWindow = new google.maps.InfoWindow({map: map});
+		if(annotateCurrentSpot){
+		infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
+
+		}
+		else{
+		infoWindow.setPosition(promptMarker.position);
+
+		}                   infoWindow.setContent("Warning: " + $("#warningText").val());
+
+		if(promptMarker != null){
+		promptMarker.close();
+		promptMarker = null;
+
+
+		}
+
+});
+$('#addPoi').on("click", function(){
+		$.post("/addAnnotation", {"annotation": "Point of Interest: " + $("#poiText").val(), "position" : {
+lat: recordingsLat[recordingsLat.length-1],
+lng: recordingsLng[recordingsLat.length-1]
+}});
+		var infoWindow = new google.maps.InfoWindow({map: map});
+		if(annotateCurrentSpot){
+		infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
+
+		}
+		else{
+		infoWindow.setPosition(promptMarker.position);
+
+		}                   infoWindow.setContent("Point of Interest: " + $("#poiText").val());
+
+		if(promptMarker != null){
+		promptMarker.close();
+		promptMarker = null;
+
+
+		}
+});
+$('#addMusic').on("click", function(){
+
+		$.post("/addAnnotation", {"annotation": "Music Suggestion: " + $("#musicText").val(), "position" : {
+lat: recordingsLat[recordingsLat.length-1],
+lng: recordingsLng[recordingsLat.length-1]
+}});
+		var infoWindow = new google.maps.InfoWindow({map: map});
+		if(annotateCurrentSpot){
+		infoWindow.setPosition(new google.maps.LatLng(recordingsLat[recordingsLat.length-1], recordingsLng[recordingsLat.length-1]));
+
+		}
+		else{
+		infoWindow.setPosition(promptMarker.position);
+
+		}                   infoWindow.setContent("Music Suggestion: " + $("#musicText").val());
+
+
+		if(promptMarker != null){
+		promptMarker.close();
+		promptMarker = null;
+
+
+		}
+});
+
+
+
+
+
+
+
+
+
+
+function submitTrail(){
+	window.location.href = "/review/A?id="+trail_id;
+}
+
+
+
+
+
+}
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt2_jkQWKuHl6iy02idQyWXAQTGJLx2io&callback=initMap"
-    async defer></script>
-    
-    
-   
- <!-- Modal Structure -->
-  <div id="modalwarning" class="modal">
-    <div class="modal-content">
-      <h4>Add a Warning</h4>
-      <p>OMG SO DANGEROUS!!!!!</p>
-        
-        <div class="form-group">
-        <input id = "warningText" type="text" class="form-control"
-               placeholder="What warning do you want others to see?" 
-               name="warningText">
-      </div>
-    </div>
-      
-      
-      
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a id = "addWarning" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
-    </div>
-  </div>
-    
-    <!-- Modal Structure -->
-  <div id="modalmusic" class="modal">
-    <div class="modal-content">
-      <h4>Add a Playlist</h4>
-      <p>MUCH MUSIC!!!!</p>
-         <div class="form-group">
-        <input id = "musicText" type="text" class="form-control"
-               placeholder="Keep this form until spotifyable" 
-               name="musicText">
-      </div>
-    </div>
-      
-      
-      
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a id = "addMusic" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
-    </div>
-  </div>
-    
-  <!-- Modal Structure -->
-  <div id="modalpoi" class="modal">
-    <div class="modal-content">
-      <h4>Add a Point of Interest</h4>
-      <p>MUCH INTERESTING!!!</p>
-         <div class="form-group">
-        <input id = "poiText" type="text" class="form-control" id="waypointText"  
-               placeholder="What sight would you want others to see?" 
-               name="waypoint">
-      </div>
-        
-        <div class="form-group">
-          <div class="file-field input-field">
-      <div class="btn">
-        <span>image</span>
-        <input type="file" name="imageURL">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
-              
-    </div>
-      
-      
-      
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a id = "addPoi" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
-    </div>
-  </div>
-    
-    
- 
-    
-    
-    <!-- Modal Structure 
-        on pressing back while recording the trail.  -->
-  <div id="modalrecordthenback" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>Are you sure?</h4>
-      <p>This will quit your current recording.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="index.html" class="modal-action modal-close waves-effect waves-red btn-flat ">No</a>
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Yes</a>
-    </div>
-  </div>
-    
-    
-    
- 
-    
-    
-    
-
-    
-   <script>
-      $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-    $("#recentermap").hide();
-          
-    $("#recentermap").on("click", function(){
-         var centerMap = new Event('centerMap');
-         document.dispatchEvent(centerMap);
-         
-         $(this).delay(2000).hide();
-   
-    });
-          
-// Even though the id is stoprecording, the code is actually stophike  
-    $("#stoprecording").on("click", function(){
-         var submitTrail = new Event('submitTrail');
-         document.dispatchEvent(submitTrail);
-         console.log("GG");
+<<<<<<< HEAD
+async defer></script>
 
 
-         // Grab the id, the trail name, description, and difficulty. 
+
+<!-- Modal Structure -->
+<div id="modalwarning" class="modal">
+<div class="modal-content">
+<h4>Add a Warning</h4>
+<p>OMG SO DANGEROUS!!!!!</p>
+
+<div class="form-group">
+<input id = "warningText" type="text" class="form-control"
+placeholder="What warning do you want others to see?" 
+name="warningText">
+</div>
+</div>
+
+
+
+<div class="modal-footer">
+<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+<a id = "addWarning" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modalmusic" class="modal">
+<div class="modal-content">
+<h4>Add a Playlist</h4>
+<p>MUCH MUSIC!!!!</p>
+<div class="form-group">
+<input id = "musicText" type="text" class="form-control"
+placeholder="Keep this form until spotifyable" 
+name="musicText">
+</div>
+</div>
+
+
+
+<div class="modal-footer">
+<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+<a id = "addMusic" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modalpoi" class="modal">
+<div class="modal-content">
+<h4>Add a Point of Interest</h4>
+<p>MUCH INTERESTING!!!</p>
+<div class="form-group">
+<input id = "poiText" type="text" class="form-control" id="waypointText"  
+placeholder="What sight would you want others to see?" 
+name="waypoint">
+</div>
+
+<div class="form-group">
+<div class="file-field input-field">
+<div class="btn">
+<span>image</span>
+<input type="file" name="imageURL">
+</div>
+<div class="file-path-wrapper">
+<input class="file-path validate" type="text">
+</div>
+
+</div>
+
+
+
+<div class="modal-footer">
+<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+<a id = "addPoi" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+</div>
+</div>
+
+
+
+
+
+<!-- Modal Structure 
+on pressing back while recording the trail.  -->
+<div id="modalrecordthenback" class="modal modal-fixed-footer">
+<div class="modal-content">
+<h4>Are you sure?</h4>
+<p>This will quit your current recording.</p>
+</div>
+<div class="modal-footer">
+<a href="index.html" class="modal-action modal-close waves-effect waves-red btn-flat ">No</a>
+<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Yes</a>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+		// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+		$('.modal').modal();
+		$("#recentermap").hide();
+
+		$("#recentermap").on("click", function(){
+				var centerMap = new Event('centerMap');
+				document.dispatchEvent(centerMap);
+
+				$(this).delay(2000).hide();
+
+				});
+
+		// Even though the id is stoprecording, the code is actually stophike  
+		$("#stoprecording").on("click", function(){
+				var submitTrail = new Event('submitTrail');
+				document.dispatchEvent(submitTrail);
+				console.log("GG");
+
+
+				         // Grab the id, 
 
          // Do a get request with the above variables. 
-         $.get("")
+         $.get("/appendHistory/" + global_id, function() {
+          console.log("callback function append history ");
+         });
+
+         toast("save")
+         console.log("save")
          // Pass global_id here and probably other info
 
          // Make sure that the get request works. 
 
 
-    });
-         
-  });
+
+				});
+
+		$(document.body).on("click",".notCurrentSpot",function(){
+				var submitTrail = new Event('NotCurrentLocation');
+				document.dispatchEvent(submitTrail);
+				console.log("not current locatation");
+				});
+
+		$(".currentSpot").on("click", function(){
+				var submitTrail = new Event('CurrentLocation');
+				document.dispatchEvent(submitTrail);
+				console.log("current locatation");
 
 
-      //copy 
-      var temp_id = this.id;
+				});
+
+});
+    
+       function toast(alerttxt)  {Materialize.toast(alerttxt, 8000,'rounded');return false}      
+
+
+
+//copy 
+var temp_id = this.id;
 var temp_name = this.trail_name;
 var temp_description = this.trail_description;
 var temp_difficulty = this.difficulty;
 $("#favoriting_the_trail").on("click", function() { 
 
-  $.get("/favs/" + temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty, 
-    function() {console.log();} /** TODO */ );  
-            // Just got the IDs
-            //alert("Fav saved.");
-            toast("Fav saved")
-            console.log("Fav Saved.");
-          }
-          );
-         
-    </script>
+		$.get("/favs/" + temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty, 
+				function() {console.log();} /** TODO */ );  
+		// Just got the IDs
+		//alert("Fav saved.");
+		toast("Fav saved")
+		console.log("Fav Saved.");
+		}
+		);
 
-  </body>
+</script>
+
+</body>
 </html>
