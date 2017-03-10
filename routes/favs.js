@@ -21,7 +21,7 @@ exports.addFavorite = function(req, res){
     }
     console.log("In the javascript file.")
     console.log(newjson);
-    var unique=false;
+    var unique=true;
     for(var i in data.favorites)
     {
          var id = data.favorites[i].id;
