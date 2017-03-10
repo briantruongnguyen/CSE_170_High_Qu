@@ -19,8 +19,12 @@ exports.addFavorite = function(req, res){
         "description"   : t_desc,
         "difficulty"    : t_diff
     }
-
     console.log("In the javascript file.")
     console.log(newjson);
-    data.favorites.push(newjson);
+    var unique=false;
+    data.favorites.forEach(function(itm2) {
+            if (_.isEqual(newjson, itm2)) unique = false;
+        });
+        if (unique)  data.favorites.push(newjson);
+    //data.favorites.push(newjson);
 }
