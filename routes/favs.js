@@ -22,18 +22,20 @@ exports.addFavorite = function(req, res){
     console.log("In the javascript file.")
     console.log(newjson);
     var unique=true;
-    <!--
-    //for(var i in data.favorites)
-    //{
-    //     var id = data.favorites[i].id;
-    //     var name = data.favorites[i].name;
-    //     var description = data.favorites[i].description;
-    //     var difficulty = data.favorites[i].difficulty;
-     //    if(id==t_id && name==t_name && description==t_desc && difficulty==t_diff)
-      //   {
-       //     unique=false;
-    //     }
-    //}
-    -->
+    
+    for(var i in data.favorites)
+    {
+         var id = data.favorites[i].id;
+         var name = data.favorites[i].name;
+         var description = data.favorites[i].description;
+         var difficulty = data.favorites[i].difficulty;
+         if(id==t_id && name==t_name && description==t_desc && difficulty==t_diff)
+         {
+            unique=false;
+         }
+    }
+    if(unique==true)
+    {
     data.favorites.push(newjson);
+    }
 }
