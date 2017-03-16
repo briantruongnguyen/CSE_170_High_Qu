@@ -1,6 +1,11 @@
 var profile = require("../profile.json");
 
-exports.updateProfile = function(req, res) {
+exports.view = function(req, res){
+  res.render('changeProfile',profile);
+
+
+};
+exports.changeProfile = function(req, res) {
 	// Your code goes here
     
     /*
