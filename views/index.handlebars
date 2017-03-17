@@ -81,85 +81,6 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
           padding: 0;
           z-index: 0;
         }
-        .slideshow-container {
-          max-width: 1000px;
-          position: relative;
-          margin: auto;
-        }
-
-        .mySlides {
-            display: none;
-        }
-
-        /* Next & previous buttons */
-        .prev, .next {
-          cursor: pointer;
-          position: absolute;
-          top: 50%;
-          width: auto;
-          margin-top: -22px;
-          padding: 16px;
-          color: white;
-          font-weight: bold;
-          font-size: 18px;
-          transition: 0.6s ease;
-          border-radius: 0 3px 3px 0;
-        }
-
-        /* Position the "next button" to the right */
-        .next {
-          right: 0;
-          border-radius: 3px 0 0 3px;
-        }
-
-        /* On hover, add a black background color with a little bit see-through */
-        .prev:hover, .next:hover {
-          background-color: rgba(0,0,0,0.8);
-        }
-
-        /* Caption text */ 
-        .text {
-          color: #f2f2f2;
-          font-size: 30px;
-          padding: 8px 12px;
-          position: absolute;
-          bottom: 15px;
-          width: 100%;
-          text-align: center;
-        }
-
-        /* Number text (1/3 etc) */
-        .numbertext {
-          color: #f2f2f2;
-          font-size: 12px;
-          padding: 8px 12px;
-          position: absolute;
-          top: 0;
-        }
-
-        /* The dots/bullets/indicators */
-        .dot {
-          cursor:pointer;
-          height: 13px;
-          width: 13px;
-          margin: 0 2px;
-          background-color: #bbb;
-          border-radius: 50%;
-          display: inline-block;
-          transition: background-color 0.6s ease;
-        }
-
-        .active, .dot:hover {
-          background-color: #717171;
-        }
-
-        /* Fading animation */
-        .fade {
-          -webkit-animation-name: fade;
-          -webkit-animation-duration: 1.5s;
-          animation-name: fade;
-          animation-duration: 1.5s;
-        }
       </style>
     </head>
 
@@ -583,13 +504,22 @@ var temp_description = this.trail_description;
 var temp_difficulty = this.difficulty;
 $("#favoriting_the_trail").on("click", function() { 
 
-  $.get("/favs/" + temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty, 
+  if(window.sessionStorage.username && window.sessionStorage.username != "Guest User"){
+       $.get("/favs/" + temp_id + "/" + temp_name + "/" + temp_description + "/" + temp_difficulty, 
     function() {console.log();} /** TODO */ );  
             // Just got the IDs
             //alert("Fav saved.");
             toast("Fav saved")
             console.log("Fav Saved.");
           }
+                       
+  else{
+          $('#loginmodal').modal('open');
+
+
+  }
+}
+        
           );
 
 
@@ -741,6 +671,19 @@ complete: function() { } // Callback for Modal close
       $("#profile_user_name").text(window.sessionStorage.username);
 
     }
+    if(window.sessionStorage.getItem("username") == "Guest User"){
+        $("#logout").text("Login");
+        $("#logout").on("click", function(){
+            $('#loginmodal').modal('open');
+        });
+    }
+    else{
+           $("#logout").on("click", function(){
+      sessionStorage.clear();
+      window.location.href = "/brandingpage";
+
+    });
+    }
     
     var numOfClicksOnRegister = 0;
     function needPwMatch(){
@@ -833,6 +776,11 @@ complete: function() { } // Callback for Modal close
         window.sessionStorage.username = $("#username").val();
         $("#profile_user_name").text(window.sessionStorage.username);
         $("#loginmodal").modal('close');
+        $("#logout").text("Logout");
+        $("#logout").on("click", function(){
+            sessionStorage.clear();
+            window.location.href = "/brandingpage";
+        });
 
             
 
@@ -920,12 +868,6 @@ complete: function() { } // Callback for Modal close
       $('#search').tooltip('show');   
 
       $("#search").trigger('mouseenter');
-    });
-
-    $("#logout").on("click", function(){
-      sessionStorage.clear();
-      window.location.href = "/brandingpage";
-
     });
 
     $("#searchbarx").on("click", function(){

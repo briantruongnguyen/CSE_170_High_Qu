@@ -38,7 +38,7 @@
     <div id="frame">
         <h2 id="overlay1" class="center-align white-text frame" style="z-index:2;">HIGH-QU</h2>
         <h4 id="overlay2" class="center-align white-text frame" style="z-index:2;">Explore the Unknown.</h4>
-        <a href="/" id="overlay3" class="waves-effect waves-light btn red">Explore Our App</a>
+        <a id="overlay3" class="waves-effect waves-light btn red">Explore Our App</a>
 
 
     </div>
@@ -53,12 +53,22 @@
 
 <script>
 $(document).ready(function(e) {
+  if(window.sessionStorage.username){
+    window.location.href = "/";
+
+  }
     width = "-=" + $(document).width();
     $("#animate").animate({
     left: width
   }, 40000, function() {
     // Animation complete.
   });
+    
+ $("#overlay3").on("click", function(){
+     window.sessionStorage.username = "Guest User";
+     window.location.href = "/";
+ 
+ });
 });
 </script>
 </body>
