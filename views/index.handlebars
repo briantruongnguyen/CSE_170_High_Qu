@@ -183,10 +183,11 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
               <img style="width:100%;" src="/img/materialize-bg.jpg">
             </div>
             <div class="row">
-
+              {{#each createdProfiles}}    
              <div class="col s8">
-               <h5 id="profile_user_name" class="white-text"></h5>
+               <h5 id="profile_user_name" class="white-text">{{name}}</h5>
              </div> 
+             {{/each}} 
            </div>
            <div class="divider"></div>
 
