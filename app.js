@@ -25,6 +25,7 @@ var login = require('./routes/login');
 var review = require('./routes/review');
 var updateProfile = require('./routes/updateProfile');
 var brandingPage = require('./routes/brandingPage');
+var changeProfile = require('./routes/changeProfile');
 
 
 // Example route
@@ -69,6 +70,7 @@ app.get('/help', help.view);
 app.get('/hikehistory', hikehistory.view);
 app.get('/mytrails', mytrails.view);
 app.get('/profile', profile.view);
+//app.get('/changeProfile', changeProfile.view);
 app.get('/settings', settings.view);
 app.get('/submitTrail/:trail_id', submitTrail.view);
 app.get('/createMyTrail',createMyTrail.addNewTrail);
@@ -76,9 +78,9 @@ app.get('/createMyProfile',createMyProfile.addNewProfile);
 app.get('/favs/:trail_id/:trail_name/:trail_desc/:trail_diff', favs.addFavorite);
 
 app.get('/brandingPage',brandingPage.view);
-
 app.get('/hikeTrail/:trail_id/:trail_name/:trail_desc/:trail_diff' , hikeTrail.saveIntoHistory)
 app.get('/appendHistory/:trail_id' , hikeTrail.saveIntoHistory)
+app.get('/changeProfile',changeProfile.view);
 
 
 

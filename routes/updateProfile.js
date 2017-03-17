@@ -27,8 +27,9 @@ exports.updateProfile = function(req, res) {
     profile.createdProfiles = []
     var newProfile={
 		"id" : 1,
-		"name": req.query.p_name,
+		"name": req.query.nickname,
 		"description": req.query.description,
+		"interest":req.query.interest,
 		"imageURL":"https://scontent.xx.fbcdn.net/v/t1.0-9/15622540_1892333944331666_4214696052833980642_n.jpg?oh=a891f43b7a5fe18c90ac0d75220bd4b6&oe=593448BF",
     
 	};

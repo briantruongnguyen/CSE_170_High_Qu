@@ -25,6 +25,7 @@ Hans Yuan
 	<!-- CSS  -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="/css/bootstrap-theme.css" type="text/css" rel="stylesheet"/>
 	<link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 	<style>
@@ -32,54 +33,93 @@ Hans Yuan
 			height: 40.5%;
 			position:relative;
 		}
-		#contactform{
-			z-index:5;
-			position:absolute;
-			width: 90%;
-			padding-top: 20%;
-			padding-left: 10%;
-		}
-		#warnings{
-			top: 75%;
-			left: 5%;
-			z-index:6;
-			position:absolute;
-		}
-		#stoprecording{
-			width: 100%;
-			height: 10%;
-		}
 
-		html, body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-			z-index: 0;
-		}
-		.card {
-			background-color: #f4f4f4;
-			width: 300px;
-			margin: 10px auto;
-			box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.7);
-			text-align: center;
-		}
+/* USER PROFILE PAGE */
+ .card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+    height: 130px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
 
-		.card-header {
-			overflow: hidden;
-			width: 100%;
-			max-height: 200px;
-		}
 
-		.card-header img{
-			width: 60%;
-			border-radius: 50%;
-			margin-top: 10px;
 
-		}
-		.card-content {
-			width: 85%;
-			margin: 20px auto;
-		}
+
 	</style>
 </head>
 
@@ -90,7 +130,7 @@ Hans Yuan
 			<a href="/"><i class="material-icons">backspace</i></a>
 		</div>
 	</nav>
-
+<!--
 	<div class="card">
 		<div class="card-header">
 			<img src="/img/doge.jpeg">
@@ -102,38 +142,55 @@ Hans Yuan
 			{{/each}}
 		</div>
 	</div>
+-->
+
+<div class="col-lg-6 col-sm-6">
+    <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
+            <!-- http://lorempixel.com/850/280/people/9/ -->
+        </div>
+        <div class="useravatar">
+            <img  src="/img/userimage.png">
+        </div>
+    </div>
+</div>
+{{#each createdProfiles}}    
+   <ul class="collection">
+    <li class="collection-item avatar">
+      <i class="material-icons circle green">perm_identity</i>
+      <span class="title">Nickname</span>
+      <br>
+      <p id = "nickname">
+      	{{name}}
+      </p>
+    </li>
+    <li class="collection-item avatar">
+      <i class="material-icons circle">info_outline</i>
+      <span class="title">Description</span>
+       <br>
+      <p id = "desc">
+      	{{description}}
+      </p>
+    </li>
+    <li class="collection-item avatar">
+      <i class="material-icons circle red">thumb_up</i>
+      <span class="title">Interest</span>
+       <br>
+      <p id = "desc">
+      	{{interest}}
+      </p>
+    </li>
+  </ul> 
+{{/each}} 
+    
+
 
 
 
 	<div class="container">
 		<!-- start form fields --> 
-		<form id="addTrailForm" role="form" method="get" action="/updateProfile">
-
-			<!-- Include a photo -->
-
-			<!-- TODO JS the fields if JSONObject already exists -->
-			<!--
-			<div class="form-group">
-				<input type="text" class="form-control" id="p_name"  placeholder="Your name" name="p_name">
-			</div>
-
-			<div class="input-field col s12">         
-
-			</div>
-		-->
-
-			<div class="form-group">
-				<input type="text" class="form-control" id="description" placeholder="Tell me about yourself." name="description">
-			</div>
-
-			<div style="text-align:center">
-				<input type="submit" id="submitBtn" class="waves-effect waves-light btn" value="save my changes"></input>
-			</div>
-		
-		</form>
-
-
-
+		<a class="waves-effect waves-light btn-large" href="changeProfile">update my profile</a>
 	</div>
 
 
@@ -148,9 +205,14 @@ Hans Yuan
     $('#profile_user_name').text(window.sessionStorage.username);
     console.log(window.sessionStorage.username);
 	});
+	var nickname = $('#nickname').val();
 	var description = $('#description').val();
+	var interest = $('#interest').val();
 	$( '#submitBtn' ).click(function() {
- 		('desc').text(description);
+		('#profile_user_name').text(nickname);
+ 		('#desc').text(description);
+ 		('#interest').text(interest);
+
 	});
 	</script>
 </body>
