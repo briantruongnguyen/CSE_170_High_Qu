@@ -249,8 +249,8 @@ A/B TESTING IS BELOW FOR THE REGISTER AND LOGIN BUTTONS
             <div><p> </p></div>
             <div><p> </p></div>
             <div><p> </p></div>
-
-            <h6>No account yet? Register! {{#if showDefault}}Just trying us out? If you'd like, you can just...<a href="#!" class = "guest" >Continue as Guest</a>{{/if}}</h6>
+<!--
+            <h6>No account yet? Register! {{#if showDefault}}Just trying us out? If you'd like, you can just...<a href="#!" class = "guest" >Continue as Guest</a>{{/if}}</h6> --> 
             <a id="register" class="waves-effect waves-light btn">Register</a>
           </form>
         </div>
@@ -673,7 +673,7 @@ complete: function() { } // Callback for Modal close
       $("#profile_user_name").text(window.sessionStorage.username);
 
     }
-    if(window.sessionStorage.getItem("username") == "Guest User"){
+    if(!window.sessionStorage.username || window.sessionStorage.getItem("username") == "Guest User"){
         $("#logout").text("Login");
         $("#logout").on("click", function(){
             $('#loginmodal').modal('open');
@@ -722,6 +722,11 @@ complete: function() { } // Callback for Modal close
        Materialize.toast("Successfully registered as: " + username, 4000,'rounded');
        window.sessionStorage.username = username;
        $("#profile_user_name").text(window.sessionStorage.username);
+        $("#logout").text("Logout");
+        $("#logout").on("click", function(){
+            sessionStorage.clear();
+            window.location.href = "/brandingpage";
+        });
 
 
    }
